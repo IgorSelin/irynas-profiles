@@ -8,7 +8,7 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-black/40 z-10" />
-        <div className="w-full h-full bg-[url('/images/hero-bg.jpg')] bg-cover bg-center" />
+        <div className="w-full h-full bg-[url('/images/hero.webp')] bg-cover bg-center" />
       </div>
 
       {/* Content */}

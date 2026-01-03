@@ -51,10 +51,10 @@ export default function Footer() {
               <li>Львів, Україна</li>
               <li>
                 <a
-                  href="tel:+380XXXXXXXXX"
+                  href="tel:+380975383348"
                   className="hover:text-white transition-colors"
                 >
-                  +380 XX XXX XX XX
+                  +380 97 538 33 48
                 </a>
               </li>
               <li>

@@ -7,55 +7,130 @@ import { Tour } from "@/lib/types";
 const tours: Tour[] = [
   {
     id: "1",
-    title: "Історичний центр Львова",
+    title: "Середньовічний Львів",
     description:
-      "Пішохідна екскурсія по найкрасивіших місцях Старого міста. Ви побачите Площу Ринок, Вірменський квартал, таємничі дворики та дізнаєтесь цікаві історії про місто.",
-    duration: "2-3 години",
-    image: "/images/tour-historical.jpg",
+      "В Середньовічному місті каміння оживає на кожному кроці. Площа Ринок із її унікальними кам'яницями, колишні квартали ремісників, торгівців і аристократів розповідають історії з XVI століття. Старі міські брами, вузькі вулички та архітектура готики, ренесансу та бароко створюють неповторну атмосферу.",
+    duration: "2 години",
+    price: "200 грн/ос",
+    languages: ["Українська", "Польська"],
+    image: "/images/tour-medieval.jpg",
     highlights: [
       "Площа Ринок",
-      "Вірменський квартал",
-      "Катедральний собор",
-      "Таємничі дворики",
+      "Квартали ремісників",
+      "Готична архітектура",
+      "Ренесанс та бароко",
     ],
   },
   {
     id: "2",
-    title: "Львівські легенди та міфи",
+    title: "Підземелля Львова",
     description:
-      "Захоплююча екскурсія про легенди та міфи Львова. Дізнайтесь про привиди, скарби та таємниці, які приховує наше місто.",
+      "Львівські підземелля – справжній світ таємниць! Єзуїтський костел, аптека-музей, підземелля Домініканів переносять у середньовіччя, а ресторанні підвали на площі Ринок розкривають атмосферу стародавнього Львова із сучасним смаком. Відкрийте невидимий Львів!",
     duration: "2 години",
-    image: "/images/tour-legends.jpg",
+    price: "200 грн/ос",
+    languages: ["Українська", "Польська"],
+    image: "/images/tour-underground.jpg",
     highlights: [
-      "Легенди про привиди",
-      "Історії про скарби",
-      "Таємниці старих будинків",
+      "Єзуїтський костел",
+      "Аптека-музей",
+      "Підземелля Домініканів",
+      "Ресторанні підвали",
     ],
   },
   {
     id: "3",
-    title: "Кавовий Львів",
+    title: "Золота доба австрійського Львова",
     description:
-      "Екскурсія для любителів кави. Відвідайте найкращі кав'ярні міста, дізнайтесь про історію кави у Львові та скуштуйте унікальні напої.",
-    duration: "2.5 години",
-    image: "/images/tour-coffee.jpg",
+      "Запрошую на прогулянку австрійським Львовом — містом, яке розквітло в добу Габсбургів! Ви побачите величний Оперний театр, монументальну Галицьку касу, елегантне Кінське казино, Галицький сейм, де вирішувались долі, та розкішний Палац Потоцьких.",
+    duration: "2 години",
+    price: "200 грн/ос",
+    languages: ["Українська", "Польська"],
+    image: "/images/tour-austrian.jpg",
     highlights: [
-      "Відвідування кав'ярень",
-      "Дегустація кави",
-      "Історія кавової культури",
+      "Оперний театр",
+      "Галицька каса",
+      "Кінське казино",
+      "Палац Потоцьких",
     ],
   },
   {
     id: "4",
-    title: "Архітектурні перлини",
+    title: "Львів очима Карлсона",
     description:
-      "Подорож архітектурою Львова від середньовіччя до модерну. Ви побачите найкрасивіші будівлі міста та дізнаєтесь про їх історію.",
-    duration: "3 години",
-    image: "/images/tour-architecture.jpg",
+      "Львів з висоти – це прекрасна картина! Дахи міста розповідають свої історії, а з Ратуші, до якої ведуть 408 сходинок, відкривається панорама, що зачаровує. Відчуйте Львів зверху – романтика, історія і краса в одному погляді!",
+    duration: "2 години",
+    price: "200 грн/ос",
+    languages: ["Українська", "Польська"],
+    image: "/images/tour-carlson.jpg",
     highlights: [
-      "Готична архітектура",
-      "Ренесанс та бароко",
-      "Модерн та сецесія",
+      "Ратуша (408 сходинок)",
+      "Панорама міста",
+      "Дахи Львова",
+      "Вид з висоти",
+    ],
+  },
+  {
+    id: "5",
+    title: "Автобусна екскурсія",
+    description:
+      "Маршрут адаптую під ваші інтереси та кількість учасників. Це зручний спосіб побачити місто, дізнатись його історії та відчути атмосферу. В рамках 3-4 годинної екскурсії ви відвідаєте собор Юра, Львівську Політехніку, собор Єлизавети та Ольги, Личаківське кладовище, міський парк Високий замок.",
+    duration: "3-4 години",
+    price: "200 грн/ос",
+    languages: ["Українська", "Польська"],
+    image: "/images/tour-bus.jpg",
+    highlights: [
+      "Собор Юра",
+      "Львівська Політехніка",
+      "Собор Єлизавети та Ольги",
+      "Високий замок",
+    ],
+  },
+  {
+    id: "6",
+    title: "Оперний театр",
+    description:
+      "Львівський Оперний театр - перлина архітектури й мистецтва, збудований у кінці ХIХ століття. Його розкішні інтер'єри зачаровують: позолота, мармур і витончені фрески. Тут виступала легендарна Соломія Крушельницька, яка прославила українську оперу у світі.",
+    duration: "2 години",
+    price: "200 грн/ос",
+    languages: ["Українська", "Польська"],
+    image: "/images/tour-opera.jpg",
+    highlights: [
+      "Розкішні інтер'єри",
+      "Позолота та мармур",
+      "Історія Соломії Крушельницької",
+      "Архітектура ХІХ століття",
+    ],
+  },
+  {
+    id: "7",
+    title: "Вілли Кастелівки",
+    description:
+      "Архітектурна казка: Вілли Кастелівки — це шарм модерну та історизму в кожній деталі. Пройдемось слідами еліти та дізнаємось, як жили львівські інтелігенти кінця ХІХ століття.",
+    duration: "2 години",
+    price: "200 грн/ос",
+    languages: ["Українська", "Польська"],
+    image: "/images/tour-castelivka.jpg",
+    highlights: [
+      "Архітектура модерну",
+      "Історизм",
+      "Вілли еліти",
+      "Львівська інтелігенція",
+    ],
+  },
+  {
+    id: "8",
+    title: "Личаківське кладовище",
+    description:
+      "Личаківський цвинтар – це не просто місце спочинку, це музей під відкритим небом, найстаріший діючий цвинтар у світі, де кожна алея зберігає історії любові, слави та загадок. Чи знаєте ви, які таємниці про людські долі приховують мармурові статуї?",
+    duration: "2 години",
+    price: "200 грн/ос",
+    languages: ["Українська", "Польська"],
+    image: "/images/tour-lychakiv.jpg",
+    highlights: [
+      "Музей під відкритим небом",
+      "Мармурові статуї",
+      "Історії любові та слави",
+      "Найстаріший діючий цвинтар",
     ],
   },
 ];
@@ -80,7 +155,7 @@ export default function Tours() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {tours.map((tour, index) => (
             <motion.div
               key={tour.id}
@@ -89,7 +164,7 @@ export default function Tours() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex flex-col h-full"
             >
               <div className="relative h-64">
                 <Image
@@ -99,28 +174,68 @@ export default function Tours() {
                   className="object-cover"
                 />
               </div>
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">
                   {tour.title}
                 </h3>
                 <p className="text-gray-600 mb-4 leading-relaxed">
                   {tour.description}
                 </p>
-                <div className="flex items-center text-purple-600 mb-4">
-                  <svg
-                    className="w-5 h-5 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  <span className="font-semibold">{tour.duration}</span>
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center text-purple-600">
+                    <svg
+                      className="w-5 h-5 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <span className="font-semibold">{tour.duration}</span>
+                  </div>
+                  {tour.price && (
+                    <div className="flex items-center text-green-600">
+                      <svg
+                        className="w-5 h-5 mr-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                      <span className="font-semibold">{tour.price}</span>
+                    </div>
+                  )}
+                  {tour.languages && tour.languages.length > 0 && (
+                    <div className="flex items-center text-blue-600">
+                      <svg
+                        className="w-5 h-5 mr-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+                        />
+                      </svg>
+                      <span className="font-semibold text-sm">
+                        {tour.languages.join(" / ")}
+                      </span>
+                    </div>
+                  )}
                 </div>
                 {tour.highlights && (
                   <div className="mb-4">
@@ -134,9 +249,25 @@ export default function Tours() {
                     </ul>
                   </div>
                 )}
-                <button className="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors">
+                <a
+                  href="tel:+380975383348"
+                  className="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors flex items-center justify-center mt-auto"
+                >
+                  <svg
+                    className="w-5 h-5 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
+                  </svg>
                   Замовити екскурсію
-                </button>
+                </a>
               </div>
             </motion.div>
           ))}

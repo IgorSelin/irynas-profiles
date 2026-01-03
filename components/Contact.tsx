@@ -54,10 +54,10 @@ export default function Contact() {
                     <div>
                       <p className="font-semibold text-gray-900">Телефон</p>
                       <a
-                        href="tel:+380XXXXXXXXX"
+                        href="tel:+380975383348"
                         className="text-purple-600 hover:text-purple-700"
                       >
-                        +380 XX XXX XX XX
+                        +380 97 538 33 48
                       </a>
                     </div>
                   </div>

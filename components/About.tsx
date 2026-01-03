@@ -30,7 +30,7 @@ export default function About() {
           >
             <div className="relative w-full h-96 rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="/images/guide-photo.jpg"
+                src="/images/guide-photo.avif"
                 alt="Екскурсовод"
                 fill
                 className="object-cover"
