@@ -93,7 +93,7 @@ export default function ReviewForm({ onSuccess }: { onSuccess?: () => void }) {
                 message: "Мінімум 2 символи",
               },
             })}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900 bg-white"
           />
           {errors.name && (
             <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
@@ -113,7 +113,7 @@ export default function ReviewForm({ onSuccess }: { onSuccess?: () => void }) {
               required: "Оберіть оцінку",
               valueAsNumber: true,
             })}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900 bg-white"
           >
             <option value="">Оберіть оцінку</option>
             <option value="5">5 - Відмінно</option>
@@ -148,7 +148,7 @@ export default function ReviewForm({ onSuccess }: { onSuccess?: () => void }) {
                 message: "Максимум 1000 символів",
               },
             })}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900 bg-white resize-y"
           />
           {errors.text && (
             <p className="text-red-500 text-sm mt-1">{errors.text.message}</p>
