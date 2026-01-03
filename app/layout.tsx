@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
@@ -46,6 +47,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: process.env.NEXT_PUBLIC_SITE_URL || "https://example.com",
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
 };
 
 export default function RootLayout({
@@ -75,10 +79,18 @@ export default function RootLayout({
                 "@type": "City",
                 "name": "Львів"
               },
-              "offers": {
-                "@type": "Offer",
-                "category": "TouristAttraction"
-              }
+              "offers": [
+                {
+                  "@type": "Offer",
+                  "name": "Екскурсії по Львову",
+                  "price": "200",
+                  "priceCurrency": "UAH",
+                  "availability": "https://schema.org/InStock",
+                  "url": process.env.NEXT_PUBLIC_SITE_URL || "https://example.com"
+                }
+              ],
+              "telephone": "+380975383348",
+              "priceRange": "200 UAH"
             }),
           }}
         />
@@ -95,10 +107,13 @@ export default function RootLayout({
                 "addressLocality": "Львів",
                 "addressCountry": "UA"
               },
-              "knowsAbout": ["Екскурсії", "Туризм", "Історія Львова", "Культура України"]
+              "knowsAbout": ["Екскурсії", "Туризм", "Історія Львова", "Культура України"],
+              "telephone": "+380975383348",
+              "email": "example@email.com"
             }),
           }}
         />
+        <GoogleAnalytics />
       </head>
       <body className={inter.className}>{children}</body>
     </html>

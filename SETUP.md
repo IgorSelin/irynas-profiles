@@ -22,6 +22,12 @@ NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project_id.appspot.com
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
 NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
 NEXT_PUBLIC_SITE_URL=https://yourdomain.com
+
+# Google Analytics (опціонально, для аналітики)
+NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+
+# Google Search Console Verification (опціонально, для верифікації сайту)
+NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=your_verification_code_here
 ```
 
 ## Крок 3: Налаштування Firestore
@@ -92,8 +98,22 @@ npm start
 - Оновіть `NEXT_PUBLIC_SITE_URL` у `.env.local` для правильних canonical URLs
 - Додайте реальні зображення для Open Graph
 
-### Аналітика (опціонально)
-Можна додати Google Analytics або інші інструменти аналітики.
+### Google Analytics та Google Search Console
+Детальні інструкції з налаштування Google Ads, Google Analytics та SEO див. у файлі `GOOGLE_ADS_SETUP.md`
+
+**Швидкий старт:**
+1. Створіть проєкт у [Google Analytics](https://analytics.google.com/) та отримайте Measurement ID
+2. Додайте `NEXT_PUBLIC_GA_ID` у `.env.local`
+3. Перезапустіть сервер - аналітика працюватиме автоматично
+
+### Google Ads (Таргетована реклама)
+Для запуску таргетованої реклами в Google:
+1. Перейдіть на [Google Ads](https://ads.google.com/)
+2. Створіть кампанію з правильним таргетингом (Львів, українська/польська мова)
+3. Використовуйте ключові слова з файлу `GOOGLE_ADS_SETUP.md`
+4. Налаштуйте бюджет та відстеження конверсій
+
+Детальні інструкції див. `GOOGLE_ADS_SETUP.md`
 
 ## Підтримка
 
