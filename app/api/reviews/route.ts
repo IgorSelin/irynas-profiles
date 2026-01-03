@@ -12,7 +12,6 @@ import {
 export async function GET() {
   try {
     const reviewsRef = collection(db, "reviews");
-    // Отримуємо тільки схвалені відгуки, відсортовані за датою
     const q = query(reviewsRef, orderBy("date", "desc"), limit(50));
     const querySnapshot = await getDocs(q);
 
@@ -21,8 +20,6 @@ export async function GET() {
         id: doc.id,
         ...doc.data(),
       }))
-      // Фільтруємо тільки опубліковані відгуки (approved === true)
-      .filter((review: any) => review.approved === true);
 
     console.log(`Fetched ${reviews.length} reviews from Firestore`);
 
