@@ -1,23 +1,57 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase";
-import { collection, getDocs, addDoc, query, orderBy, limit } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  query,
+  orderBy,
+  limit,
+} from "firebase/firestore";
 
 export async function GET() {
   try {
     const reviewsRef = collection(db, "reviews");
+    // Отримуємо тільки схвалені відгуки, відсортовані за датою
     const q = query(reviewsRef, orderBy("date", "desc"), limit(50));
     const querySnapshot = await getDocs(q);
-    
-    const reviews = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+
+    const reviews = querySnapshot.docs
+      .map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+      // Фільтруємо тільки опубліковані відгуки (approved === true)
+      .filter((review: any) => review.approved === true);
+
+    console.log(`Fetched ${reviews.length} reviews from Firestore`);
 
     return NextResponse.json({ reviews });
-  } catch (error) {
-    console.error("Error fetching reviews:", error);
+  } catch (error: any) {
+    console.error("Error fetching reviews from Firestore:", error);
+
+    // Спеціальна обробка помилки PERMISSION_DENIED
+    if (error?.code === 7 || error?.message?.includes("PERMISSION_DENIED")) {
+      return NextResponse.json(
+        {
+          error:
+            "Firestore API не увімкнено. Див. FIREBASE_SETUP_FIX.md для інструкцій.",
+          details:
+            "PERMISSION_DENIED: Cloud Firestore API has not been used in project before or it is disabled.",
+        },
+        { status: 503 }
+      );
+    }
+
+    if (error instanceof Error) {
+      return NextResponse.json(
+        { error: `Failed to fetch reviews: ${error.message}` },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
-      { error: "Failed to fetch reviews" },
+      { error: "Failed to fetch reviews from Firestore" },
       { status: 500 }
     );
   }
@@ -56,18 +90,48 @@ export async function POST(request: NextRequest) {
       text: text.trim(),
       rating: Number(rating),
       date: new Date().toISOString(),
-      approved: false, // Manual approval
+      approved: true, // Автоматична публікація без модерації
     };
 
-    await addDoc(reviewsRef, newReview);
+    // Зберігаємо відгук у Firestore
+    const docRef = await addDoc(reviewsRef, newReview);
 
-    return NextResponse.json({ success: true, message: "Review submitted successfully" });
-  } catch (error) {
-    console.error("Error adding review:", error);
+    console.log("Review saved to Firestore with ID:", docRef.id);
+
+    return NextResponse.json({
+      success: true,
+      message: "Review submitted successfully",
+      id: docRef.id,
+    });
+  } catch (error: any) {
+    console.error("Error adding review to Firestore:", error);
+
+    // Спеціальна обробка помилки PERMISSION_DENIED
+    if (error?.code === 7 || error?.message?.includes("PERMISSION_DENIED")) {
+      return NextResponse.json(
+        {
+          error:
+            "Firestore API не увімкнено. Увімкніть Cloud Firestore API у Google Cloud Console.",
+          details:
+            "PERMISSION_DENIED: Cloud Firestore API has not been used in project before or it is disabled.",
+          helpUrl:
+            "https://console.developers.google.com/apis/api/firestore.googleapis.com/overview",
+        },
+        { status: 503 }
+      );
+    }
+
+    // Більш детальна обробка помилок
+    if (error instanceof Error) {
+      return NextResponse.json(
+        { error: `Failed to add review: ${error.message}` },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
-      { error: "Failed to add review" },
+      { error: "Failed to add review to Firestore" },
       { status: 500 }
     );
   }
 }
-

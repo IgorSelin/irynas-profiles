@@ -42,7 +42,7 @@ export default function ReviewForm({ onSuccess }: { onSuccess?: () => void }) {
       if (response.ok) {
         setSubmitStatus({
           type: "success",
-          message: "Дякуємо за ваш відгук! Він буде опублікований після модерації.",
+          message: "Дякуємо за ваш відгук! Він опублікований.",
         });
         reset();
         if (onSuccess) onSuccess();

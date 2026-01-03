@@ -14,11 +14,8 @@ export default function Reviews() {
     try {
       const response = await fetch("/api/reviews");
       const data = await response.json();
-      // Filter only approved reviews
-      const approvedReviews = data.reviews.filter(
-        (review: Review) => review.approved !== false
-      );
-      setReviews(approvedReviews);
+      // Відгуки вже відфільтровані на сервері (тільки approved: true)
+      setReviews(data.reviews || []);
     } catch (error) {
       console.error("Error fetching reviews:", error);
     } finally {
