@@ -29,6 +29,14 @@ export default function Footer() {
               </li>
               <li>
                 <a
+                  href="#additional-services"
+                  className="hover:text-white transition-colors"
+                >
+                  Додаткові послуги
+                </a>
+              </li>
+              <li>
+                <a
                   href="#reviews"
                   className="hover:text-white transition-colors"
                 >
