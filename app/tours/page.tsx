@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Navbar from "@/components/Navbar";
 import Tours from "@/components/Tours";
 import Footer from "@/components/Footer";
 
@@ -11,7 +12,10 @@ export const metadata: Metadata = {
 export default function ToursPage() {
   return (
     <main className="min-h-screen">
-      <Tours />
+      <Navbar />
+      <div className="pt-16 md:pt-20">
+        <Tours />
+      </div>
       <Footer />
     </main>
   );
