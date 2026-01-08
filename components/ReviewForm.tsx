@@ -10,7 +10,13 @@ interface ReviewFormData {
   rating: number;
 }
 
-export default function ReviewForm({ onSuccess }: { onSuccess?: () => void }) {
+export default function ReviewForm({
+  onSuccess,
+  tourId,
+}: {
+  onSuccess?: () => void;
+  tourId?: string;
+}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: "success" | "error" | null;
@@ -34,7 +40,10 @@ export default function ReviewForm({ onSuccess }: { onSuccess?: () => void }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          ...(tourId && { tourId }),
+        }),
       });
 
       const result = await response.json();
@@ -45,11 +54,13 @@ export default function ReviewForm({ onSuccess }: { onSuccess?: () => void }) {
           message: "Дякуємо за ваш відгук! Він опублікований.",
         });
         reset();
-        if (onSuccess) onSuccess();
+        setTimeout(() => {
+          if (onSuccess) onSuccess();
+        }, 500);
       } else {
         setSubmitStatus({
           type: "error",
-          message: result.error || "Помилка при відправці відгуку",
+          message: result.error,
         });
       }
     } catch (error) {
@@ -71,9 +82,7 @@ export default function ReviewForm({ onSuccess }: { onSuccess?: () => void }) {
       onSubmit={handleSubmit(onSubmit)}
       className="bg-white p-8 rounded-lg shadow-lg"
     >
-      <h3 className="text-2xl font-bold text-gray-900 mb-6">
-        Залишити відгук
-      </h3>
+      <h3 className="text-2xl font-bold text-gray-900 mb-6">Залишити відгук</h3>
 
       <div className="space-y-4">
         <div>
@@ -178,4 +187,3 @@ export default function ReviewForm({ onSuccess }: { onSuccess?: () => void }) {
     </motion.form>
   );
 }
-

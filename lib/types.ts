@@ -5,6 +5,7 @@ export interface Review {
   rating: number;
   date: string;
   approved?: boolean;
+  tourId?: string;
 }
 
 export interface Tour {
@@ -25,4 +26,3 @@ export interface GuideInfo {
   photo: string;
   specialties?: string[];
 }
-

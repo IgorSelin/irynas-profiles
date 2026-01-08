@@ -1,33 +1,58 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase";
-import {
-  collection,
-  getDocs,
-  addDoc,
-  query,
-  orderBy,
-  limit,
-} from "firebase/firestore";
+import { collection, getDocs, addDoc, query, limit } from "firebase/firestore";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    const { searchParams } = new URL(request.url);
+    const tourId = searchParams.get("tourId");
+
     const reviewsRef = collection(db, "reviews");
-    const q = query(reviewsRef, orderBy("date", "desc"), limit(50));
-    const querySnapshot = await getDocs(q);
+    let reviews;
 
-    const reviews = querySnapshot.docs
-      .map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }))
+    try {
+      const q = query(reviewsRef, limit(200));
+      const querySnapshot = await getDocs(q);
 
-    console.log(`Fetched ${reviews.length} reviews from Firestore`);
+      reviews = querySnapshot.docs
+        .map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }))
+        .filter((review: any) => {
+          if (review.approved !== undefined && review.approved !== true)
+            return false;
+
+          if (tourId) {
+            return review.tourId === tourId;
+          } else {
+            return !review.tourId || review.tourId === undefined;
+          }
+        })
+        .sort((a: any, b: any) => {
+          const dateA = new Date(a.date || 0).getTime();
+          const dateB = new Date(b.date || 0).getTime();
+          return dateB - dateA;
+        })
+        .slice(0, 50);
+    } catch (error: any) {
+      console.error("Error fetching reviews:", error);
+      throw error;
+    }
+
+    console.log(
+      `Fetched ${reviews.length} reviews from Firestore${
+        tourId ? ` for tour ${tourId}` : ""
+      }`
+    );
+    if (reviews.length > 0) {
+      console.log("Sample review:", JSON.stringify(reviews[0], null, 2));
+    }
 
     return NextResponse.json({ reviews });
   } catch (error: any) {
     console.error("Error fetching reviews from Firestore:", error);
 
-    // Спеціальна обробка помилки PERMISSION_DENIED
     if (error?.code === 7 || error?.message?.includes("PERMISSION_DENIED")) {
       return NextResponse.json(
         {
@@ -57,7 +82,7 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, text, rating } = body;
+    const { name, text, rating, tourId } = body;
 
     // Validation
     if (!name || !text || !rating) {
@@ -88,6 +113,7 @@ export async function POST(request: NextRequest) {
       rating: Number(rating),
       date: new Date().toISOString(),
       approved: true, // Автоматична публікація без модерації
+      ...(tourId && { tourId: tourId.trim() }), // Додаємо tourId якщо він є
     };
 
     // Зберігаємо відгук у Firestore
@@ -103,7 +129,6 @@ export async function POST(request: NextRequest) {
   } catch (error: any) {
     console.error("Error adding review to Firestore:", error);
 
-    // Спеціальна обробка помилки PERMISSION_DENIED
     if (error?.code === 7 || error?.message?.includes("PERMISSION_DENIED")) {
       return NextResponse.json(
         {
@@ -118,7 +143,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Більш детальна обробка помилок
     if (error instanceof Error) {
       return NextResponse.json(
         { error: `Failed to add review: ${error.message}` },

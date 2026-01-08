@@ -11,10 +11,13 @@ export default function Reviews() {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchReviews = async () => {
+    setIsLoading(true);
     try {
-      const response = await fetch("/api/reviews");
+      const response = await fetch("/api/reviews", {
+        cache: "no-store",
+      });
       const data = await response.json();
-      // Відгуки вже відфільтровані на сервері (тільки approved: true)
+      console.log("Fetched reviews:", data.reviews?.length || 0);
       setReviews(data.reviews || []);
     } catch (error) {
       console.error("Error fetching reviews:", error);
@@ -54,7 +57,11 @@ export default function Reviews() {
               </div>
             ) : reviews.length > 0 ? (
               reviews.map((review, index) => (
-                <ReviewCard key={review.id || index} review={review} index={index} />
+                <ReviewCard
+                  key={review.id || index}
+                  review={review}
+                  index={index}
+                />
               ))
             ) : (
               <div className="col-span-2 text-center py-12">
@@ -71,4 +78,3 @@ export default function Reviews() {
     </section>
   );
 }
-
