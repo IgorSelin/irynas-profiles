@@ -28,9 +28,9 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="relative w-full h-96 rounded-lg overflow-hidden shadow-xl">
+            <div className="relative w-full h-[30rem] rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="/images/guide-photo.avif"
+                src="/images/guide-photo.jpg"
                 alt="Екскурсовод"
                 fill
                 className="object-cover"
