@@ -36,7 +36,7 @@ export default function Tours() {
               whileHover={{ y: -5 }}
               className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex flex-col h-full"
             >
-              <Link href={`/tours/${tour.id}`} className="block">
+              <Link href={`/tours/${tour.id}`} className="block flex-shrink-0">
                 <div className="relative h-64">
                   <Image
                     src={tour.image}
@@ -45,15 +45,35 @@ export default function Tours() {
                     className="object-cover"
                   />
                 </div>
-                <div className="p-6 flex flex-col flex-grow">
+              </Link>
+              <div className="p-6 flex flex-col flex-grow">
+                <Link href={`/tours/${tour.id}`} className="block">
                   <h3 className="text-2xl font-bold text-gray-900 mb-3 hover:text-purple-600 transition-colors">
                     {tour.title}
                   </h3>
                   <p className="text-gray-600 mb-4 leading-relaxed line-clamp-3">
                     {tour.description}
                   </p>
-                  <div className="space-y-2 mb-4">
-                    <div className="flex items-center text-purple-600">
+                </Link>
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center text-purple-600">
+                    <svg
+                      className="w-5 h-5 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <span className="font-semibold">{tour.duration}</span>
+                  </div>
+                  {tour.price && (
+                    <div className="flex items-center text-green-600">
                       <svg
                         className="w-5 h-5 mr-2"
                         fill="none"
@@ -64,65 +84,47 @@ export default function Tours() {
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           strokeWidth={2}
-                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                          d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                         />
                       </svg>
-                      <span className="font-semibold">{tour.duration}</span>
+                      <span className="font-semibold">{tour.price}</span>
                     </div>
-                    {tour.price && (
-                      <div className="flex items-center text-green-600">
-                        <svg
-                          className="w-5 h-5 mr-2"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          />
-                        </svg>
-                        <span className="font-semibold">{tour.price}</span>
-                      </div>
-                    )}
-                    {tour.languages && tour.languages.length > 0 && (
-                      <div className="flex items-center text-blue-600">
-                        <svg
-                          className="w-5 h-5 mr-2"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
-                          />
-                        </svg>
-                        <span className="font-semibold text-sm">
-                          {tour.languages.join(" / ")}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                  {tour.highlights && (
-                    <div className="mb-4">
-                      <p className="text-sm font-semibold text-gray-700 mb-2">
-                        Що ви побачите:
-                      </p>
-                      <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
-                        {tour.highlights.map((highlight, i) => (
-                          <li key={i}>{highlight}</li>
-                        ))}
-                      </ul>
+                  )}
+                  {tour.languages && tour.languages.length > 0 && (
+                    <div className="flex items-center text-blue-600">
+                      <svg
+                        className="w-5 h-5 mr-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+                        />
+                      </svg>
+                      <span className="font-semibold text-sm">
+                        {tour.languages.join(" / ")}
+                      </span>
                     </div>
                   )}
                 </div>
-              </Link>
-              <div className="px-6 pb-6 flex gap-3">
+                {tour.highlights && (
+                  <div className="mb-4">
+                    <p className="text-sm font-semibold text-gray-700 mb-2">
+                      Що ви побачите:
+                    </p>
+                    <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
+                      {tour.highlights.map((highlight, i) => (
+                        <li key={i}>{highlight}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+              <div className="px-6 pb-6 flex gap-3 mt-auto">
                 <Link
                   href={`/tours/${tour.id}`}
                   className="flex-1 bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors flex items-center justify-center"

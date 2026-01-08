@@ -22,7 +22,7 @@ const additionalTours: AdditionalTour[] = [
       "Шевченківський гай – це не лише про архітектуру українських сіл. Це про нас із вами. Адже в цих хатах, під цими стріхами формувався український менталітет: працьовитість, гостинність, любов до землі й традицій.",
     languages: ["Українська", "Польська"],
     type: "both",
-    image: "/images/additional-shevchenkivskyi-hai.jpg",
+    image: "/images/additional-shevchenkivskyi-hai.jpeg",
     highlights: [
       "Архітектура українських сіл",
       "Історія українського менталітету",
@@ -51,7 +51,7 @@ const additionalTours: AdditionalTour[] = [
       "Львівська Королівська Жовква – місце, де починаються легенди. Ідеальне місто Жолкевського і Собеського пам'ятає королівські інтриги. Ратуша вабить панорамою, а Замок – духом старовини. Завершіть подорож у тиші Крехівського монастиря!",
     languages: ["Українська", "Польська"],
     type: "both",
-    image: "/images/additional-zhovkva-krekhiv.jpg",
+    image: "/images/additional-zhovkva-krekhiv.webp",
     highlights: [
       "Королівська Жовква",
       "Жовківський замок",
@@ -79,7 +79,7 @@ const additionalTours: AdditionalTour[] = [
       "Унікальна фортеця, вирубана в скелі. Пам'ятка археології та архітектури національного значення. Відчуйте дух середньовіччя та подивіться на мальовничі Карпати.",
     languages: ["Українська", "Польська"],
     type: "both",
-    image: "/images/additional-tustan.jpg",
+    image: "/images/additional-tustan.jpeg",
     highlights: [
       "Фортеця в скелі",
       "Середньовічна архітектура",
@@ -93,7 +93,7 @@ const additionalTours: AdditionalTour[] = [
       "Кам'янецький водоспад розташований біля міста Сколе, в межах Національного природного парку «Сколівські Бескиди». Водоспад невеликий, але дуже мальовничий, особливо після дощів.",
     languages: ["Українська", "Польська"],
     type: "both",
-    image: "/images/additional-waterfall.jpg",
+    image: "/images/additional-waterfall.avif",
     highlights: [
       "Кам'янецький водоспад",
       "Мертве озеро",
