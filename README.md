@@ -32,13 +32,19 @@ npm install
 2. Створіть файл `.env.local` та додайте ваші Firebase credentials:
 
 ```env
+# Firebase Configuration
 NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key_here
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain_here
 NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id_here
 NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket_here
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id_here
 NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id_here
-NEXT_PUBLIC_SITE_URL=https://yourdomain.com
+
+# Site Configuration (ОБОВ'ЯЗКОВО для SEO!)
+NEXT_PUBLIC_SITE_URL=https://krasitskatours.com
+
+# Google Search Console Verification (опціонально, але рекомендовано)
+# NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=your_verification_code_here
 ```
 
 3. Запустіть dev сервер:
@@ -86,6 +92,22 @@ npm run dev
 npm run build
 npm start
 ```
+
+## SEO Оптимізація
+
+Сайт вже налаштований з базовою SEO оптимізацією:
+- ✅ Мета-теги на всіх сторінках
+- ✅ Структуровані дані Schema.org
+- ✅ Sitemap.xml та robots.txt
+- ✅ Open Graph та Twitter Cards
+- ✅ Canonical URLs
+
+**Важливо:** Після деплою обов'язково:
+1. Додайте сайт до [Google Search Console](https://search.google.com/search-console)
+2. Відправте sitemap: `https://krasitskatours.com/sitemap.xml`
+3. Перевірте індексацію сторінок
+
+Детальні інструкції та чеклист дивіться в [SEO_CHECKLIST.md](./SEO_CHECKLIST.md)
 
 ## Ліцензія
 
