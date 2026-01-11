@@ -51,6 +51,7 @@ service cloud.firestore {
 ## Крок 4: Додавання зображень
 
 Додайте зображення у папку `public/images/`:
+
 - `hero-bg.jpg` - фон для Hero секції
 - `guide-photo.jpg` - фото екскурсовода
 - `tour-historical.jpg` - фото для екскурсії "Історичний центр"
@@ -63,6 +64,7 @@ service cloud.firestore {
 ## Крок 5: Оновлення контактної інформації
 
 Відредагуйте файли:
+
 - `components/Contact.tsx` - оновіть телефон, email, соціальні мережі
 - `components/Footer.tsx` - оновіть контактну інформацію
 - `components/About.tsx` - оновіть біографію та інформацію про екскурсовода
@@ -71,6 +73,7 @@ service cloud.firestore {
 ## Крок 6: Оновлення Google Maps
 
 У файлі `components/Contact.tsx` оновіть iframe з Google Maps:
+
 1. Перейдіть на [Google Maps](https://www.google.com/maps)
 2. Знайдіть вашу локацію
 3. Натисніть "Поділитися" → "Вставити карту"
@@ -94,20 +97,25 @@ npm start
 ## Додаткові налаштування
 
 ### SEO
+
 - Оновіть мета-теги у `app/layout.tsx`
 - Оновіть `NEXT_PUBLIC_SITE_URL` у `.env.local` для правильних canonical URLs
 - Додайте реальні зображення для Open Graph
 
 ### Google Analytics та Google Search Console
+
 Детальні інструкції з налаштування Google Ads, Google Analytics та SEO див. у файлі `GOOGLE_ADS_SETUP.md`
 
 **Швидкий старт:**
+
 1. Створіть проєкт у [Google Analytics](https://analytics.google.com/) та отримайте Measurement ID
 2. Додайте `NEXT_PUBLIC_GA_ID` у `.env.local`
 3. Перезапустіть сервер - аналітика працюватиме автоматично
 
 ### Google Ads (Таргетована реклама)
+
 Для запуску таргетованої реклами в Google:
+
 1. Перейдіть на [Google Ads](https://ads.google.com/)
 2. Створіть кампанію з правильним таргетингом (Львів, українська/польська мова)
 3. Використовуйте ключові слова з файлу `GOOGLE_ADS_SETUP.md`
@@ -118,7 +126,7 @@ npm start
 ## Підтримка
 
 Якщо виникли проблеми:
+
 1. Перевірте, чи всі змінні середовища встановлені
 2. Перевірте правила безпеки Firestore
 3. Перевірте консоль браузера на наявність помилок
-

@@ -24,11 +24,13 @@
 ## Встановлення
 
 1. Встановіть залежності:
+
 ```bash
 npm install
 ```
 
 2. Створіть файл `.env.local` та додайте ваші Firebase credentials:
+
 ```env
 NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key_here
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain_here
@@ -40,6 +42,7 @@ NEXT_PUBLIC_SITE_URL=https://yourdomain.com
 ```
 
 3. Запустіть dev сервер:
+
 ```bash
 npm run dev
 ```
@@ -87,4 +90,3 @@ npm start
 ## Ліцензія
 
 MIT
-

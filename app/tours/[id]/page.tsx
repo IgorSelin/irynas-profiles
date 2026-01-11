@@ -1,20 +1,16 @@
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
-import Navbar from "@/components/Navbar";
-import TourDetail from "@/components/TourDetail";
-import Footer from "@/components/Footer";
-import { tours } from "@/lib/tours";
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import Navbar from '@/components/Navbar';
+import TourDetail from '@/components/TourDetail';
+import Footer from '@/components/Footer';
+import { tours } from '@/lib/tours';
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { id: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const tour = tours.find((t) => t.id === params.id);
 
   if (!tour) {
     return {
-      title: "Тур не знайдено",
+      title: 'Тур не знайдено',
     };
   }
 

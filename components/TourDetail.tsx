@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
-import { Tour } from "@/lib/types";
-import { useEffect, useState, useCallback } from "react";
-import ReviewCard from "./ReviewCard";
-import ReviewForm from "./ReviewForm";
-import { Review } from "@/lib/types";
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Tour } from '@/lib/types';
+import { useEffect, useState, useCallback } from 'react';
+import ReviewCard from './ReviewCard';
+import ReviewForm from './ReviewForm';
+import { Review } from '@/lib/types';
 
 interface TourDetailProps {
   tour: Tour;
@@ -21,16 +21,13 @@ export default function TourDetail({ tour }: TourDetailProps) {
     setIsLoading(true);
     try {
       const response = await fetch(`/api/reviews?tourId=${tour.id}`, {
-        cache: "no-store",
+        cache: 'no-store',
       });
       const data = await response.json();
-      console.log(
-        `Fetched reviews for tour ${tour.id}:`,
-        data.reviews?.length || 0
-      );
+      console.log(`Fetched reviews for tour ${tour.id}:`, data.reviews?.length || 0);
       setReviews(data.reviews || []);
     } catch (error) {
-      console.error("Error fetching reviews:", error);
+      console.error('Error fetching reviews:', error);
     } finally {
       setIsLoading(false);
     }
@@ -41,7 +38,7 @@ export default function TourDetail({ tour }: TourDetailProps) {
   }, [fetchReviews]);
 
   return (
-    <section className="py-20 bg-gray-50 min-h-screen">
+    <section className="min-h-screen bg-gray-50 py-20">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -51,20 +48,10 @@ export default function TourDetail({ tour }: TourDetailProps) {
         >
           <Link
             href="/tours"
-            className="inline-flex items-center text-purple-600 hover:text-purple-700 font-semibold transition-colors"
+            className="inline-flex items-center font-semibold text-purple-600 transition-colors hover:text-purple-700"
           >
-            <svg
-              className="w-5 h-5 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
+            <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
             Назад до всіх екскурсій
           </Link>
@@ -73,33 +60,18 @@ export default function TourDetail({ tour }: TourDetailProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="bg-white rounded-lg overflow-hidden shadow-xl mb-12"
+          className="mb-12 overflow-hidden rounded-lg bg-white shadow-xl"
         >
           <div className="relative h-96 md:h-[500px]">
-            <Image
-              src={tour.image}
-              alt={tour.title}
-              fill
-              className="object-cover"
-              priority
-            />
+            <Image src={tour.image} alt={tour.title} fill className="object-cover" priority />
           </div>
           <div className="p-8 md:p-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              {tour.title}
-            </h1>
-            <p className="text-xl text-gray-700 leading-relaxed mb-8">
-              {tour.description}
-            </p>
+            <h1 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">{tour.title}</h1>
+            <p className="mb-8 text-xl leading-relaxed text-gray-700">{tour.description}</p>
 
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <div className="mb-8 grid gap-6 md:grid-cols-3">
               <div className="flex items-center text-purple-600">
-                <svg
-                  className="w-6 h-6 mr-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
+                <svg className="mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -109,17 +81,12 @@ export default function TourDetail({ tour }: TourDetailProps) {
                 </svg>
                 <div>
                   <p className="text-sm text-gray-600">Тривалість</p>
-                  <p className="font-semibold text-lg">{tour.duration}</p>
+                  <p className="text-lg font-semibold">{tour.duration}</p>
                 </div>
               </div>
               {tour.price && (
                 <div className="flex items-center text-green-600">
-                  <svg
-                    className="w-6 h-6 mr-3"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
+                  <svg className="mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -129,18 +96,13 @@ export default function TourDetail({ tour }: TourDetailProps) {
                   </svg>
                   <div>
                     <p className="text-sm text-gray-600">Ціна</p>
-                    <p className="font-semibold text-lg">{tour.price}</p>
+                    <p className="text-lg font-semibold">{tour.price}</p>
                   </div>
                 </div>
               )}
               {tour.languages && tour.languages.length > 0 && (
                 <div className="flex items-center text-blue-600">
-                  <svg
-                    className="w-6 h-6 mr-3"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
+                  <svg className="mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -150,9 +112,7 @@ export default function TourDetail({ tour }: TourDetailProps) {
                   </svg>
                   <div>
                     <p className="text-sm text-gray-600">Мови</p>
-                    <p className="font-semibold text-lg">
-                      {tour.languages.join(" / ")}
-                    </p>
+                    <p className="text-lg font-semibold">{tour.languages.join(' / ')}</p>
                   </div>
                 </div>
               )}
@@ -160,17 +120,12 @@ export default function TourDetail({ tour }: TourDetailProps) {
 
             {tour.highlights && tour.highlights.length > 0 && (
               <div className="mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  Що ви побачите:
-                </h3>
-                <ul className="grid md:grid-cols-2 gap-3">
+                <h3 className="mb-4 text-2xl font-bold text-gray-900">Що ви побачите:</h3>
+                <ul className="grid gap-3 md:grid-cols-2">
                   {tour.highlights.map((highlight, i) => (
-                    <li
-                      key={i}
-                      className="flex items-center text-gray-700 text-lg"
-                    >
+                    <li key={i} className="flex items-center text-lg text-gray-700">
                       <svg
-                        className="w-5 h-5 text-purple-600 mr-3 flex-shrink-0"
+                        className="mr-3 h-5 w-5 flex-shrink-0 text-purple-600"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -189,14 +144,9 @@ export default function TourDetail({ tour }: TourDetailProps) {
 
             <a
               href="tel:+380975383348"
-              className="inline-flex items-center justify-center w-full md:w-auto bg-purple-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-purple-700 transition-colors text-lg"
+              className="inline-flex w-full items-center justify-center rounded-lg bg-purple-600 px-8 py-4 text-lg font-semibold text-white transition-colors hover:bg-purple-700 md:w-auto"
             >
-              <svg
-                className="w-6 h-6 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="mr-2 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -213,43 +163,28 @@ export default function TourDetail({ tour }: TourDetailProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-6xl mx-auto"
+          className="mx-auto max-w-6xl"
         >
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Відгуки про цю екскурсію
-            </h2>
-            <div className="w-24 h-1 bg-purple-600 mx-auto mb-8"></div>
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">Відгуки про цю екскурсію</h2>
+            <div className="mx-auto mb-8 h-1 w-24 bg-purple-600"></div>
             {reviews.length > 0 && (
               <p className="text-lg text-gray-600">
-                {reviews.length}{" "}
-                {reviews.length === 1
-                  ? "відгук"
-                  : reviews.length < 5
-                  ? "відгуки"
-                  : "відгуків"}
+                {reviews.length} {reviews.length === 1 ? 'відгук' : reviews.length < 5 ? 'відгуки' : 'відгуків'}
               </p>
             )}
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="mb-12 grid gap-8 md:grid-cols-2">
             {isLoading ? (
-              <div className="col-span-2 text-center py-12">
+              <div className="col-span-2 py-12 text-center">
                 <p className="text-gray-600">Завантаження відгуків...</p>
               </div>
             ) : reviews.length > 0 ? (
-              reviews.map((review, index) => (
-                <ReviewCard
-                  key={review.id || index}
-                  review={review}
-                  index={index}
-                />
-              ))
+              reviews.map((review, index) => <ReviewCard key={review.id || index} review={review} index={index} />)
             ) : (
-              <div className="col-span-2 text-center py-12">
-                <p className="text-gray-600">
-                  Поки що немає відгуків про цю екскурсію. Будьте першим!
-                </p>
+              <div className="col-span-2 py-12 text-center">
+                <p className="text-gray-600">Поки що немає відгуків про цю екскурсію. Будьте першим!</p>
               </div>
             )}
           </div>

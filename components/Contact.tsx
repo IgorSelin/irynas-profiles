@@ -1,29 +1,25 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 bg-gray-50">
+    <section id="contact" className="bg-gray-50 py-20">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="mb-12 text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Контакти
-          </h2>
-          <div className="w-24 h-1 bg-purple-600 mx-auto mb-8"></div>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Зв'яжіться зі мною для замовлення екскурсії
-          </p>
+          <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">Контакти</h2>
+          <div className="mx-auto mb-8 h-1 w-24 bg-purple-600"></div>
+          <p className="mx-auto max-w-2xl text-xl text-gray-600">Зв'яжіться зі мною для замовлення екскурсії</p>
         </motion.div>
 
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-12 md:grid-cols-2">
             {/* Contact Information */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -32,14 +28,12 @@ export default function Contact() {
               transition={{ duration: 0.6 }}
               className="space-y-6"
             >
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                  Зв'яжіться зі мною
-                </h3>
+              <div className="rounded-lg bg-white p-6 shadow-md">
+                <h3 className="mb-6 text-2xl font-bold text-gray-900">Зв'яжіться зі мною</h3>
                 <div className="space-y-4">
                   <div className="flex items-start">
                     <svg
-                      className="w-6 h-6 text-purple-600 mr-4 mt-1"
+                      className="mr-4 mt-1 h-6 w-6 text-purple-600"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -53,10 +47,7 @@ export default function Contact() {
                     </svg>
                     <div>
                       <p className="font-semibold text-gray-900">Телефон</p>
-                      <a
-                        href="tel:+380975383348"
-                        className="text-purple-600 hover:text-purple-700"
-                      >
+                      <a href="tel:+380975383348" className="text-purple-600 hover:text-purple-700">
                         +380 97 538 33 48
                       </a>
                     </div>
@@ -64,7 +55,7 @@ export default function Contact() {
 
                   <div className="flex items-start">
                     <svg
-                      className="w-6 h-6 text-purple-600 mr-4 mt-1"
+                      className="mr-4 mt-1 h-6 w-6 text-purple-600"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -78,10 +69,7 @@ export default function Contact() {
                     </svg>
                     <div>
                       <p className="font-semibold text-gray-900">Email</p>
-                      <a
-                        href="mailto:example@email.com"
-                        className="text-purple-600 hover:text-purple-700"
-                      >
+                      <a href="mailto:example@email.com" className="text-purple-600 hover:text-purple-700">
                         example@email.com
                       </a>
                     </div>
@@ -89,7 +77,7 @@ export default function Contact() {
 
                   <div className="flex items-start">
                     <svg
-                      className="w-6 h-6 text-purple-600 mr-4 mt-1"
+                      className="mr-4 mt-1 h-6 w-6 text-purple-600"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -114,35 +102,33 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <div className="mt-8 pt-6 border-t border-gray-200">
-                  <p className="font-semibold text-gray-900 mb-4">
-                    Соціальні мережі
-                  </p>
+                <div className="mt-8 border-t border-gray-200 pt-6">
+                  <p className="mb-4 font-semibold text-gray-900">Соціальні мережі</p>
                   <div className="flex space-x-4">
                     <a
                       href="#"
-                      className="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center hover:bg-purple-700 transition-colors"
+                      className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600 text-white transition-colors hover:bg-purple-700"
                       aria-label="Facebook"
                     >
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                       </svg>
                     </a>
                     <a
                       href="#"
-                      className="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center hover:bg-purple-700 transition-colors"
+                      className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600 text-white transition-colors hover:bg-purple-700"
                       aria-label="Instagram"
                     >
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.13 4.771 1.69 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.13-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                       </svg>
                     </a>
                     <a
                       href="#"
-                      className="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center hover:bg-purple-700 transition-colors"
+                      className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600 text-white transition-colors hover:bg-purple-700"
                       aria-label="Telegram"
                     >
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15.056-.216.06-.1.128-.214.288-.277.16-.062.379-.041.53.028.06.028.117.06.168.096.051.036.094.078.135.12.08.08.172.175.236.28.06.1.1.21.12.324.02.113.02.23 0 .344-.02.113-.06.22-.12.324-.064.105-.156.2-.236.28-.04.042-.084.084-.135.12-.051.036-.108.068-.168.096-.151.069-.37.09-.53.028-.16-.063-.228-.177-.288-.277-.042-.066-.049-.184-.056-.216-.06-.253-3.13-3.046-3.307-3.23-.675-.7-1.443-1.13-.258-1.91 1.025-.676 1.622-1.107 2.678-1.8.675-.442 1.204-.967 1.9-.902.321.029.652.33.82 1.23.398 2.125 1.18 6.729 1.36 8.627.016.166-.004.38-.02.472a.506.506 0 0 1-.171.325c-.144.117-.365.142-.465.14z" />
                       </svg>
                     </a>
@@ -159,53 +145,36 @@ export default function Contact() {
               transition={{ duration: 0.6 }}
               className="space-y-4"
             >
-              
               {/* Google Maps Reviews Link */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg p-6 text-white shadow-lg"
+                className="rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 p-6 text-white shadow-lg"
               >
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
-                    <svg
-                      className="w-12 h-12"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
+                    <svg className="h-12 w-12" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-15h2v6h-2zm0 8h2v2h-2z" />
                     </svg>
                   </div>
                   <div className="flex-grow">
-                    <h3 className="text-xl font-bold mb-2">
-                      Залиште відгук на Google Maps!
-                    </h3>
-                    <p className="text-purple-100 mb-4">
-                      Ваші відгуки допомагають іншим знайти якісні екскурсії. 
-                      Будемо вдячні за вашу оцінку!
+                    <h3 className="mb-2 text-xl font-bold">Залиште відгук на Google Maps!</h3>
+                    <p className="mb-4 text-purple-100">
+                      Ваші відгуки допомагають іншим знайти якісні екскурсії. Будемо вдячні за вашу оцінку!
                     </p>
                     <a
                       href="https://maps.app.goo.gl/oSuowDpaQ7k4WGm67"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center space-x-2 bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-colors shadow-md"
+                      className="inline-flex items-center space-x-2 rounded-lg bg-white px-6 py-3 font-semibold text-purple-600 shadow-md transition-colors hover:bg-purple-50"
                     >
-                      <svg
-                        className="w-5 h-5"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
+                      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-15h2v6h-2zm0 8h2v2h-2z" />
                       </svg>
                       <span>Залишити відгук на Google Maps</span>
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
+                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -224,4 +193,3 @@ export default function Contact() {
     </section>
   );
 }
-

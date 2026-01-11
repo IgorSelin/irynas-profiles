@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import Script from "next/script";
+import Script from 'next/script';
 
 export default function GoogleAnalytics() {
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
@@ -11,10 +11,7 @@ export default function GoogleAnalytics() {
 
   return (
     <>
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-      />
+      <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
       <Script
         id="google-analytics"
         strategy="afterInteractive"
@@ -32,4 +29,3 @@ export default function GoogleAnalytics() {
     </>
   );
 }
-

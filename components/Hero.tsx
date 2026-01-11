@@ -1,40 +1,28 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 pt-16 md:pt-20">
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 pt-16 md:pt-20">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-black/40 z-10" />
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-        >
+        <div className="absolute inset-0 z-10 bg-black/40" />
+        <video autoPlay loop muted playsInline className="h-full w-full object-cover">
           <source src="/videos/hero-video.mp4" type="video/mp4" />
         </video>
       </div>
 
       {/* Content */}
-      <div className="relative z-20 container mx-auto px-4 text-center text-white">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            Вітаю у Львові!
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
+      <div className="container relative z-20 mx-auto px-4 text-center text-white">
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <h1 className="mb-6 text-5xl font-bold md:text-7xl">Вітаю у Львові!</h1>
+          <p className="mx-auto mb-8 max-w-2xl text-xl md:text-2xl">
             Професійні екскурсії по найкрасивішому місту України
           </p>
           <motion.a
             href="#tours"
-            className="inline-block bg-white text-purple-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-purple-100 transition-colors shadow-lg"
+            className="inline-block rounded-full bg-white px-8 py-4 text-lg font-semibold text-purple-900 shadow-lg transition-colors hover:bg-purple-100"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -45,12 +33,12 @@ export default function Hero() {
 
       {/* Scroll Indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+        className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 transform"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 1.5, repeat: Infinity }}
       >
         <svg
-          className="w-6 h-6 text-white"
+          className="h-6 w-6 text-white"
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -64,4 +52,3 @@ export default function Hero() {
     </section>
   );
 }
-

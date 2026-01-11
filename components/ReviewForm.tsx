@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { motion } from "framer-motion";
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { motion } from 'framer-motion';
 
 interface ReviewFormData {
   name: string;
@@ -10,18 +10,12 @@ interface ReviewFormData {
   rating: number;
 }
 
-export default function ReviewForm({
-  onSuccess,
-  tourId,
-}: {
-  onSuccess?: () => void;
-  tourId?: string;
-}) {
+export default function ReviewForm({ onSuccess, tourId }: { onSuccess?: () => void; tourId?: string }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
-    type: "success" | "error" | null;
+    type: 'success' | 'error' | null;
     message: string;
-  }>({ type: null, message: "" });
+  }>({ type: null, message: '' });
 
   const {
     register,
@@ -32,13 +26,13 @@ export default function ReviewForm({
 
   const onSubmit = async (data: ReviewFormData) => {
     setIsSubmitting(true);
-    setSubmitStatus({ type: null, message: "" });
+    setSubmitStatus({ type: null, message: '' });
 
     try {
-      const response = await fetch("/api/reviews", {
-        method: "POST",
+      const response = await fetch('/api/reviews', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           ...data,
@@ -50,8 +44,8 @@ export default function ReviewForm({
 
       if (response.ok) {
         setSubmitStatus({
-          type: "success",
-          message: "Дякуємо за ваш відгук! Він опублікований.",
+          type: 'success',
+          message: 'Дякуємо за ваш відгук! Він опублікований.',
         });
         reset();
         setTimeout(() => {
@@ -59,14 +53,14 @@ export default function ReviewForm({
         }, 500);
       } else {
         setSubmitStatus({
-          type: "error",
+          type: 'error',
           message: result.error,
         });
       }
     } catch (error) {
       setSubmitStatus({
-        type: "error",
-        message: "Помилка при відправці відгуку. Спробуйте ще раз.",
+        type: 'error',
+        message: 'Помилка при відправці відгуку. Спробуйте ще раз.',
       });
     } finally {
       setIsSubmitting(false);
@@ -80,49 +74,41 @@ export default function ReviewForm({
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white p-8 rounded-lg shadow-lg"
+      className="rounded-lg bg-white p-8 shadow-lg"
     >
-      <h3 className="text-2xl font-bold text-gray-900 mb-6">Залишити відгук</h3>
+      <h3 className="mb-6 text-2xl font-bold text-gray-900">Залишити відгук</h3>
 
       <div className="space-y-4">
         <div>
-          <label
-            htmlFor="name"
-            className="block text-sm font-medium text-gray-700 mb-2"
-          >
+          <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-700">
             Ваше ім'я *
           </label>
           <input
             type="text"
             id="name"
-            {...register("name", {
+            {...register('name', {
               required: "Ім'я обов'язкове",
               minLength: {
                 value: 2,
-                message: "Мінімум 2 символи",
+                message: 'Мінімум 2 символи',
               },
             })}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900 bg-white"
+            className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500"
           />
-          {errors.name && (
-            <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
-          )}
+          {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>}
         </div>
 
         <div>
-          <label
-            htmlFor="rating"
-            className="block text-sm font-medium text-gray-700 mb-2"
-          >
+          <label htmlFor="rating" className="mb-2 block text-sm font-medium text-gray-700">
             Оцінка *
           </label>
           <select
             id="rating"
-            {...register("rating", {
-              required: "Оберіть оцінку",
+            {...register('rating', {
+              required: 'Оберіть оцінку',
               valueAsNumber: true,
             })}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900 bg-white"
+            className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500"
           >
             <option value="">Оберіть оцінку</option>
             <option value="5">5 - Відмінно</option>
@@ -131,45 +117,36 @@ export default function ReviewForm({
             <option value="2">2 - Погано</option>
             <option value="1">1 - Дуже погано</option>
           </select>
-          {errors.rating && (
-            <p className="text-red-500 text-sm mt-1">{errors.rating.message}</p>
-          )}
+          {errors.rating && <p className="mt-1 text-sm text-red-500">{errors.rating.message}</p>}
         </div>
 
         <div>
-          <label
-            htmlFor="text"
-            className="block text-sm font-medium text-gray-700 mb-2"
-          >
+          <label htmlFor="text" className="mb-2 block text-sm font-medium text-gray-700">
             Ваш відгук *
           </label>
           <textarea
             id="text"
             rows={5}
-            {...register("text", {
+            {...register('text', {
               required: "Відгук обов'язковий",
               minLength: {
                 value: 10,
-                message: "Мінімум 10 символів",
+                message: 'Мінімум 10 символів',
               },
               maxLength: {
                 value: 1000,
-                message: "Максимум 1000 символів",
+                message: 'Максимум 1000 символів',
               },
             })}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900 bg-white resize-y"
+            className="w-full resize-y rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500"
           />
-          {errors.text && (
-            <p className="text-red-500 text-sm mt-1">{errors.text.message}</p>
-          )}
+          {errors.text && <p className="mt-1 text-sm text-red-500">{errors.text.message}</p>}
         </div>
 
         {submitStatus.type && (
           <div
-            className={`p-4 rounded-lg ${
-              submitStatus.type === "success"
-                ? "bg-green-50 text-green-800"
-                : "bg-red-50 text-red-800"
+            className={`rounded-lg p-4 ${
+              submitStatus.type === 'success' ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'
             }`}
           >
             {submitStatus.message}
@@ -179,9 +156,9 @@ export default function ReviewForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full rounded-lg bg-purple-600 py-3 font-semibold text-white transition-colors hover:bg-purple-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {isSubmitting ? "Відправка..." : "Відправити відгук"}
+          {isSubmitting ? 'Відправка...' : 'Відправити відгук'}
         </button>
       </div>
     </motion.form>
