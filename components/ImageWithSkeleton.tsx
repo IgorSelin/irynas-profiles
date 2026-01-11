@@ -7,11 +7,13 @@ interface ImageWithSkeletonProps extends ImageProps {
   skeletonClassName?: string;
 }
 
+
 export default function ImageWithSkeleton({
   src,
   alt,
   className,
   skeletonClassName,
+  onLoad,
   ...props
 }: ImageWithSkeletonProps) {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +22,7 @@ export default function ImageWithSkeleton({
     <div className={`relative overflow-hidden ${props.fill ? 'h-full w-full' : ''}`}>
       {isLoading && (
         <div
-          className={`absolute inset-0 z-10 animate-pulse bg-gray-200 ${skeletonClassName || ''}`}
+          className={`absolute inset-0 z-10 animate-shimmer ${skeletonClassName || ''}`}
         />
       )}
       <Image
@@ -29,7 +31,13 @@ export default function ImageWithSkeleton({
         className={`${className || ''} transition-opacity duration-300 ${
           isLoading ? 'opacity-0' : 'opacity-100'
         }`}
-        onLoad={() => setIsLoading(false)}
+        onLoad={(e) => {
+          setIsLoading(false);
+          if (onLoad) {
+            // @ts-ignore
+            onLoad(e);
+          }
+        }}
         {...props}
       />
     </div>

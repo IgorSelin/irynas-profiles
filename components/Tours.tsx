@@ -19,6 +19,8 @@ function TourCard({
   setSelectedTag: (tag: string | null) => void;
   selectedTag: string | null;
 }) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <motion.div
       layout
@@ -38,9 +40,14 @@ function TourCard({
             className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             loading="lazy"
+            onLoad={() => setImageLoaded(true)}
           />
           {tour.tags && (
-            <div className="absolute left-4 top-4 flex flex-wrap gap-2">
+            <div
+              className={`absolute left-4 top-4 flex flex-wrap gap-2 transition-opacity duration-300 ${
+                imageLoaded ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
               {tour.tags.slice(0, 2).map((tag) => (
                 <span
                   key={tag}
