@@ -23,7 +23,6 @@ export default function Navbar() {
   const navLinks = [
     { href: '/#about', label: 'Про мене' },
     { href: '/#tours', label: 'Екскурсії' },
-    { href: '/#additional-services', label: 'Додаткові послуги' },
     { href: '/#reviews', label: 'Відгуки' },
     { href: '/gallery', label: 'Галерея' },
     { href: '/#contact', label: 'Контакти' },
@@ -98,7 +97,14 @@ export default function Navbar() {
                     const element = document.getElementById(targetId);
                     if (element) {
                       e.preventDefault();
-                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      const offset = 100; // Navbar height + 20px offset
+                      const elementPosition = element.getBoundingClientRect().top;
+                      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                      window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth',
+                      });
                     }
                   }}
                 >
@@ -194,11 +200,18 @@ export default function Navbar() {
                     onClick={(e) => {
                       const targetId = link.href.split('#')[1];
                       const element = document.getElementById(targetId);
-                      if (element) {
-                        e.preventDefault();
-                        setIsOpen(false);
-                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      } else {
+                    if (element) {
+                      e.preventDefault();
+                      setIsOpen(false);
+                      const offset = 80; // Mobile navbar height + offset
+                      const elementPosition = element.getBoundingClientRect().top;
+                      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                      window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth',
+                      });
+                    } else {
                         setIsOpen(false);
                       }
                     }}

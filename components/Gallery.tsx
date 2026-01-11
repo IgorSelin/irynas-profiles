@@ -20,6 +20,14 @@ const staticPhotos = [
   { id: 14, src: '/images/additional-poland-krasiczyn.jpg', alt: 'Красічин', category: 'Польща' },
   { id: 15, src: '/images/additional-poland-solina.jpg', alt: 'Соліна', category: 'Польща' },
   { id: 16, src: '/images/tour-stryiskyi.jpg', alt: 'Стрийський парк', category: 'Львів' },
+  { id: 17, src: '/images/tour-evening.jpg', alt: 'Вечірній Львів', category: 'Львів' },
+  { id: 18, src: '/images/tour-coffee.jpg', alt: 'Кава та шоколад', category: 'Львів' },
+  { id: 19, src: '/images/tour-beer.jpg', alt: 'Пивний Львів', category: 'Львів' },
+  { id: 20, src: '/images/tour-synevyr.jpg', alt: 'Синевир та Шипіт', category: 'Карпати' },
+  { id: 21, src: '/images/tour-biblical.jpg', alt: 'Біблійний Львів', category: 'Львів' },
+  { id: 22, src: '/images/tour-legends.jpg', alt: 'Легенди Львова', category: 'Львів' },
+  { id: 23, src: '/images/tour-kids.jpg', alt: 'Для дітей', category: 'Львів' },
+  { id: 24, src: '/images/tour-zno.jpg', alt: 'Підготовка до ЗНО', category: 'Львів' },
 ];
 
 export default function Gallery() {

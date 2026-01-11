@@ -17,6 +17,8 @@ export interface Tour {
   price?: string;
   languages?: string[];
   highlights?: string[];
+  type?: 'individual' | 'corporate' | 'both';
+  tags?: string[];
 }
 
 export interface GuideInfo {

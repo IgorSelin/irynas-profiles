@@ -49,7 +49,7 @@ export default function About() {
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
               <span className="rounded-full bg-purple-100 px-4 py-2 font-semibold text-purple-800">
-                5+ років досвіду
+                10+ років досвіду
               </span>
               <span className="rounded-full bg-purple-100 px-4 py-2 font-semibold text-purple-800">
                 1000+ задоволених туристів
