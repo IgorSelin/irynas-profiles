@@ -39,7 +39,6 @@ export async function GET(request: NextRequest) {
       throw error;
     }
 
-    console.log(`Fetched ${reviews.length} reviews from Firestore${tourId ? ` for tour ${tourId}` : ''}`);
     if (reviews.length > 0) {
       console.log('Sample review:', JSON.stringify(reviews[0], null, 2));
     }
@@ -96,8 +95,6 @@ export async function POST(request: NextRequest) {
 
     // Зберігаємо відгук у Firestore
     const docRef = await addDoc(reviewsRef, newReview);
-
-    console.log('Review saved to Firestore with ID:', docRef.id);
 
     return NextResponse.json({
       success: true,

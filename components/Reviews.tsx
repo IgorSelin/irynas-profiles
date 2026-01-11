@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import ReviewCard from './ReviewCard';
 import ReviewForm from './ReviewForm';
 import { Review } from '@/lib/types';
+import { staticReviews } from '@/lib/staticReviews';
 
 export default function Reviews() {
   const [reviews, setReviews] = useState<Review[]>([]);
@@ -17,10 +18,13 @@ export default function Reviews() {
         cache: 'no-store',
       });
       const data = await response.json();
-      console.log('Fetched reviews:', data.reviews?.length || 0);
-      setReviews(data.reviews || []);
+      const firebaseReviews = data.reviews || [];
+      // Combine Firebase reviews with static reviews
+      setReviews([...firebaseReviews, ...staticReviews]);
     } catch (error) {
       console.error('Error fetching reviews:', error);
+      // Fallback to static reviews only if fetch fails
+      setReviews(staticReviews);
     } finally {
       setIsLoading(false);
     }

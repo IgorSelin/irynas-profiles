@@ -24,7 +24,6 @@ export default function TourDetail({ tour }: TourDetailProps) {
         cache: 'no-store',
       });
       const data = await response.json();
-      console.log(`Fetched reviews for tour ${tour.id}:`, data.reviews?.length || 0);
       setReviews(data.reviews || []);
     } catch (error) {
       console.error('Error fetching reviews:', error);
