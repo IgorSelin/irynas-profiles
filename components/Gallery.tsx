@@ -16,10 +16,10 @@ const staticPhotos = [
   { id: 9, src: '/images/additional-waterfall.avif', alt: 'Водоспад Кам\'янка', category: 'Карпати' },
   { id: 10, src: '/images/additional-ternopil-castles.jpg', alt: 'Замки Тернопілля', category: 'Замки' },
   { id: 11, src: '/images/additional-golden-horseshoe.jpg', alt: 'Золота підкова', category: 'Замки' },
-  { id: 12, src: '/images/additional-poland-krakow.jpg', alt: 'Краків', category: 'Польща' },
   { id: 13, src: '/images/additional-poland-lancut.jpg', alt: 'Ланьцут', category: 'Польща' },
   { id: 14, src: '/images/additional-poland-krasiczyn.jpg', alt: 'Красічин', category: 'Польща' },
   { id: 15, src: '/images/additional-poland-solina.jpg', alt: 'Соліна', category: 'Польща' },
+  { id: 16, src: '/images/tour-stryiskyi.jpg', alt: 'Стрийський парк', category: 'Львів' },
 ];
 
 export default function Gallery() {
