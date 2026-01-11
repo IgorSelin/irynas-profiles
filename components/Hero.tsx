@@ -16,18 +16,37 @@ export default function Hero() {
       {/* Content */}
       <div className="container relative z-20 mx-auto px-4 text-center text-white">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-          <h1 className="mb-6 text-5xl font-bold md:text-7xl">Вітаю у Львові!</h1>
-          <p className="mx-auto mb-8 max-w-2xl text-xl md:text-2xl">
-            Професійні екскурсії по найкрасивішому місту України
+          <span className="mb-4 inline-block rounded-full bg-white/10 px-6 py-2 text-sm font-bold uppercase tracking-widest backdrop-blur-sm">
+            Ваш персональний гід у Львові
+          </span>
+          <h1 className="mb-6 text-5xl font-extrabold leading-tight md:text-8xl">
+            Екскурсії з <br />
+            <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+              Іриною Красіцькою
+            </span>
+          </h1>
+          <p className="mx-auto mb-10 max-w-2xl text-xl font-medium text-white/80 md:text-2xl">
+            Відкрийте для себе таємниці, легенди та красу Львова <br className="hidden md:block" />у компанії
+            професійного гіда.
           </p>
-          <motion.a
-            href="#tours"
-            className="inline-block rounded-full bg-white px-8 py-4 text-lg font-semibold text-purple-900 shadow-lg transition-colors hover:bg-purple-100"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Переглянути екскурсії
-          </motion.a>
+          <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
+            <motion.a
+              href="#tours"
+              className="inline-block rounded-2xl bg-white px-10 py-5 text-lg font-bold text-purple-900 shadow-xl transition-all hover:bg-purple-50"
+              whileHover={{ scale: 1.05, y: -5 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Обрати екскурсію
+            </motion.a>
+            <motion.a
+              href="#contact"
+              className="inline-block rounded-2xl border-2 border-white/30 bg-white/5 px-10 py-5 text-lg font-bold text-white backdrop-blur-md transition-all hover:bg-white/10"
+              whileHover={{ scale: 1.05, y: -5 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Зв'язатися
+            </motion.a>
+          </div>
         </motion.div>
       </div>
 
