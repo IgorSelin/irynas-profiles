@@ -17,7 +17,7 @@ export default function Hero() {
       <div className="container relative z-20 mx-auto px-4 text-center text-white">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
           <span className="mb-4 inline-block rounded-full bg-white/10 px-6 py-2 text-sm font-bold uppercase tracking-widest backdrop-blur-sm">
-            Ваш персональний гід у Львові
+            Не стандартна екскурсія, а розуміння міста
           </span>
           <h1 className="mb-6 text-5xl font-extrabold leading-tight md:text-8xl">
             Екскурсії з <br />
@@ -25,9 +25,10 @@ export default function Hero() {
               Іриною Красіцькою
             </span>
           </h1>
-          <p className="mx-auto mb-10 max-w-2xl text-xl font-medium text-white/80 md:text-2xl">
-            Відкрийте для себе таємниці, легенди та красу Львова <br className="hidden md:block" />у компанії
-            професійного гіда.
+          <p className="mx-auto mb-10 max-w-3xl text-xl font-medium leading-relaxed text-white/90 md:text-2xl">
+            Я показую Львів через деталі, які більшість не помічає, і пояснюю їхній сенс простою мовою.{' '}
+            <br className="hidden md:block" />
+            Історія без сухих дат — через людей і сенси. Після моїх екскурсій місто запам’ятовується.
           </p>
           <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
             <motion.a
