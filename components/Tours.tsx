@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import ImageWithSkeleton from './ImageWithSkeleton';
 import Link from 'next/link';
 import { useState, useMemo, useRef } from 'react';
 import { tours } from '@/lib/tours';
@@ -30,7 +31,7 @@ function TourCard({
     >
       <Link href={`/tours/${tour.id}`} target="_blank" className="block flex-shrink-0">
         <div className="relative h-64">
-          <Image
+          <ImageWithSkeleton
             src={tour.image}
             alt={tour.title}
             fill

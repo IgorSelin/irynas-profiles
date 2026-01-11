@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import ImageWithSkeleton from './ImageWithSkeleton';
 import Link from 'next/link';
 import { Tour } from '@/lib/types';
 import { useEffect, useState, useCallback } from 'react';
@@ -62,7 +63,7 @@ export default function TourDetail({ tour }: TourDetailProps) {
           className="mb-12 overflow-hidden rounded-lg bg-white shadow-xl"
         >
           <div className="relative h-96 md:h-[500px]">
-            <Image src={tour.image} alt={tour.title} fill className="object-cover" priority />
+            <ImageWithSkeleton src={tour.image} alt={tour.title} fill className="object-cover" priority />
           </div>
           <div className="p-8 md:p-12">
             <h1 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">{tour.title}</h1>

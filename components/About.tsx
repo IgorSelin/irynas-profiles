@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import ImageWithSkeleton from './ImageWithSkeleton';
 
 export default function About() {
   return (
@@ -27,7 +28,7 @@ export default function About() {
             className="relative"
           >
             <div className="relative h-[30rem] w-full overflow-hidden rounded-lg shadow-xl">
-              <Image
+              <ImageWithSkeleton
                 src="/images/guide-photo.jpg"
                 alt="Ірина Красіцька - професійний екскурсовод у Львові"
                 fill

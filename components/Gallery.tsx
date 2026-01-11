@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import ImageWithSkeleton from './ImageWithSkeleton';
 
 const staticPhotos = [
   { id: 1, src: '/images/tour-opera.jpg', alt: 'Оперний театр', category: 'Львів' },
@@ -109,7 +110,7 @@ export default function Gallery() {
                 className="group relative aspect-square cursor-pointer overflow-hidden rounded-xl shadow-md"
                 onClick={() => setSelectedImage(photo)}
               >
-                <Image
+                <ImageWithSkeleton
                   src={photo.src}
                   alt={photo.alt}
                   fill
@@ -147,7 +148,7 @@ export default function Gallery() {
                 className="relative aspect-[4/3] w-full max-w-5xl md:aspect-video"
                 onClick={(e) => e.stopPropagation()}
               >
-                <Image src={selectedImage.src} alt={selectedImage.alt} fill className="object-contain" />
+                <ImageWithSkeleton src={selectedImage.src} alt={selectedImage.alt} fill className="object-contain" />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
                   <h3 className="text-2xl font-bold text-white">{selectedImage.alt}</h3>
                   <p className="text-gray-300">{selectedImage.category}</p>
