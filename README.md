@@ -74,7 +74,7 @@ npm run dev
 1. **Зображення**: Додайте фото у `public/images/`
    - `hero-bg.jpg` - фон для Hero секції
    - `guide-photo.jpg` - фото екскурсовода
-   - `tour-historical.jpg`, `tour-legends.jpg`, `tour-coffee.jpg`, `tour-architecture.jpg` - фото екскурсій
+   - `tour-historical.jpg`, `tour-legends.webp`, `tour-coffee.jpg`, `tour-architecture.jpg` - фото екскурсій
 
 2. **Відео**: Додайте відео у `public/videos/` (опціонально)
 

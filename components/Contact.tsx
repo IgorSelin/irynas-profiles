@@ -46,10 +46,26 @@ export default function Contact() {
                       />
                     </svg>
                     <div>
-                      <p className="font-semibold text-gray-900">Телефон</p>
-                      <a href="tel:+380975383348" className="text-purple-600 hover:text-purple-700">
-                        +380 97 538 33 48
-                      </a>
+                      <p className="font-semibold text-gray-900">Телефон / Messenger</p>
+                      <div className="flex flex-col space-y-1">
+                        <a href="tel:+380975383348" className="text-purple-600 hover:text-purple-700">
+                          +380 97 538 33 48
+                        </a>
+                        <div className="flex space-x-3 text-sm">
+                          <a
+                            href="https://t.me/+380975383348"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-gray-500 hover:text-purple-600"
+                          >
+                            Telegram
+                          </a>
+                          <span className="text-gray-300">|</span>
+                          <a href="viber://chat?number=%2B380975383348" className="text-gray-500 hover:text-purple-600">
+                            Viber
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
@@ -69,8 +85,8 @@ export default function Contact() {
                     </svg>
                     <div>
                       <p className="font-semibold text-gray-900">Email</p>
-                      <a href="mailto:example@email.com" className="text-purple-600 hover:text-purple-700">
-                        example@email.com
+                      <a href="krasiraira@gmail.com" className="text-purple-600 hover:text-purple-700">
+                        krasiraira@gmail.com
                       </a>
                     </div>
                   </div>
@@ -106,16 +122,9 @@ export default function Contact() {
                   <p className="mb-4 font-semibold text-gray-900">Соціальні мережі</p>
                   <div className="flex space-x-4">
                     <a
-                      href="#"
-                      className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600 text-white transition-colors hover:bg-purple-700"
-                      aria-label="Facebook"
-                    >
-                      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                      </svg>
-                    </a>
-                    <a
-                      href="#"
+                      href="https://www.instagram.com/ekskursii.lviv/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600 text-white transition-colors hover:bg-purple-700"
                       aria-label="Instagram"
                     >
@@ -124,12 +133,26 @@ export default function Contact() {
                       </svg>
                     </a>
                     <a
-                      href="#"
+                      href="https://www.tiktok.com/@iryna_ekscurs_"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600 text-white transition-colors hover:bg-purple-700"
-                      aria-label="Telegram"
+                      aria-label="TikTok"
                     >
                       <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15.056-.216.06-.1.128-.214.288-.277.16-.062.379-.041.53.028.06.028.117.06.168.096.051.036.094.078.135.12.08.08.172.175.236.28.06.1.1.21.12.324.02.113.02.23 0 .344-.02.113-.06.22-.12.324-.064.105-.156.2-.236.28-.04.042-.084.084-.135.12-.051.036-.108.068-.168.096-.151.069-.37.09-.53.028-.16-.063-.228-.177-.288-.277-.042-.066-.049-.184-.056-.216-.06-.253-3.13-3.046-3.307-3.23-.675-.7-1.443-1.13-.258-1.91 1.025-.676 1.622-1.107 2.678-1.8.675-.442 1.204-.967 1.9-.902.321.029.652.33.82 1.23.398 2.125 1.18 6.729 1.36 8.627.016.166-.004.38-.02.472a.506.506 0 0 1-.171.325c-.144.117-.365.142-.465.14z" />
+                        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.9-.32-1.98-.23-2.81.36-.72.5-.99 1.47-.73 2.28.21.8.87 1.35 1.66 1.42 1 .15 2.1-.39 2.48-1.32.12-.27.16-.57.17-.86.03-4.69.03-9.39.04-14.09z" />
+                      </svg>
+                    </a>
+
+                    <a
+                      href="https://www.facebook.com/irina.krasic.ka.55959"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600 text-white transition-colors hover:bg-purple-700"
+                      aria-label="Facebook"
+                    >
+                      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                       </svg>
                     </a>
                   </div>
@@ -151,30 +174,30 @@ export default function Contact() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 p-6 text-white shadow-lg"
+                className="rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 p-4 text-white shadow-lg sm:p-6"
               >
-                <div className="flex items-start space-x-4">
+                <div className="flex items-start space-x-3 sm:space-x-4">
                   <div className="flex-shrink-0">
-                    <svg className="h-12 w-12" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="h-10 w-10 sm:h-12 sm:w-12" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-15h2v6h-2zm0 8h2v2h-2z" />
                     </svg>
                   </div>
                   <div className="flex-grow">
-                    <h3 className="mb-2 text-xl font-bold">Залиште відгук на Google Maps!</h3>
-                    <p className="mb-4 text-purple-100">
+                    <h3 className="mb-1 text-lg font-bold sm:mb-2 sm:text-xl">Залиште відгук на Google Maps!</h3>
+                    <p className="mb-3 text-sm text-purple-100 sm:mb-4 sm:text-base">
                       Ваші відгуки допомагають іншим знайти якісні екскурсії. Будемо вдячні за вашу оцінку!
                     </p>
                     <a
                       href="https://maps.app.goo.gl/oSuowDpaQ7k4WGm67"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center space-x-2 rounded-lg bg-white px-6 py-3 font-semibold text-purple-600 shadow-md transition-colors hover:bg-purple-50"
+                      className="inline-flex items-center space-x-2 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-purple-600 shadow-md transition-colors hover:bg-purple-50 sm:px-6 sm:py-3 sm:text-base"
                     >
-                      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="h-5 w-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-15h2v6h-2zm0 8h2v2h-2z" />
                       </svg>
-                      <span>Залишити відгук на Google Maps</span>
-                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <span>Залишити відгук</span>
+                      <svg className="h-4 w-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"

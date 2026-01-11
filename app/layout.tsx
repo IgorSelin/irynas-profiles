@@ -36,8 +36,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Екскурсовод Львів | Ірина Красіцька | Професійні екскурсії',
-    description:
-      'Професійний екскурсовод у Львові Ірина Красіцька. Організація цікавих та незабутніх екскурсій.',
+    description: 'Професійний екскурсовод у Львові Ірина Красіцька. Організація цікавих та незабутніх екскурсій.',
     images: ['/images/guide-photo.jpg'],
   },
   robots: {
@@ -131,8 +130,10 @@ export default function RootLayout({
               telephone: '+380975383348',
               email: 'iryna@example.com',
               sameAs: [
-                'https://www.instagram.com/',
-                'https://www.facebook.com/',
+                'https://www.instagram.com/ekskursii.lviv/',
+                'https://www.facebook.com/irina.krasic.ka.55959',
+                'https://www.tiktok.com/@iryna_ekscurs_',
+                'viber://chat?number=%2B380975383348',
               ],
             }),
           }}

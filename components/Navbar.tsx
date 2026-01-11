@@ -200,18 +200,18 @@ export default function Navbar() {
                     onClick={(e) => {
                       const targetId = link.href.split('#')[1];
                       const element = document.getElementById(targetId);
-                    if (element) {
-                      e.preventDefault();
-                      setIsOpen(false);
-                      const offset = 80; // Mobile navbar height + offset
-                      const elementPosition = element.getBoundingClientRect().top;
-                      const offsetPosition = elementPosition + window.pageYOffset - offset;
+                      if (element) {
+                        e.preventDefault();
+                        setIsOpen(false);
+                        const offset = 80; // Mobile navbar height + offset
+                        const elementPosition = element.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-                      window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth',
-                      });
-                    } else {
+                        window.scrollTo({
+                          top: offsetPosition,
+                          behavior: 'smooth',
+                        });
+                      } else {
                         setIsOpen(false);
                       }
                     }}

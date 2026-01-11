@@ -7,24 +7,34 @@ import { useState, useMemo, useRef } from 'react';
 import { tours } from '@/lib/tours';
 import { Tour } from '@/lib/types';
 
-function TourCard({ tour, index, setSelectedTag, selectedTag }: { tour: Tour; index: number; setSelectedTag: (tag: string | null) => void; selectedTag: string | null }) {
+function TourCard({
+  tour,
+  index,
+  setSelectedTag,
+  selectedTag,
+}: {
+  tour: Tour;
+  index: number;
+  setSelectedTag: (tag: string | null) => void;
+  selectedTag: string | null;
+}) {
   return (
     <motion.div
       layout
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+      viewport={{ once: true, margin: '0px 0px -50px 0px' }}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.4 }}
       className="flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-lg transition-shadow hover:shadow-xl"
     >
       <Link href={`/tours/${tour.id}`} target="_blank" className="block flex-shrink-0">
         <div className="relative h-64">
-          <Image 
-            src={tour.image} 
-            alt={tour.title} 
-            fill 
-            className="object-cover" 
+          <Image
+            src={tour.image}
+            alt={tour.title}
+            fill
+            className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             loading="lazy"
           />
@@ -256,12 +266,12 @@ export default function Tours() {
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {filteredTours.map((tour, index) => (
-              <TourCard 
-                key={tour.id} 
-                tour={tour} 
-                index={index} 
-                setSelectedTag={setSelectedTag} 
-                selectedTag={selectedTag} 
+              <TourCard
+                key={tour.id}
+                tour={tour}
+                index={index}
+                setSelectedTag={setSelectedTag}
+                selectedTag={selectedTag}
               />
             ))}
           </AnimatePresence>
@@ -269,12 +279,7 @@ export default function Tours() {
 
         {filteredTours.length === 0 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-20 text-center">
-            <svg
-              className="mx-auto mb-4 h-16 w-16 text-gray-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="mx-auto mb-4 h-16 w-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -288,7 +293,7 @@ export default function Tours() {
                 setSearchQuery('');
                 setSelectedTag(null);
               }}
-              className="mt-4 text-purple-600 font-bold hover:underline"
+              className="mt-4 font-bold text-purple-600 hover:underline"
             >
               Скинути всі фільтри
             </button>
