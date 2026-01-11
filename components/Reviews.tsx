@@ -40,7 +40,7 @@ export default function Reviews() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
-          <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">Відгуки</h2>
+          <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">Відгуки про Ірину Красіцьку</h2>
           <div className="mx-auto mb-8 h-1 w-24 bg-purple-600"></div>
           <p className="mx-auto max-w-2xl text-xl text-gray-600">Що кажуть наші гості про екскурсії</p>
         </motion.div>

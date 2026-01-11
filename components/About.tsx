@@ -14,7 +14,7 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
-          <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">Про мене</h2>
+          <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">Про Ірину Красіцьку</h2>
           <div className="mx-auto h-1 w-24 bg-purple-600"></div>
         </motion.div>
 
@@ -27,7 +27,13 @@ export default function About() {
             className="relative"
           >
             <div className="relative h-[30rem] w-full overflow-hidden rounded-lg shadow-xl">
-              <Image src="/images/guide-photo.jpg" alt="Екскурсовод" fill className="object-cover" priority />
+              <Image
+                src="/images/guide-photo.jpg"
+                alt="Ірина Красіцька - професійний екскурсовод у Львові"
+                fill
+                className="object-cover"
+                priority
+              />
             </div>
           </motion.div>
 

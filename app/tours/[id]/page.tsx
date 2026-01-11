@@ -15,8 +15,8 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   }
 
   return {
-    title: `${tour.title} | Екскурсії по Львову`,
-    description: tour.description,
+    title: `${tour.title} | Ірина Красіцька | Екскурсії по Львову`,
+    description: `${tour.description} Авторська екскурсія від Ірини Красіцької.`,
   };
 }
 
