@@ -28,6 +28,7 @@ const staticPhotos = [
   { id: 22, src: '/images/tour-legends.jpg', alt: 'Легенди Львова', category: 'Львів' },
   { id: 23, src: '/images/tour-kids.jpg', alt: 'Для дітей', category: 'Львів' },
   { id: 24, src: '/images/tour-zno.jpg', alt: 'Підготовка до ЗНО', category: 'Львів' },
+  { id: 25, src: '/images/tour-professors.jpg', alt: 'Розстріл професорів', category: 'Львів' },
 ];
 
 export default function Gallery() {

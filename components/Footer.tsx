@@ -139,14 +139,6 @@ export default function Footer() {
 
         <div className="flex flex-col items-center justify-between border-t border-white/5 pt-8 text-center text-gray-500 md:flex-row">
           <p className="mb-4 text-sm md:mb-0">&copy; {currentYear} Ірина Красіцька. Всі права захищені.</p>
-          <div className="flex space-x-6 text-sm">
-            <a href="#" className="transition-colors hover:text-white">
-              Політика конфіденційності
-            </a>
-            <a href="#" className="transition-colors hover:text-white">
-              Умови використання
-            </a>
-          </div>
         </div>
       </div>
     </footer>
