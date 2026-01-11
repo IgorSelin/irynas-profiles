@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "lint:spell": "cspell \"**/*.{ts,tsx,js,json,md}\"",
+    "test": "playwright test",
     "format": "prettier --write ."
   },
   "dependencies": {
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@cspell/dict-uk-ua": "^4.0.6",
+    "@playwright/test": "^1.57.0",
     "@types/node": "^20.14.10",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",

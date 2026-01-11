@@ -23,7 +23,7 @@ export default function Navbar() {
   const navLinks = [
     { href: '/#about', label: 'Про мене' },
     { href: '/#tours', label: 'Екскурсії' },
-    { href: '/#reviews', label: 'Відгуки' },
+    { href: '/reviews', label: 'Відгуки' },
     { href: '/gallery', label: 'Галерея' },
     { href: '/#contact', label: 'Контакти' },
   ];

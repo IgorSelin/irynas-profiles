@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { motion } from 'framer-motion';
 
 interface ReviewFormData {
   name: string;
@@ -68,11 +67,7 @@ export default function ReviewForm({ onSuccess, tourId }: { onSuccess?: () => vo
   };
 
   return (
-    <motion.form
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+    <form
       onSubmit={handleSubmit(onSubmit)}
       className="rounded-lg bg-white p-8 shadow-lg"
     >
@@ -161,6 +156,6 @@ export default function ReviewForm({ onSuccess, tourId }: { onSuccess?: () => vo
           {isSubmitting ? 'Відправка...' : 'Відправити відгук'}
         </button>
       </div>
-    </motion.form>
+    </form>
   );
 }
