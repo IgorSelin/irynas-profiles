@@ -39,14 +39,6 @@ export default function Hero() {
             >
               Обрати екскурсію
             </motion.a>
-            <motion.a
-              href="#contact"
-              className="inline-block rounded-2xl border-2 border-white/30 bg-white/5 px-10 py-5 text-lg font-bold text-white backdrop-blur-md transition-all hover:bg-white/10"
-              whileHover={{ scale: 1.05, y: -5 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Зв'язатися
-            </motion.a>
           </div>
         </motion.div>
       </div>
