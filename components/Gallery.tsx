@@ -13,7 +13,7 @@ const staticPhotos = [
   { id: 6, src: '/images/tour-bus.jpg', alt: 'Автобусна екскурсія', category: 'Львів' },
   { id: 7, src: '/images/additional-shevchenkivskyi-hai.jpeg', alt: 'Шевченківський гай', category: 'Львів' },
   { id: 8, src: '/images/additional-tustan.jpeg', alt: 'Тустань', category: 'Карпати' },
-  { id: 9, src: '/images/additional-waterfall.avif', alt: 'Водоспад', category: 'Карпати' },
+  { id: 9, src: '/images/additional-waterfall.avif', alt: 'Водоспад Кам\'янка', category: 'Карпати' },
   { id: 10, src: '/images/additional-ternopil-castles.jpg', alt: 'Замки Тернопілля', category: 'Замки' },
   { id: 11, src: '/images/additional-golden-horseshoe.jpg', alt: 'Золота підкова', category: 'Замки' },
   { id: 12, src: '/images/additional-poland-krakow.jpg', alt: 'Краків', category: 'Польща' },
