@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { tours } from '@/lib/tours';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com';
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com').replace(/\/+$/, '');
 
   const tourPages = tours.map((tour) => ({
     url: `${baseUrl}/tours/${tour.id}`,
