@@ -3,8 +3,151 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import { tours } from '@/lib/tours';
+import { Tour } from '@/lib/types';
+
+function TourCard({ tour, index, setSelectedTag, selectedTag }: { tour: Tour; index: number; setSelectedTag: (tag: string | null) => void; selectedTag: string | null }) {
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.4 }}
+      className="flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-lg transition-shadow hover:shadow-xl"
+    >
+      <Link href={`/tours/${tour.id}`} className="block flex-shrink-0">
+        <div className="relative h-64">
+          <Image 
+            src={tour.image} 
+            alt={tour.title} 
+            fill 
+            className="object-cover" 
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            loading="lazy"
+          />
+          {tour.tags && (
+            <div className="absolute left-4 top-4 flex flex-wrap gap-2">
+              {tour.tags.slice(0, 2).map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full bg-white/90 px-3 py-1 text-xs font-bold uppercase tracking-wider text-purple-700 shadow-sm backdrop-blur-sm"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      </Link>
+      <div className="flex flex-grow flex-col p-6">
+        <Link href={`/tours/${tour.id}`} className="block">
+          <h3 className="mb-3 text-2xl font-bold text-gray-900 transition-colors hover:text-purple-600">
+            {tour.title}
+          </h3>
+          <p className="mb-4 line-clamp-3 leading-relaxed text-gray-600">{tour.description}</p>
+        </Link>
+        <div className="mb-4 space-y-2">
+          <div className="flex items-center text-purple-600">
+            <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span className="font-semibold">{tour.duration}</span>
+          </div>
+          {tour.price && (
+            <div className="flex items-center text-green-600">
+              <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span className="font-semibold">{tour.price}</span>
+            </div>
+          )}
+          {tour.type && (
+            <div className="flex items-center text-green-600">
+              <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                />
+              </svg>
+              <span className="text-sm font-semibold">
+                {tour.type === 'both'
+                  ? 'Індивідуальні та корпоративні'
+                  : tour.type === 'corporate'
+                    ? 'Для корпоративних груп'
+                    : 'Індивідуальні'}
+              </span>
+            </div>
+          )}
+          {tour.languages && tour.languages.length > 0 && (
+            <div className="flex items-center text-blue-600">
+              <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+                />
+              </svg>
+              <span className="text-sm font-semibold">{tour.languages.join(' / ')}</span>
+            </div>
+          )}
+        </div>
+        {tour.tags && (
+          <div className="mb-4 flex flex-wrap gap-2">
+            {tour.tags.map((tag) => (
+              <button
+                key={tag}
+                onClick={() => setSelectedTag(tag === selectedTag ? null : tag)}
+                className={`rounded-md px-2 py-1 text-xs font-medium transition-colors ${
+                  tag === selectedTag ? 'bg-purple-600 text-white' : 'bg-purple-50 text-purple-700 hover:bg-purple-100'
+                }`}
+              >
+                #{tag}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+      <div className="mt-auto flex gap-3 px-6 pb-6">
+        <Link
+          href={`/tours/${tour.id}`}
+          className="flex flex-1 items-center justify-center rounded-lg bg-purple-600 py-3 font-semibold text-white transition-colors hover:bg-purple-700"
+        >
+          Детальніше
+        </Link>
+        <a
+          href="tel:+380975383348"
+          className="flex flex-1 items-center justify-center rounded-lg bg-green-600 py-3 font-semibold text-white transition-colors hover:bg-green-700"
+        >
+          <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+            />
+          </svg>
+          Замовити
+        </a>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function Tours() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -112,136 +255,13 @@ export default function Tours() {
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {filteredTours.map((tour, index) => (
-              <motion.div
-                key={tour.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4 }}
-                className="flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-lg transition-shadow hover:shadow-xl"
-              >
-                <Link href={`/tours/${tour.id}`} className="block flex-shrink-0">
-                  <div className="relative h-64">
-                    <Image src={tour.image} alt={tour.title} fill className="object-cover" />
-                    {tour.tags && (
-                      <div className="absolute left-4 top-4 flex flex-wrap gap-2">
-                        {tour.tags.slice(0, 2).map((tag) => (
-                          <span
-                            key={tag}
-                            className="rounded-full bg-white/90 px-3 py-1 text-xs font-bold uppercase tracking-wider text-purple-700 shadow-sm backdrop-blur-sm"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </Link>
-                <div className="flex flex-grow flex-col p-6">
-                  <Link href={`/tours/${tour.id}`} className="block">
-                    <h3 className="mb-3 text-2xl font-bold text-gray-900 transition-colors hover:text-purple-600">
-                      {tour.title}
-                    </h3>
-                    <p className="mb-4 line-clamp-3 leading-relaxed text-gray-600">{tour.description}</p>
-                  </Link>
-                  <div className="mb-4 space-y-2">
-                    <div className="flex items-center text-purple-600">
-                      <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                      <span className="font-semibold">{tour.duration}</span>
-                    </div>
-                    {tour.price && (
-                      <div className="flex items-center text-green-600">
-                        <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          />
-                        </svg>
-                        <span className="font-semibold">{tour.price}</span>
-                      </div>
-                    )}
-                    {tour.type && (
-                      <div className="flex items-center text-green-600">
-                        <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                          />
-                        </svg>
-                        <span className="text-sm font-semibold">
-                          {tour.type === 'both'
-                            ? 'Індивідуальні та корпоративні'
-                            : tour.type === 'corporate'
-                              ? 'Для корпоративних груп'
-                              : 'Індивідуальні'}
-                        </span>
-                      </div>
-                    )}
-                    {tour.languages && tour.languages.length > 0 && (
-                      <div className="flex items-center text-blue-600">
-                        <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
-                          />
-                        </svg>
-                        <span className="text-sm font-semibold">{tour.languages.join(' / ')}</span>
-                      </div>
-                    )}
-                  </div>
-                  {tour.tags && (
-                    <div className="mb-4 flex flex-wrap gap-2">
-                      {tour.tags.map((tag) => (
-                        <button
-                          key={tag}
-                          onClick={() => setSelectedTag(tag === selectedTag ? null : tag)}
-                          className={`rounded-md px-2 py-1 text-xs font-medium transition-colors ${
-                            tag === selectedTag ? 'bg-purple-600 text-white' : 'bg-purple-50 text-purple-700 hover:bg-purple-100'
-                          }`}
-                        >
-                          #{tag}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                <div className="mt-auto flex gap-3 px-6 pb-6">
-                  <Link
-                    href={`/tours/${tour.id}`}
-                    className="flex flex-1 items-center justify-center rounded-lg bg-purple-600 py-3 font-semibold text-white transition-colors hover:bg-purple-700"
-                  >
-                    Детальніше
-                  </Link>
-                  <a
-                    href="tel:+380975383348"
-                    className="flex flex-1 items-center justify-center rounded-lg bg-green-600 py-3 font-semibold text-white transition-colors hover:bg-green-700"
-                  >
-                    <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                      />
-                    </svg>
-                    Замовити
-                  </a>
-                </div>
-              </motion.div>
+              <TourCard 
+                key={tour.id} 
+                tour={tour} 
+                index={index} 
+                setSelectedTag={setSelectedTag} 
+                selectedTag={selectedTag} 
+              />
             ))}
           </AnimatePresence>
         </div>
