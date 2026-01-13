@@ -60,8 +60,30 @@ export default function Gallery() {
 
   const filteredPhotos = filter === 'Всі' ? photos : photos.filter((p) => p.category === filter);
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com';
+
+  const imageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ImageGallery',
+    name: 'Галерея екскурсій по Львову',
+    description: 'Фотографії з екскурсій по Львову з Іриною Красіцькою',
+    image: photos.map((photo) => ({
+      '@type': 'ImageObject',
+      contentUrl: `${baseUrl}${photo.src}`,
+      description: photo.alt,
+      name: photo.alt,
+    })),
+  };
+
   return (
-    <section className="bg-gray-50 py-20">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(imageSchema),
+        }}
+      />
+      <section className="bg-gray-50 py-20">
       <div className="container mx-auto px-4">
         <div className="mb-12 text-center">
           <h2 className="mb-4 text-4xl font-bold text-gray-900">Галерея подорожей</h2>
@@ -159,5 +181,6 @@ export default function Gallery() {
         </AnimatePresence>
       </div>
     </section>
+    </>
   );
 }

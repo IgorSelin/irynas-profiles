@@ -36,12 +36,72 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
-    {
-      url: `${baseUrl}/reviews`,
-      lastModified: lastReviewsUpdate,
-      changeFrequency: 'daily',
-      priority: 0.8,
-    },
-    ...tourPages,
-  ];
+        {
+          url: `${baseUrl}/reviews`,
+          lastModified: lastReviewsUpdate,
+          changeFrequency: 'daily',
+          priority: 0.8,
+        },
+        {
+          url: `${baseUrl}/contact`,
+          lastModified: lastMainPageUpdate,
+          changeFrequency: 'monthly',
+          priority: 0.7,
+        },
+        {
+          url: `${baseUrl}/blog`,
+          lastModified: lastMainPageUpdate,
+          changeFrequency: 'weekly',
+          priority: 0.8,
+        },
+        {
+          url: `${baseUrl}/blog/istoriya-lvova`,
+          lastModified: lastMainPageUpdate,
+          changeFrequency: 'monthly',
+          priority: 0.7,
+        },
+        {
+          url: `${baseUrl}/blog/legendi-lvova`,
+          lastModified: lastMainPageUpdate,
+          changeFrequency: 'monthly',
+          priority: 0.7,
+        },
+        {
+          url: `${baseUrl}/blog/kava-lviv`,
+          lastModified: lastMainPageUpdate,
+          changeFrequency: 'monthly',
+          priority: 0.7,
+        },
+        {
+          url: `${baseUrl}/blog/arhitektura-lvova`,
+          lastModified: lastMainPageUpdate,
+          changeFrequency: 'monthly',
+          priority: 0.7,
+        },
+        {
+          url: `${baseUrl}/blog/chto-posmotret-lviv`,
+          lastModified: lastMainPageUpdate,
+          changeFrequency: 'monthly',
+          priority: 0.7,
+        },
+        {
+          url: `${baseUrl}/blog/ekskursiya-lviv-samostijno`,
+          lastModified: lastMainPageUpdate,
+          changeFrequency: 'monthly',
+          priority: 0.7,
+        },
+        {
+          url: `${baseUrl}/lviv-center`,
+          lastModified: lastToursUpdate,
+          changeFrequency: 'monthly',
+          priority: 0.7,
+        },
+        {
+          url: `${baseUrl}/old-town`,
+          lastModified: lastToursUpdate,
+          changeFrequency: 'monthly',
+          priority: 0.7,
+        },
+        ...tourPages,
+      ];
 }

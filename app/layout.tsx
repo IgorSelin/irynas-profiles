@@ -52,6 +52,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com',
+    languages: {
+      'uk-UA': process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com',
+      'uk': process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com',
+    },
     types: {
       'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com'}/feed.xml`,
     },
@@ -90,17 +94,34 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
-              '@type': 'TouristInformationCenter',
-              name: 'Екскурсії з Іриною Красіцькою',
+              '@type': 'LocalBusiness',
+              name: 'Ірина Красіцька - Екскурсовод у Львові',
               description:
-                'Професійний екскурсовод у Львові Ірина Красіцька. Організація цікавих та незабутніх екскурсій по історичному центру Львова та околицях.',
+                'Професійний екскурсовод у Львові Ірина Красіцька. Авторські екскурсії по історичному центру Львова, легенди, архітектура, кавовий Львів.',
               url: process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com',
               image: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com'}/images/guide-photo.jpg`,
               address: {
                 '@type': 'PostalAddress',
                 addressLocality: 'Львів',
                 addressRegion: 'Львівська область',
+                postalCode: '79000',
                 addressCountry: 'UA',
+              },
+              geo: {
+                '@type': 'GeoCoordinates',
+                latitude: '49.8397',
+                longitude: '24.0297',
+              },
+              openingHours: 'Mo-Su 09:00-20:00',
+              priceRange: '200-500 UAH',
+              telephone: '+380975383348',
+              email: 'krasiraira@gmail.com',
+              aggregateRating: {
+                '@type': 'AggregateRating',
+                ratingValue: '5',
+                reviewCount: '50',
+                bestRating: '5',
+                worstRating: '1',
               },
               areaServed: {
                 '@type': 'City',
@@ -116,8 +137,6 @@ export default function RootLayout({
                   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com',
                 },
               ],
-              telephone: '+380975383348',
-              priceRange: '200 UAH',
             }),
           }}
         />

@@ -37,8 +37,33 @@ export default function Reviews({ limit }: ReviewsProps) {
 
   const displayedReviews = limit ? reviews.slice(0, limit) : reviews;
 
+  const totalReviews = reviews.length;
+  const averageRating = reviews.length > 0
+    ? reviews.reduce((sum, review) => sum + (review.rating || 5), 0) / reviews.length
+    : 5;
+
+  const aggregateRatingSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'AggregateRating',
+    itemReviewed: {
+      '@type': 'LocalBusiness',
+      name: 'Ірина Красіцька - Екскурсовод у Львові',
+    },
+    ratingValue: averageRating.toFixed(1),
+    reviewCount: totalReviews,
+    bestRating: '5',
+    worstRating: '1',
+  };
+
   return (
-    <section id="reviews" className="bg-white py-20">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(aggregateRatingSchema),
+        }}
+      />
+      <section id="reviews" className="bg-white py-20">
       <div className="container mx-auto px-4">
         <div className="mb-12 text-center">
           <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">Відгуки про Ірину Красіцьку</h2>
@@ -78,5 +103,6 @@ export default function Reviews({ limit }: ReviewsProps) {
         </div>
       </div>
     </section>
+    </>
   );
 }
