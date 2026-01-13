@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com').replace(/\/+$/, '');
 
   const tourPages = tours.map((tour) => ({
-    url: `${baseUrl}/tours/${tour.id}`,
+    url: `${baseUrl}/tours/${tour.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.7,

@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 import { tours } from '@/lib/tours';
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const tour = tours.find((t) => t.id === params.id);
+  const tour = tours.find((t) => t.slug === params.id || t.id === params.id);
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com';
 
   if (!tour) {
@@ -15,17 +15,19 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     };
   }
 
+  const tourUrl = `${baseUrl}/tours/${tour.slug}`;
+
   return {
     title: `${tour.title} | Ірина Красіцька | Екскурсії по Львову`,
     description: `${tour.description} Авторська екскурсія від Ірини Красіцької. Тривалість: ${tour.duration}. Ціна: ${tour.price}.`,
     keywords: `${tour.title}, екскурсія Львів, ${tour.tags?.join(', ') || ''}, Ірина Красіцька`,
     alternates: {
-      canonical: `${baseUrl}/tours/${tour.id}`,
+      canonical: tourUrl,
     },
     openGraph: {
       title: `${tour.title} | Ірина Красіцька | Екскурсії по Львову`,
       description: `${tour.description} Авторська екскурсія від Ірини Красіцької.`,
-      url: `${baseUrl}/tours/${tour.id}`,
+      url: tourUrl,
       type: 'website',
       images: [
         {
@@ -40,7 +42,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 }
 
 export default function TourPage({ params }: { params: { id: string } }) {
-  const tour = tours.find((t) => t.id === params.id);
+  const tour = tours.find((t) => t.slug === params.id || t.id === params.id);
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com';
 
   if (!tour) {
@@ -55,13 +57,15 @@ export default function TourPage({ params }: { params: { id: string } }) {
   const durationMatch = tour.duration?.match(/(\d+)/);
   const durationHours = durationMatch ? durationMatch[1] : '2';
 
+  const tourUrl = `${baseUrl}/tours/${tour.slug}`;
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'TouristTrip',
     name: tour.title,
     description: tour.description,
     image: `${baseUrl}${tour.image}`,
-    url: `${baseUrl}/tours/${tour.id}`,
+    url: tourUrl,
     provider: {
       '@type': 'Person',
       name: 'Ірина Красіцька',
@@ -79,7 +83,7 @@ export default function TourPage({ params }: { params: { id: string } }) {
       price: priceValue,
       priceCurrency: 'UAH',
       availability: 'https://schema.org/InStock',
-      url: `${baseUrl}/tours/${tour.id}`,
+      url: tourUrl,
     },
     duration: `PT${durationHours}H`,
     itinerary: tour.highlights?.map((highlight) => ({
