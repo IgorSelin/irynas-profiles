@@ -52,6 +52,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com',
+    types: {
+      'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com'}/feed.xml`,
+    },
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
@@ -76,6 +79,12 @@ export default function RootLayout({
   return (
     <html lang="uk">
       <head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="RSS Feed"
+          href={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com'}/feed.xml`}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
