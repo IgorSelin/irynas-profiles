@@ -50,11 +50,9 @@ export default function TourPage({ params }: { params: { id: string } }) {
     notFound();
   }
 
-  // Extract price number from "200 грн/ос" format
   const priceMatch = tour.price?.match(/(\d+)/);
   const priceValue = priceMatch ? priceMatch[1] : '200';
 
-  // Extract duration in hours from "2 години" format
   const durationMatch = tour.duration?.match(/(\d+)/);
   const durationHours = durationMatch ? durationMatch[1] : '2';
 

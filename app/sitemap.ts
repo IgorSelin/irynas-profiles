@@ -4,50 +4,41 @@ import { tours } from '@/lib/tours';
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com').replace(/\/+$/, '');
 
+  const lastMainPageUpdate = new Date('2026-01-11');
+  const lastToursPageUpdate = new Date('2026-01-11');
+  const lastToursUpdate = new Date('2026-01-11');
+  const lastGalleryUpdate = new Date('2026-01-11');
+  const lastReviewsUpdate = new Date();
+
   const tourPages = tours.map((tour) => ({
     url: `${baseUrl}/tours/${tour.slug}`,
-    lastModified: new Date(),
+    lastModified: lastToursUpdate,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
-    // Add images to sitemap
-    images: [
-      {
-        loc: `${baseUrl}${tour.image}`,
-        title: tour.title,
-        caption: tour.description.substring(0, 100),
-      },
-    ],
   }));
 
   return [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: lastMainPageUpdate,
       changeFrequency: 'weekly',
       priority: 1.0,
-      images: [
-        {
-          loc: `${baseUrl}/images/guide-photo.jpg`,
-          title: 'Ірина Красіцька - екскурсовод у Львові',
-          caption: 'Професійний екскурсовод у Львові Ірина Красіцька',
-        },
-      ],
     },
     {
       url: `${baseUrl}/tours`,
-      lastModified: new Date(),
+      lastModified: lastToursPageUpdate,
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/gallery`,
-      lastModified: new Date(),
+      lastModified: lastGalleryUpdate,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/reviews`,
-      lastModified: new Date(),
+      lastModified: lastReviewsUpdate,
       changeFrequency: 'daily',
       priority: 0.8,
     },

@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const GOOGLE_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
-const PLACE_ID = 'ChIJ-9i5C6ZA100RrKpK7u8eM-k'; // Placeholder Place ID for "Екскурсії Львовом з Іриною Красіцькою"
-// Note: The Place ID can be found using the Google Maps Place ID Finder
+const PLACE_ID = 'ChIJ-9i5C6ZA100RrKpK7u8eM-k';
 
 export async function GET(request: NextRequest) {
   if (!GOOGLE_API_KEY) {

@@ -3,8 +3,6 @@ import { ImageResponse } from 'next/og';
 export const runtime = 'edge';
 
 export async function GET() {
-  // Google шукає favicon.ico для відображення в результатах пошуку
-  // Повертаємо ту саму іконку, що й /icon, але в меншому розмірі для кращої сумісності
   return new ImageResponse(
     <div
       style={{
