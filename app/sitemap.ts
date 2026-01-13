@@ -9,6 +9,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
+    // Add images to sitemap
+    images: [
+      {
+        loc: `${baseUrl}${tour.image}`,
+        title: tour.title,
+        caption: tour.description.substring(0, 100),
+      },
+    ],
   }));
 
   return [
@@ -17,6 +25,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1.0,
+      images: [
+        {
+          loc: `${baseUrl}/images/guide-photo.jpg`,
+          title: 'Ірина Красіцька - екскурсовод у Львові',
+          caption: 'Професійний екскурсовод у Львові Ірина Красіцька',
+        },
+      ],
     },
     {
       url: `${baseUrl}/tours`,

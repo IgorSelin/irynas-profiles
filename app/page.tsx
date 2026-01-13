@@ -11,6 +11,9 @@ const About = dynamic(() => import('@/components/About'), {
 const Tours = dynamic(() => import('@/components/Tours'), {
   loading: () => <div className="h-96 w-full animate-pulse bg-gray-50" />,
 });
+const FAQ = dynamic(() => import('@/components/FAQ'), {
+  loading: () => <div className="h-96 w-full animate-pulse bg-gray-50" />,
+});
 
 export default function Home() {
   return (
@@ -20,6 +23,7 @@ export default function Home() {
       <About />
       <Tours />
       <Reviews limit={10} />
+      <FAQ />
       <Contact />
       <Footer />
     </main>

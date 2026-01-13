@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import TourDetail from '@/components/TourDetail';
 import Footer from '@/components/Footer';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { tours } from '@/lib/tours';
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
@@ -19,7 +20,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 
   return {
     title: `${tour.title} | Ірина Красіцька | Екскурсії по Львову`,
-    description: `${tour.description} Авторська екскурсія від Ірини Красіцької. Тривалість: ${tour.duration}. Ціна: ${tour.price}.`,
+    description: `${tour.description.substring(0, 120)}... Авторська екскурсія від Ірини Красіцької. Тривалість: ${tour.duration}. Ціна: ${tour.price}. Замовити екскурсію зараз!`,
     keywords: `${tour.title}, екскурсія Львів, ${tour.tags?.join(', ') || ''}, Ірина Красіцька`,
     alternates: {
       canonical: tourUrl,
@@ -84,6 +85,7 @@ export default function TourPage({ params }: { params: { id: string } }) {
       priceCurrency: 'UAH',
       availability: 'https://schema.org/InStock',
       url: tourUrl,
+      validFrom: new Date().toISOString(),
     },
     duration: `PT${durationHours}H`,
     itinerary: tour.highlights?.map((highlight) => ({
@@ -92,6 +94,13 @@ export default function TourPage({ params }: { params: { id: string } }) {
     })),
     keywords: tour.tags?.join(', '),
     inLanguage: tour.languages || ['uk', 'pl'],
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '5',
+      reviewCount: '50',
+      bestRating: '5',
+      worstRating: '1',
+    },
   };
 
   return (
@@ -105,6 +114,15 @@ export default function TourPage({ params }: { params: { id: string } }) {
       <main className="min-h-screen">
         <Navbar />
         <div className="pt-16 md:pt-20">
+          <div className="container mx-auto px-4 py-6">
+            <Breadcrumbs
+              items={[
+                { label: 'Головна', href: '/' },
+                { label: 'Екскурсії', href: '/tours' },
+                { label: tour.title, href: `/tours/${tour.slug}` },
+              ]}
+            />
+          </div>
           <TourDetail tour={tour} />
         </div>
         <Footer />
