@@ -25,6 +25,7 @@ npm run dev
 2. Перейдіть на вкладку **Network**
 3. Перезавантажте сторінку (Ctrl+R)
 4. Знайдіть запити до:
+   - `favicon.ico` - має повернути статус 200 (для Google)
    - `icon` - має повернути статус 200 (PNG 512x512)
    - `icon.svg` - має повернути статус 200
    - `apple-icon` - має повернути статус 200 (PNG 180x180)
@@ -36,7 +37,8 @@ npm run dev
 3. Знайдіть секцію `<head>`
 4. Перевірте наявність тегів:
    ```html
-   <link rel="icon" href="/icon" sizes="any" />
+   <link rel="icon" href="/favicon.ico" sizes="any" />
+   <link rel="icon" href="/icon" sizes="512x512" type="image/png" />
    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
    <link rel="apple-touch-icon" href="/apple-icon" sizes="180x180" />
    ```
@@ -94,6 +96,9 @@ npx playwright test tests/icons.spec.ts
 ## 🔍 Перевірка через curl
 
 ```bash
+# Перевірка favicon.ico (для Google)
+curl -I http://localhost:3000/favicon.ico
+
 # Перевірка icon (PNG 512x512)
 curl -I http://localhost:3000/icon
 
@@ -104,11 +109,12 @@ curl -I http://localhost:3000/icon.svg
 curl -I http://localhost:3000/apple-icon
 ```
 
-Всі запити мають повернути статус `200 OK` та `Content-Type: image/png` (для `/icon` та `/apple-icon`) або `image/svg+xml` (для `/icon.svg`)
+Всі запити мають повернути статус `200 OK` та `Content-Type: image/png` (для `/favicon.ico`, `/icon` та `/apple-icon`) або `image/svg+xml` (для `/icon.svg`)
 
 ## 📋 Чеклист перевірки
 
 - [ ] Іконка відображається у вкладці браузера
+- [ ] `/favicon.ico` доступний (статус 200) - **важливо для Google**
 - [ ] `/icon` доступний (статус 200, PNG 512x512)
 - [ ] `/icon.svg` доступний (статус 200)
 - [ ] `/apple-icon` доступний (статус 200, PNG 180x180)

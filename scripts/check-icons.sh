@@ -32,9 +32,10 @@ check_icon() {
 }
 
 # Перевірка іконок
+check_icon "${BASE_URL}/favicon.ico" "favicon.ico (для Google)"
 check_icon "${BASE_URL}/icon.svg" "icon.svg"
-check_icon "${BASE_URL}/icon" "icon (PNG)"
-check_icon "${BASE_URL}/apple-icon" "apple-icon (PNG)"
+check_icon "${BASE_URL}/icon" "icon (PNG 512x512)"
+check_icon "${BASE_URL}/apple-icon" "apple-icon (PNG 180x180)"
 
 echo ""
 echo "📋 Перевірка HTML метаданих..."
