@@ -9,6 +9,8 @@
     "lint": "next lint",
     "lint:spell": "cspell \"**/*.{ts,tsx,js,json,md}\"",
     "test": "playwright test",
+    "test:icons": "playwright test tests/icons.spec.ts",
+    "check:icons": "./scripts/check-icons.sh",
     "format": "prettier --write ."
   },
   "dependencies": {

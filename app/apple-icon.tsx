@@ -1,17 +1,17 @@
 import { ImageResponse } from 'next/og';
 
 export const size = {
-  width: 512,
-  height: 512,
+  width: 180,
+  height: 180,
 };
 
 export const contentType = 'image/png';
 
-export default function Icon() {
+export default function AppleIcon() {
   return new ImageResponse(
     <div
       style={{
-        fontSize: 256,
+        fontSize: 108,
         background: 'linear-gradient(135deg, #9333ea 0%, #4f46e5 100%)',
         width: '100%',
         height: '100%',
