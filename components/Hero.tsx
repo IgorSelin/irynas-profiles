@@ -25,6 +25,9 @@ export default function Hero() {
               Іриною Красіцькою
             </span>
           </h1>
+          <h2 className="mb-4 text-2xl font-semibold text-white/95 md:text-3xl">
+            Професійний екскурсовод у Львові
+          </h2>
           <p className="mx-auto mb-10 max-w-3xl text-xl font-medium leading-relaxed text-white/90 md:text-2xl">
             Я показую Львів через деталі, які більшість не помічає, і пояснюю їхній сенс простою мовою.{' '}
             <br className="hidden md:block" />

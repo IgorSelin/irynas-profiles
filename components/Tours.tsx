@@ -271,7 +271,9 @@ export default function Tours() {
           </div>
         </div>
 
-        <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto max-w-7xl">
+          <h3 className="mb-6 text-2xl font-semibold text-gray-800">Популярні екскурсії по Львову</h3>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {filteredTours.map((tour, index) => (
               <TourCard
@@ -283,6 +285,7 @@ export default function Tours() {
               />
             ))}
           </AnimatePresence>
+          </div>
         </div>
 
         {filteredTours.length === 0 && (

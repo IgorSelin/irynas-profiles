@@ -8,7 +8,16 @@ import Footer from '@/components/Footer';
 const About = dynamic(() => import('@/components/About'), {
   loading: () => <div className="h-96 w-full animate-pulse bg-gray-50" />,
 });
+const WhyChoose = dynamic(() => import('@/components/WhyChoose'), {
+  loading: () => <div className="h-96 w-full animate-pulse bg-gray-50" />,
+});
 const Tours = dynamic(() => import('@/components/Tours'), {
+  loading: () => <div className="h-96 w-full animate-pulse bg-gray-50" />,
+});
+const HowItWorks = dynamic(() => import('@/components/HowItWorks'), {
+  loading: () => <div className="h-96 w-full animate-pulse bg-gray-50" />,
+});
+const LvivHistory = dynamic(() => import('@/components/LvivHistory'), {
   loading: () => <div className="h-96 w-full animate-pulse bg-gray-50" />,
 });
 const FAQ = dynamic(() => import('@/components/FAQ'), {
@@ -21,7 +30,10 @@ export default function Home() {
       <Navbar />
       <Hero />
       <About />
+      <WhyChoose />
       <Tours />
+      <HowItWorks />
+      <LvivHistory />
       <Reviews limit={10} />
       <FAQ />
       <Contact />
