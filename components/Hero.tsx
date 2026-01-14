@@ -34,7 +34,6 @@ export default function Hero() {
             muted
             playsInline
             preload="none"
-            poster={`${baseUrl}/images/guide-photo.webp`}
             className="h-full w-full object-cover"
           >
             <source src="/videos/lviv_opernyy.webm" type="video/webm" />
