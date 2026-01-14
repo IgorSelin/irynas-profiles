@@ -28,14 +28,7 @@ export default function Hero() {
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 pt-16 md:pt-20">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 z-10 bg-black/40" />
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="none"
-            className="h-full w-full object-cover"
-          >
+          <video autoPlay loop muted playsInline preload="none" className="h-full w-full object-cover">
             <source src="/videos/lviv_opernyy.webm" type="video/webm" />
           </video>
         </div>
