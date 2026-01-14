@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import { blogPosts as allBlogPosts } from '@/lib/blogPosts';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com';
 
@@ -22,16 +23,13 @@ export const metadata: Metadata = {
   },
 };
 
-const blogPosts = [
-  {
-    slug: 'zasnuvannya',
-    title: 'Заснування Львова',
-    description:
-      'Історичні факти та дослідження про заснування Львова. Від перших поселень до утворення міста князем Данилом Романовичем та його сином Левом.',
-    date: '2026-01-11',
-    readTime: '5 хв',
-  },
-];
+const blogPosts = Object.entries(allBlogPosts).map(([slug, post]) => ({
+  slug,
+  title: post.title,
+  description: post.description,
+  date: post.date,
+  readTime: post.readTime,
+}));
 
 export default function BlogPage() {
   return (
