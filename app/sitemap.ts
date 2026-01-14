@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { tours } from '@/lib/tours';
+import { blogPosts } from '@/lib/blogPosts';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com').replace(/\/+$/, '');
@@ -13,6 +14,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const tourPages = tours.map((tour) => ({
     url: `${baseUrl}/tours/${tour.slug}`,
     lastModified: lastToursUpdate,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  const blogPages = Object.entries(blogPosts).map(([slug, post]) => ({
+    url: `${baseUrl}/blog/${slug}`,
+    lastModified: new Date(post.date),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));
@@ -55,42 +63,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/blog/istoriya-lvova`,
-      lastModified: lastMainPageUpdate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/legendi-lvova`,
-      lastModified: lastMainPageUpdate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/kava-lviv`,
-      lastModified: lastMainPageUpdate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/arhitektura-lvova`,
-      lastModified: lastMainPageUpdate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/chto-posmotret-lviv`,
-      lastModified: lastMainPageUpdate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/ekskursiya-lviv-samostijno`,
-      lastModified: lastMainPageUpdate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
       url: `${baseUrl}/lviv-center`,
       lastModified: lastToursUpdate,
       changeFrequency: 'monthly',
@@ -102,6 +74,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    ...blogPages,
     ...tourPages,
   ];
 }
