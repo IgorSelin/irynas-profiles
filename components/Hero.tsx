@@ -37,7 +37,7 @@ export default function Hero() {
             poster={`${baseUrl}/images/guide-photo.webp`}
             className="h-full w-full object-cover"
           >
-            <source src="/videos/hero-video.mp4" type="video/mp4" />
+            <source src="/videos/lviv_opernyy.webm" type="video/webm" />
           </video>
         </div>
 

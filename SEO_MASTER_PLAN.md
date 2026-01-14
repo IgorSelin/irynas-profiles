@@ -357,7 +357,7 @@ rules: [
 
 #### 2. **Оптимізація відео** ✅
 
-- [ ] Конвертувати hero-video.mp4 в WebM (потребує ручної конвертації)
+- ✅ Конвертувати hero-video.mp4 в WebM (потребує ручної конвертації)
 - ✅ Додати poster image для відео
 - ✅ Lazy loading для відео (preload="none")
 - ✅ Preload="none" для відео
