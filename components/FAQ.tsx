@@ -12,7 +12,7 @@ const faqData: FAQItem[] = [
   {
     question: 'Як замовити екскурсію з Іриною Красіцькою?',
     answer:
-      'Ви можете замовити екскурсію, зв\'язавшись зі мною за телефоном +380975383348, через Viber, або написавши на email krasiraira@gmail.com. Також можна заповнити форму на сайті або написати в соціальних мережах (Instagram, Facebook, TikTok).',
+      "Ви можете замовити екскурсію, зв'язавшись зі мною за телефоном +380975383348, через Viber, або написавши на email krasiraira@gmail.com. Також можна заповнити форму на сайті або написати в соціальних мережах (Instagram, Facebook, TikTok).",
   },
   {
     question: 'Скільки коштує екскурсія по Львову?',
@@ -77,7 +77,7 @@ const faqData: FAQItem[] = [
   {
     question: 'Що робити, якщо запізнюся на екскурсію?',
     answer:
-      'Якщо ви розумієте, що запізнюєтеся, будь ласка, зв\'яжіться зі мною заздалегідь. Я завжди намагаюся бути гнучкою та можу трохи зачекати або адаптувати маршрут. У разі серйозної затримки ми можемо перенести екскурсію на інший час.',
+      "Якщо ви розумієте, що запізнюєтеся, будь ласка, зв'яжіться зі мною заздалегідь. Я завжди намагаюся бути гнучкою та можу трохи зачекати або адаптувати маршрут. У разі серйозної затримки ми можемо перенести екскурсію на інший час.",
   },
   {
     question: 'Чи можна провести екскурсію для великої групи?',
@@ -124,13 +124,9 @@ export default function FAQ() {
             transition={{ duration: 0.6 }}
             className="mb-12 text-center"
           >
-            <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">
-              Часті питання про екскурсії
-            </h2>
+            <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">Часті питання про екскурсії</h2>
             <div className="mx-auto h-1 w-24 bg-purple-600"></div>
-            <p className="mt-4 text-lg text-gray-600">
-              Відповіді на найпоширеніші питання про екскурсії по Львову
-            </p>
+            <p className="mt-4 text-lg text-gray-600">Відповіді на найпоширеніші питання про екскурсії по Львову</p>
           </motion.div>
 
           <div className="mx-auto max-w-4xl space-y-4">
@@ -169,9 +165,7 @@ export default function FAQ() {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <div className="border-t border-gray-200 p-6 text-gray-700 leading-relaxed">
-                        {item.answer}
-                      </div>
+                      <div className="border-t border-gray-200 p-6 leading-relaxed text-gray-700">{item.answer}</div>
                     </motion.div>
                   )}
                 </AnimatePresence>

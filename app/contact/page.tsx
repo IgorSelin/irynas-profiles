@@ -9,21 +9,20 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com'
 export const metadata: Metadata = {
   title: 'Контакти | Ірина Красіцька | Екскурсовод у Львові',
   description:
-    'Зв\'яжіться з Іриною Красіцькою для замовлення екскурсії по Львову. Телефон: +380975383348, Email: krasiraira@gmail.com. Екскурсії щодня!',
-  keywords:
-    'контакти Ірина Красіцька, зателефонувати екскурсовод Львів, замовити екскурсію Львів, телефон гід Львів',
+    "Зв'яжіться з Іриною Красіцькою для замовлення екскурсії по Львову. Телефон: +380975383348, Email: krasiraira@gmail.com. Екскурсії щодня!",
+  keywords: 'контакти Ірина Красіцька, зателефонувати екскурсовод Львів, замовити екскурсію Львів, телефон гід Львів',
   alternates: {
     canonical: `${baseUrl}/contact`,
   },
   openGraph: {
     title: 'Контакти | Ірина Красіцька | Екскурсовод у Львові',
     description:
-      'Зв\'яжіться з Іриною Красіцькою для замовлення екскурсії по Львову. Телефон: +380975383348, Email: krasiraira@gmail.com.',
+      "Зв'яжіться з Іриною Красіцькою для замовлення екскурсії по Львову. Телефон: +380975383348, Email: krasiraira@gmail.com.",
     url: `${baseUrl}/contact`,
     type: 'website',
     images: [
       {
-        url: `${baseUrl}/images/guide-photo.jpg`,
+        url: `${baseUrl}/images/guide-photo.webp`,
         width: 1200,
         height: 630,
         alt: 'Контакти Ірини Красіцької',
@@ -39,7 +38,7 @@ export default function ContactPage() {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: 'Ірина Красіцька - Екскурсовод у Львові',
-    image: `${baseUrl}/images/guide-photo.jpg`,
+    image: `${baseUrl}/images/guide-photo.webp`,
     telephone: '+380975383348',
     email: 'krasiraira@gmail.com',
     address: {

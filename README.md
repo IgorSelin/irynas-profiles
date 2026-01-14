@@ -96,6 +96,7 @@ npm start
 ## SEO Оптимізація
 
 Сайт вже налаштований з базовою SEO оптимізацією:
+
 - ✅ Мета-теги на всіх сторінках
 - ✅ Структуровані дані Schema.org
 - ✅ Sitemap.xml та robots.txt
@@ -103,6 +104,7 @@ npm start
 - ✅ Canonical URLs
 
 **Важливо:** Після деплою обов'язково:
+
 1. Додайте сайт до [Google Search Console](https://search.google.com/search-console)
 2. Відправте sitemap: `https://krasitskatours.com/sitemap.xml`
 3. Перевірте індексацію сторінок

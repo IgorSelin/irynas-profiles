@@ -278,7 +278,5 @@
     ".next",
     ".cursor"
   ],
-  "import": [
-    "@cspell/dict-uk-ua/cspell-ext.json"
-  ]
+  "import": ["@cspell/dict-uk-ua/cspell-ext.json"]
 }

@@ -67,10 +67,7 @@ export default function ReviewForm({ onSuccess, tourId }: { onSuccess?: () => vo
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="rounded-lg bg-white p-8 shadow-lg"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="rounded-lg bg-white p-8 shadow-lg">
       <h3 className="mb-6 text-2xl font-bold text-gray-900">Залишити відгук</h3>
 
       <div className="space-y-4">

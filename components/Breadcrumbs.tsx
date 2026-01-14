@@ -23,7 +23,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
     let currentPath = '';
     paths.forEach((path, index) => {
       currentPath += `/${path}`;
-      
+
       // Map paths to readable labels
       let label = path;
       if (path === 'tours') {
@@ -75,12 +75,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
           {breadcrumbs.map((item, index) => (
             <li key={item.href} className="flex items-center">
               {index > 0 && (
-                <svg
-                  className="mx-2 h-4 w-4 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
+                <svg className="mx-2 h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               )}
@@ -89,7 +84,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
                   {item.label}
                 </span>
               ) : (
-                <Link href={item.href} className="hover:text-purple-600 transition-colors">
+                <Link href={item.href} className="transition-colors hover:text-purple-600">
                   {item.label}
                 </Link>
               )}

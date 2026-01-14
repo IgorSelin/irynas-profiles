@@ -10,9 +10,8 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com'
 export const metadata: Metadata = {
   title: 'Старе місто Львова | Середньовічний Львів | Екскурсії | Ірина Красіцька',
   description:
-    'Екскурсії по старому місту Львова. Середньовічні квартали, кам\'яниці, легенди та історії. Замовити екскурсію по старому Львову!',
-  keywords:
-    'старе місто Львова, середньовічний Львів, старий Львів, екскурсії старе місто, кам\'яниці Львова',
+    "Екскурсії по старому місту Львова. Середньовічні квартали, кам'яниці, легенди та історії. Замовити екскурсію по старому Львову!",
+  keywords: "старе місто Львова, середньовічний Львів, старий Львів, екскурсії старе місто, кам'яниці Львова",
   alternates: {
     canonical: `${baseUrl}/old-town`,
   },
@@ -29,7 +28,7 @@ const oldTownTours = tours.filter(
     tour.title.includes('Середньовічний') ||
     tour.title.includes('Легенди') ||
     tour.title.includes('Підземелля') ||
-    tour.tags?.includes('Історія')
+    tour.tags?.includes('Історія'),
 );
 
 export default function OldTownPage() {
@@ -116,10 +115,10 @@ export default function OldTownPage() {
                         />
                       </div>
                       <div className="p-6">
-                        <h3 className="mb-2 text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">
+                        <h3 className="mb-2 text-xl font-bold text-gray-900 transition-colors group-hover:text-purple-600">
                           {tour.title}
                         </h3>
-                        <p className="mb-4 text-gray-600 line-clamp-3">{tour.description.substring(0, 150)}...</p>
+                        <p className="mb-4 line-clamp-3 text-gray-600">{tour.description.substring(0, 150)}...</p>
                         <div className="flex items-center justify-between">
                           <span className="font-semibold text-purple-600">{tour.price}</span>
                           <span className="text-gray-500">{tour.duration}</span>

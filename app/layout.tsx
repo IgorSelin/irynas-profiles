@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: 'Екскурсії з Іриною Красіцькою',
     images: [
       {
-        url: '/images/guide-photo.jpg',
+        url: '/images/guide-photo.webp',
         width: 1200,
         height: 630,
         alt: 'Ірина Красіцька - екскурсовод у Львові',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Екскурсовод Львів | Ірина Красіцька | Професійні екскурсії',
     description: 'Професійний екскурсовод у Львові Ірина Красіцька. Організація цікавих та незабутніх екскурсій.',
-    images: ['/images/guide-photo.jpg'],
+    images: ['/images/guide-photo.webp'],
   },
   robots: {
     index: true,
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     canonical: process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com',
     languages: {
       'uk-UA': process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com',
-      'uk': process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com',
+      uk: process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com',
     },
     types: {
       'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com'}/feed.xml`,
@@ -69,9 +69,7 @@ export const metadata: Metadata = {
       { url: '/icon', sizes: '512x512', type: 'image/png' },
       { url: '/icon.svg', type: 'image/svg+xml' },
     ],
-    apple: [
-      { url: '/apple-icon', sizes: '180x180', type: 'image/png' },
-    ],
+    apple: [{ url: '/apple-icon', sizes: '180x180', type: 'image/png' }],
   },
 };
 
@@ -99,7 +97,7 @@ export default function RootLayout({
               description:
                 'Професійний екскурсовод у Львові Ірина Красіцька. Авторські екскурсії по історичному центру Львова, легенди, архітектура, кавовий Львів.',
               url: process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com',
-              image: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com'}/images/guide-photo.jpg`,
+              image: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com'}/images/guide-photo.webp`,
               address: {
                 '@type': 'PostalAddress',
                 addressLocality: 'Львів',
@@ -148,7 +146,7 @@ export default function RootLayout({
               '@type': 'Person',
               name: 'Ірина Красіцька',
               jobTitle: 'Екскурсовод у Львові',
-              image: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com'}/images/guide-photo.jpg`,
+              image: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com'}/images/guide-photo.webp`,
               url: process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com',
               address: {
                 '@type': 'PostalAddress',

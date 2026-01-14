@@ -29,7 +29,7 @@ const centerTours = tours.filter(
     tour.tags?.includes('Центр міста') ||
     tour.title.includes('Середньовічний') ||
     tour.title.includes('Підземелля') ||
-    tour.title.includes('Австрійський')
+    tour.title.includes('Австрійський'),
 );
 
 export default function LvivCenterPage() {
@@ -37,7 +37,7 @@ export default function LvivCenterPage() {
     '@context': 'https://schema.org',
     '@type': 'TouristAttraction',
     name: 'Історичний центр Львова',
-    description: 'Екскурсії по історичному центру Львова - об\'єкт Всесвітньої спадщини ЮНЕСКО',
+    description: "Екскурсії по історичному центру Львова - об'єкт Всесвітньої спадщини ЮНЕСКО",
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Львів',
@@ -73,9 +73,7 @@ export default function LvivCenterPage() {
           <section className="bg-white py-20">
             <div className="container mx-auto px-4">
               <div className="mb-12 text-center">
-                <h1 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">
-                  Екскурсії по центру Львова
-                </h1>
+                <h1 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">Екскурсії по центру Львова</h1>
                 <div className="mx-auto mb-8 h-1 w-24 bg-purple-600"></div>
                 <p className="mx-auto max-w-3xl text-xl text-gray-600">
                   Історичний центр Львова внесений до списку Всесвітньої спадщини ЮНЕСКО. Це унікальний архітектурний
@@ -92,8 +90,8 @@ export default function LvivCenterPage() {
                     багатьох століть. Тут поєднуються різні архітектурні стилі: готика, ренесанс, бароко, класицизм.
                   </p>
                   <p>
-                    Площа Ринок - серце старого міста, оточена 44 кам'яницями, кожна з яких має свою унікальну
-                    історію. Оперний театр - перлина австрійського періоду, один з найкрасивіших театрів Європи.
+                    Площа Ринок - серце старого міста, оточена 44 кам'яницями, кожна з яких має свою унікальну історію.
+                    Оперний театр - перлина австрійського періоду, один з найкрасивіших театрів Європи.
                   </p>
                   <p>
                     Вірменський квартал зберігає атмосферу середньовіччя, а підземелля міста приховують багато таємниць
@@ -119,10 +117,10 @@ export default function LvivCenterPage() {
                         />
                       </div>
                       <div className="p-6">
-                        <h3 className="mb-2 text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">
+                        <h3 className="mb-2 text-xl font-bold text-gray-900 transition-colors group-hover:text-purple-600">
                           {tour.title}
                         </h3>
-                        <p className="mb-4 text-gray-600 line-clamp-3">{tour.description.substring(0, 150)}...</p>
+                        <p className="mb-4 line-clamp-3 text-gray-600">{tour.description.substring(0, 150)}...</p>
                         <div className="flex items-center justify-between">
                           <span className="font-semibold text-purple-600">{tour.price}</span>
                           <span className="text-gray-500">{tour.duration}</span>

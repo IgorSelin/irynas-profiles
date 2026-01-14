@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: `${baseUrl}/images/guide-photo.jpg`,
+        url: `${baseUrl}/images/guide-photo.webp`,
         width: 1200,
         height: 630,
         alt: 'Галерея екскурсій з Іриною Красіцькою',

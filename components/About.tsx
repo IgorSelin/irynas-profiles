@@ -30,7 +30,7 @@ export default function About() {
           >
             <div className="relative h-[30rem] w-full overflow-hidden rounded-lg shadow-xl">
               <ImageWithSkeleton
-                src="/images/guide-photo.jpg"
+                src="/images/guide-photo.webp"
                 alt="Ірина Красіцька - професійний екскурсовод у Львові"
                 fill
                 className="object-cover"

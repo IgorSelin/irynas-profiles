@@ -105,7 +105,7 @@ const blogPosts: Record<
   'kava-lviv': {
     title: 'Львів - кавова столиця України',
     description:
-      'Чому Львів називають кавовою столицею? Історія кавової культури в місті, найкращі кав\'ярні та традиції кавопиття.',
+      "Чому Львів називають кавовою столицею? Історія кавової культури в місті, найкращі кав'ярні та традиції кавопиття.",
     date: '2026-01-11',
     readTime: '3 хв',
     content: `
@@ -188,9 +188,9 @@ const blogPosts: Record<
     `,
   },
   'chto-posmotret-lviv': {
-    title: 'Що обов\'язково подивитися в Львові',
+    title: "Що обов'язково подивитися в Львові",
     description:
-      'Топ-20 місць, які обов\'язково треба відвідати в Львові. Від історичного центру до прихованих куточків міста.',
+      "Топ-20 місць, які обов'язково треба відвідати в Львові. Від історичного центру до прихованих куточків міста.",
     date: '2026-01-11',
     readTime: '4 хв',
     content: `
@@ -340,10 +340,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             <div className="container mx-auto px-4">
               <div className="mx-auto max-w-4xl">
                 <header className="mb-8">
-                  <Link
-                    href="/blog"
-                    className="mb-4 inline-flex items-center text-purple-600 hover:text-purple-700"
-                  >
+                  <Link href="/blog" className="mb-4 inline-flex items-center text-purple-600 hover:text-purple-700">
                     <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                     </svg>
@@ -351,15 +348,13 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                   </Link>
                   <h1 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">{post.title}</h1>
                   <div className="flex items-center text-gray-500">
-                    <time dateTime={post.date}>
-                      {post.date ? new Date(post.date).toLocaleDateString('uk-UA') : ''}
-                    </time>
+                    <time dateTime={post.date}>{post.date ? new Date(post.date).toLocaleDateString('uk-UA') : ''}</time>
                     <span className="mx-2">•</span>
                     <span>{post.readTime} читання</span>
                   </div>
                 </header>
                 <div
-                  className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-purple-600"
+                  className="prose prose-lg prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-purple-600 max-w-none"
                   dangerouslySetInnerHTML={{ __html: post.content }}
                 />
                 <div className="mt-12 rounded-lg bg-purple-50 p-6">

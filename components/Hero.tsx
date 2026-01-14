@@ -10,7 +10,7 @@ export default function Hero() {
     '@type': 'VideoObject',
     name: 'Екскурсії по Львову з Іриною Красіцькою',
     description: 'Професійний екскурсовод у Львові Ірина Красіцька. Авторські екскурсії по історичному центру Львова.',
-    thumbnailUrl: `${baseUrl}/images/guide-photo.jpg`,
+    thumbnailUrl: `${baseUrl}/images/guide-photo.webp`,
     uploadDate: '2026-01-11',
     contentUrl: `${baseUrl}/videos/hero-video.mp4`,
     embedUrl: `${baseUrl}`,
@@ -34,7 +34,7 @@ export default function Hero() {
             muted
             playsInline
             preload="none"
-            poster={`${baseUrl}/images/guide-photo.jpg`}
+            poster={`${baseUrl}/images/guide-photo.webp`}
             className="h-full w-full object-cover"
           >
             <source src="/videos/hero-video.mp4" type="video/mp4" />

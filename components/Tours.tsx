@@ -274,17 +274,17 @@ export default function Tours() {
         <div className="mx-auto max-w-7xl">
           <h3 className="mb-6 text-2xl font-semibold text-gray-800">Популярні екскурсії по Львову</h3>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <AnimatePresence mode="popLayout">
-            {filteredTours.map((tour, index) => (
-              <TourCard
-                key={tour.id}
-                tour={tour}
-                index={index}
-                setSelectedTag={setSelectedTag}
-                selectedTag={selectedTag}
-              />
-            ))}
-          </AnimatePresence>
+            <AnimatePresence mode="popLayout">
+              {filteredTours.map((tour, index) => (
+                <TourCard
+                  key={tour.id}
+                  tour={tour}
+                  index={index}
+                  setSelectedTag={setSelectedTag}
+                  selectedTag={selectedTag}
+                />
+              ))}
+            </AnimatePresence>
           </div>
         </div>
 
