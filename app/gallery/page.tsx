@@ -7,18 +7,20 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com'
 
 export const metadata: Metadata = {
   title: 'Галерея | Екскурсії Львовом з Іриною Красіцькою',
-  description: 'Фотографії з наших екскурсій та подорожей. Подивіться на красу Львова та околиць.',
+  description:
+    'Галерея фотографій з екскурсій по Львову з Іриною Красіцькою. Краса історичного центру, архітектура, легенди та атмосфера міста. Переглянути всі фото.',
   alternates: {
     canonical: `${baseUrl}/gallery`,
   },
   openGraph: {
     title: 'Галерея | Екскурсії Львовом з Іриною Красіцькою',
-    description: 'Фотографії з наших екскурсій та подорожей. Подивіться на красу Львова та околиць.',
+    description:
+      'Галерея фотографій з екскурсій по Львову з Іриною Красіцькою. Краса історичного центру, архітектура, легенди та атмосфера міста. Переглянути всі фото.',
     url: `${baseUrl}/gallery`,
     type: 'website',
     images: [
       {
-        url: `${baseUrl}/images/guide-photo.jpg`,
+        url: `${baseUrl}/images/guide-photo.webp`,
         width: 1200,
         height: 630,
         alt: 'Галерея екскурсій з Іриною Красіцькою',

@@ -31,7 +31,7 @@ function TourCard({
       transition={{ duration: 0.4 }}
       className="flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-lg transition-shadow hover:shadow-xl"
     >
-      <Link href={`/tours/${tour.id}`} target="_blank" className="block flex-shrink-0">
+      <Link href={`/tours/${tour.slug}`} target="_blank" className="block flex-shrink-0">
         <div className="relative h-64">
           <ImageWithSkeleton
             src={tour.image}
@@ -61,7 +61,7 @@ function TourCard({
         </div>
       </Link>
       <div className="flex flex-grow flex-col p-6">
-        <Link href={`/tours/${tour.id}`} target="_blank" className="block">
+        <Link href={`/tours/${tour.slug}`} target="_blank" className="block">
           <h3 className="mb-3 text-2xl font-bold text-gray-900 transition-colors hover:text-purple-600">
             {tour.title}
           </h3>
@@ -143,7 +143,7 @@ function TourCard({
       </div>
       <div className="mt-auto flex gap-3 px-6 pb-6">
         <Link
-          href={`/tours/${tour.id}`}
+          href={`/tours/${tour.slug}`}
           target="_blank"
           className="flex flex-1 items-center justify-center rounded-lg bg-purple-600 py-3 font-semibold text-white transition-colors hover:bg-purple-700"
         >
@@ -271,18 +271,21 @@ export default function Tours() {
           </div>
         </div>
 
-        <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <AnimatePresence mode="popLayout">
-            {filteredTours.map((tour, index) => (
-              <TourCard
-                key={tour.id}
-                tour={tour}
-                index={index}
-                setSelectedTag={setSelectedTag}
-                selectedTag={selectedTag}
-              />
-            ))}
-          </AnimatePresence>
+        <div className="mx-auto max-w-7xl">
+          <h3 className="mb-6 text-2xl font-semibold text-gray-800">Популярні екскурсії по Львову</h3>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <AnimatePresence mode="popLayout">
+              {filteredTours.map((tour, index) => (
+                <TourCard
+                  key={tour.id}
+                  tour={tour}
+                  index={index}
+                  setSelectedTag={setSelectedTag}
+                  selectedTag={selectedTag}
+                />
+              ))}
+            </AnimatePresence>
+          </div>
         </div>
 
         {filteredTours.length === 0 && (

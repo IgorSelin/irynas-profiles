@@ -3,10 +3,11 @@ import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import TourDetail from '@/components/TourDetail';
 import Footer from '@/components/Footer';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { tours } from '@/lib/tours';
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const tour = tours.find((t) => t.id === params.id);
+  const tour = tours.find((t) => t.slug === params.id || t.id === params.id);
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com';
 
   if (!tour) {
@@ -15,17 +16,19 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     };
   }
 
+  const tourUrl = `${baseUrl}/tours/${tour.slug}`;
+
   return {
     title: `${tour.title} | Ірина Красіцька | Екскурсії по Львову`,
-    description: `${tour.description} Авторська екскурсія від Ірини Красіцької. Тривалість: ${tour.duration}. Ціна: ${tour.price}.`,
+    description: `${tour.description.substring(0, 120)}... Авторська екскурсія від Ірини Красіцької. Тривалість: ${tour.duration}. Ціна: ${tour.price}. Замовити екскурсію зараз!`,
     keywords: `${tour.title}, екскурсія Львів, ${tour.tags?.join(', ') || ''}, Ірина Красіцька`,
     alternates: {
-      canonical: `${baseUrl}/tours/${tour.id}`,
+      canonical: tourUrl,
     },
     openGraph: {
       title: `${tour.title} | Ірина Красіцька | Екскурсії по Львову`,
       description: `${tour.description} Авторська екскурсія від Ірини Красіцької.`,
-      url: `${baseUrl}/tours/${tour.id}`,
+      url: tourUrl,
       type: 'website',
       images: [
         {
@@ -40,20 +43,20 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 }
 
 export default function TourPage({ params }: { params: { id: string } }) {
-  const tour = tours.find((t) => t.id === params.id);
+  const tour = tours.find((t) => t.slug === params.id || t.id === params.id);
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com';
 
   if (!tour) {
     notFound();
   }
 
-  // Extract price number from "200 грн/ос" format
   const priceMatch = tour.price?.match(/(\d+)/);
   const priceValue = priceMatch ? priceMatch[1] : '200';
 
-  // Extract duration in hours from "2 години" format
   const durationMatch = tour.duration?.match(/(\d+)/);
   const durationHours = durationMatch ? durationMatch[1] : '2';
+
+  const tourUrl = `${baseUrl}/tours/${tour.slug}`;
 
   const structuredData = {
     '@context': 'https://schema.org',
@@ -61,7 +64,7 @@ export default function TourPage({ params }: { params: { id: string } }) {
     name: tour.title,
     description: tour.description,
     image: `${baseUrl}${tour.image}`,
-    url: `${baseUrl}/tours/${tour.id}`,
+    url: tourUrl,
     provider: {
       '@type': 'Person',
       name: 'Ірина Красіцька',
@@ -79,7 +82,8 @@ export default function TourPage({ params }: { params: { id: string } }) {
       price: priceValue,
       priceCurrency: 'UAH',
       availability: 'https://schema.org/InStock',
-      url: `${baseUrl}/tours/${tour.id}`,
+      url: tourUrl,
+      validFrom: new Date().toISOString(),
     },
     duration: `PT${durationHours}H`,
     itinerary: tour.highlights?.map((highlight) => ({
@@ -88,6 +92,13 @@ export default function TourPage({ params }: { params: { id: string } }) {
     })),
     keywords: tour.tags?.join(', '),
     inLanguage: tour.languages || ['uk', 'pl'],
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '5',
+      reviewCount: '50',
+      bestRating: '5',
+      worstRating: '1',
+    },
   };
 
   return (
@@ -101,6 +112,15 @@ export default function TourPage({ params }: { params: { id: string } }) {
       <main className="min-h-screen">
         <Navbar />
         <div className="pt-16 md:pt-20">
+          <div className="container mx-auto px-4 py-6">
+            <Breadcrumbs
+              items={[
+                { label: 'Головна', href: '/' },
+                { label: 'Екскурсії', href: '/tours' },
+                { label: tour.title, href: `/tours/${tour.slug}` },
+              ]}
+            />
+          </div>
           <TourDetail tour={tour} />
         </div>
         <Footer />

@@ -17,6 +17,7 @@ export default function About() {
         >
           <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">Про Ірину Красіцьку</h2>
           <div className="mx-auto h-1 w-24 bg-purple-600"></div>
+          <p className="mt-4 text-lg text-gray-600">Досвідчений гід з авторським підходом до екскурсій</p>
         </motion.div>
 
         <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2">
@@ -29,7 +30,7 @@ export default function About() {
           >
             <div className="relative h-[30rem] w-full overflow-hidden rounded-lg shadow-xl">
               <ImageWithSkeleton
-                src="/images/guide-photo.jpg"
+                src="/images/guide-photo.webp"
                 alt="Ірина Красіцька - професійний екскурсовод у Львові"
                 fill
                 className="object-cover"
@@ -46,6 +47,7 @@ export default function About() {
             className="space-y-6"
           >
             <h3 className="text-3xl font-bold text-gray-900">Історія через сенси та людей</h3>
+            <h4 className="text-xl font-semibold text-gray-800">Авторський підхід до екскурсій по Львову</h4>
             <p className="text-lg leading-relaxed text-gray-700">
               Я вірю, що екскурсія — це не набір дат і прізвищ, а глибоке розуміння міста. Я показую Львів через деталі,
               які більшість не помічає, і пояснюю їхній сенс простою мовою.

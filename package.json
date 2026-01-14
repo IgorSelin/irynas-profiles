@@ -7,11 +7,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "lint:spell": "cspell \"**/*.{ts,tsx,js,json,md}\"",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "test": "playwright test",
     "test:icons": "playwright test tests/icons.spec.ts",
     "check:icons": "./scripts/check-icons.sh",
-    "format": "prettier --write ."
+    "ci": "npm run type-check && npm run lint && npm run format:check && npm run lint:spell"
   },
   "dependencies": {
     "firebase": "^10.12.2",

@@ -164,6 +164,91 @@ export default function TourDetail({ tour }: TourDetailProps) {
               </div>
             )}
 
+            <div className="mb-8 rounded-lg bg-purple-50 p-6">
+              <h3 className="mb-4 text-2xl font-bold text-gray-900">Що взяти з собою:</h3>
+              <ul className="space-y-2 text-gray-700">
+                <li className="flex items-center">
+                  <svg className="mr-2 h-5 w-5 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  Зручне взуття для пішої прогулянки
+                </li>
+                <li className="flex items-center">
+                  <svg className="mr-2 h-5 w-5 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  Вода (особливо влітку)
+                </li>
+                <li className="flex items-center">
+                  <svg className="mr-2 h-5 w-5 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  Фотоапарат або телефон для фотографій
+                </li>
+                <li className="flex items-center">
+                  <svg className="mr-2 h-5 w-5 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  Головний убір та сонцезахисні окуляри (влітку)
+                </li>
+              </ul>
+            </div>
+
+            <div className="mb-8 rounded-lg bg-blue-50 p-6">
+              <h3 className="mb-4 text-2xl font-bold text-gray-900">Як дістатися:</h3>
+              <p className="mb-3 text-gray-700">
+                Місце зустрічі обговорюється індивідуально при бронюванні. Зазвичай це центральні точки міста:
+              </p>
+              <ul className="space-y-2 text-gray-700">
+                <li className="flex items-center">
+                  <svg className="mr-2 h-5 w-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fillRule="evenodd"
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  Площа Ринок (центр історичного міста)
+                </li>
+                <li className="flex items-center">
+                  <svg className="mr-2 h-5 w-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fillRule="evenodd"
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  Оперний театр (проспект Свободи)
+                </li>
+                <li className="flex items-center">
+                  <svg className="mr-2 h-5 w-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fillRule="evenodd"
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  Ваш готель (для автобусних екскурсій)
+                </li>
+              </ul>
+            </div>
+
             <a
               href="tel:+380975383348"
               className="inline-flex w-full items-center justify-center rounded-lg bg-purple-600 px-8 py-4 text-lg font-semibold text-white transition-colors hover:bg-purple-700 md:w-auto"

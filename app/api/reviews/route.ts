@@ -89,11 +89,10 @@ export async function POST(request: NextRequest) {
       text: text.trim(),
       rating: Number(rating),
       date: new Date().toISOString(),
-      approved: true, // Автоматична публікація без модерації
-      ...(tourId && { tourId: tourId.trim() }), // Додаємо tourId якщо він є
+      approved: true,
+      ...(tourId && { tourId: tourId.trim() }),
     };
 
-    // Зберігаємо відгук у Firestore
     const docRef = await addDoc(reviewsRef, newReview);
 
     return NextResponse.json({
