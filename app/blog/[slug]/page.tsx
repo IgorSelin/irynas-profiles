@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Link from 'next/link';
+import Image from 'next/image';
 import { blogPosts } from '@/lib/blogPosts';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com';
@@ -29,6 +30,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       url: `${baseUrl}/blog/${params.slug}`,
       type: 'article',
       publishedTime: post.date,
+      ...(post.image && {
+        images: [
+          {
+            url: `${baseUrl}${post.image}`,
+            alt: post.title,
+          },
+        ],
+      }),
     },
   };
 }
@@ -93,6 +102,22 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                     <span>{post.readTime} читання</span>
                   </div>
                 </header>
+                {post.image && (
+                  <div className="mb-8">
+                    <div className="relative h-96 w-full overflow-hidden rounded-lg">
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                      />
+                    </div>
+                    {post.imageCaption && (
+                      <p className="mt-2 text-center text-sm italic text-gray-600">{post.imageCaption}</p>
+                    )}
+                  </div>
+                )}
                 <div
                   className="prose prose-lg prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-purple-600 max-w-none"
                   dangerouslySetInnerHTML={{ __html: post.content }}
