@@ -119,7 +119,19 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                   </div>
                 )}
                 <div
-                  className="prose prose-lg prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-purple-600 max-w-none"
+                  className="prose prose-lg prose-slate max-w-none
+                    prose-headings:font-bold prose-headings:text-gray-900 prose-headings:tracking-tight
+                    prose-h1:text-4xl prose-h1:mb-6 prose-h1:mt-8 prose-h1:border-b prose-h1:border-gray-200 prose-h1:pb-4
+                    prose-h2:text-3xl prose-h2:mb-5 prose-h2:mt-10 prose-h2:text-purple-700 prose-h2:font-extrabold
+                    prose-h3:text-2xl prose-h3:mb-4 prose-h3:mt-8 prose-h3:text-gray-800 prose-h3:font-bold
+                    prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-lg
+                    prose-a:text-purple-600 prose-a:font-semibold prose-a:no-underline hover:prose-a:underline
+                    prose-strong:text-gray-900 prose-strong:font-bold
+                    prose-blockquote:border-l-4 prose-blockquote:border-purple-500 prose-blockquote:bg-purple-50 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:my-8 prose-blockquote:rounded-r-lg prose-blockquote:italic prose-blockquote:text-gray-700
+                    prose-ul:my-6 prose-ul:space-y-2
+                    prose-ol:my-6 prose-ol:space-y-2
+                    prose-li:text-gray-700 prose-li:leading-relaxed
+                    prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8"
                   dangerouslySetInnerHTML={{ __html: post.content }}
                 />
                 <div className="mt-12 rounded-lg bg-purple-50 p-6">
