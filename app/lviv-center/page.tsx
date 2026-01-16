@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Link from 'next/link';
+import Image from 'next/image';
 import { tours } from '@/lib/tours';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com';
@@ -110,10 +111,12 @@ export default function LvivCenterPage() {
                       className="group rounded-lg bg-white shadow-md transition-shadow hover:shadow-xl"
                     >
                       <div className="relative h-48 overflow-hidden rounded-t-lg">
-                        <img
+                        <Image
                           src={tour.image}
                           alt={tour.title}
-                          className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                          fill
+                          className="object-cover transition-transform group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                       </div>
                       <div className="p-6">

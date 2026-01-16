@@ -72,7 +72,7 @@ export async function GET() {
       }
       imageGroups[blogUrl].push({
         loc: `${baseUrl}${post.image}`,
-        caption: post.description ||post.imageCaption,
+        caption: post.description || post.imageCaption,
         title: post.title,
         geoLocation: 'Львів, Україна',
       });
