@@ -18,18 +18,21 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 
   const tourUrl = `${baseUrl}/tours/${tour.slug}`;
 
+  const tourDescription = `${tour.description.substring(0, 120)}... Авторська екскурсія від Ірини Красіцької. Тривалість: ${tour.duration}. Ціна: ${tour.price}. Замовити екскурсію зараз!`;
+
   return {
     title: `${tour.title} | Ірина Красіцька | Екскурсії по Львову`,
-    description: `${tour.description.substring(0, 120)}... Авторська екскурсія від Ірини Красіцької. Тривалість: ${tour.duration}. Ціна: ${tour.price}. Замовити екскурсію зараз!`,
+    description: tourDescription,
     keywords: `${tour.title}, екскурсія Львів, ${tour.tags?.join(', ') || ''}, Ірина Красіцька`,
     alternates: {
       canonical: tourUrl,
     },
     openGraph: {
       title: `${tour.title} | Ірина Красіцька | Екскурсії по Львову`,
-      description: `${tour.description} Авторська екскурсія від Ірини Красіцької.`,
+      description: tourDescription,
       url: tourUrl,
       type: 'website',
+      siteName: 'Ірина Красіцька - Екскурсовод у Львові',
       images: [
         {
           url: `${baseUrl}${tour.image}`,
@@ -38,6 +41,12 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
           alt: tour.title,
         },
       ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${tour.title} | Ірина Красіцька`,
+      description: tourDescription,
+      images: [`${baseUrl}${tour.image}`],
     },
   };
 }
@@ -63,7 +72,12 @@ export default function TourPage({ params }: { params: { id: string } }) {
     '@type': 'TouristTrip',
     name: tour.title,
     description: tour.description,
-    image: `${baseUrl}${tour.image}`,
+    image: {
+      '@type': 'ImageObject',
+      url: `${baseUrl}${tour.image}`,
+      width: 1200,
+      height: 630,
+    },
     url: tourUrl,
     provider: {
       '@type': 'Person',
@@ -98,6 +112,10 @@ export default function TourPage({ params }: { params: { id: string } }) {
       reviewCount: '50',
       bestRating: '5',
       worstRating: '1',
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': tourUrl,
     },
   };
 

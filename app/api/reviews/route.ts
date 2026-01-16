@@ -39,10 +39,6 @@ export async function GET(request: NextRequest) {
       throw error;
     }
 
-    if (reviews.length > 0) {
-      console.log('Sample review:', JSON.stringify(reviews[0], null, 2));
-    }
-
     return NextResponse.json({ reviews });
   } catch (error: any) {
     console.error('Error fetching reviews from Firestore:', error);

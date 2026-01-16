@@ -70,7 +70,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
           __html: JSON.stringify(structuredData),
         }}
       />
-      <nav aria-label="Breadcrumb" className="mb-4">
+      <nav aria-label="Breadcrumb" className="my-4">
         <ol className="flex flex-wrap items-center gap-2 text-sm text-gray-600">
           {breadcrumbs.map((item, index) => (
             <li key={item.href} className="flex items-center">

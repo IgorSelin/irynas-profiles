@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
@@ -29,6 +30,7 @@ const blogPosts = Object.entries(allBlogPosts).map(([slug, post]) => ({
   description: post.description,
   date: post.date,
   readTime: post.readTime,
+  image: post.image,
 }));
 
 export default function BlogPage() {
@@ -59,9 +61,20 @@ export default function BlogPage() {
                 {blogPosts.map((post) => (
                   <article
                     key={post.slug}
-                    className="group rounded-lg bg-white shadow-md transition-shadow hover:shadow-xl"
+                    className="group overflow-hidden rounded-lg bg-white shadow-md transition-shadow hover:shadow-xl"
                   >
                     <Link href={`/blog/${post.slug}`}>
+                      {post.image && (
+                        <div className="relative h-48 w-full overflow-hidden">
+                          <Image
+                            src={post.image}
+                            alt={post.title}
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          />
+                        </div>
+                      )}
                       <div className="p-6">
                         <div className="mb-3 flex items-center text-sm text-gray-500">
                           <time dateTime={post.date}>

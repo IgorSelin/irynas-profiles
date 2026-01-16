@@ -5,10 +5,11 @@ import { blogPosts } from '@/lib/blogPosts';
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com').replace(/\/+$/, '');
 
-  const lastMainPageUpdate = new Date('2026-01-11');
-  const lastToursPageUpdate = new Date('2026-01-11');
-  const lastToursUpdate = new Date('2026-01-11');
-  const lastGalleryUpdate = new Date('2026-01-11');
+  const lastMainPageUpdate = new Date('2026-01-16');
+  const lastToursPageUpdate = new Date('2026-01-16');
+  const lastToursUpdate = new Date('2026-01-16');
+  const lastGalleryUpdate = new Date('2026-01-16');
+  const lastBlogUpdate = new Date('2026-01-16');
   const lastReviewsUpdate = new Date();
 
   const tourPages = tours.map((tour) => ({
@@ -58,7 +59,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified: lastMainPageUpdate,
+      lastModified: lastBlogUpdate,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
