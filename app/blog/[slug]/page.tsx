@@ -30,13 +30,25 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       url: `${baseUrl}/blog/${params.slug}`,
       type: 'article',
       publishedTime: post.date,
+      modifiedTime: post.date,
+      authors: ['Ірина Красіцька'],
       ...(post.image && {
         images: [
           {
             url: `${baseUrl}${post.image}`,
+            width: 1200,
+            height: 630,
             alt: post.title,
           },
         ],
+      }),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.description,
+      ...(post.image && {
+        images: [`${baseUrl}${post.image}`],
       }),
     },
   };
@@ -55,13 +67,24 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     headline: post.title,
     description: post.description,
     datePublished: post.date,
+    dateModified: post.date,
+    image: post.image ? `${baseUrl}${post.image}` : undefined,
     author: {
       '@type': 'Person',
       name: 'Ірина Красіцька',
+      jobTitle: 'Екскурсовод у Львові',
     },
     publisher: {
       '@type': 'Organization',
       name: 'Ірина Красіцька - Екскурсовод',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/images/guide-photo.webp`,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${baseUrl}/blog/${params.slug}`,
     },
   };
 

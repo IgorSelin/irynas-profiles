@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { tours } from '@/lib/tours';
+import { blogPosts } from '@/lib/blogPosts';
 
 const staticPhotos = [
   { id: 1, src: '/images/tour-opera.webp', alt: 'Оперний театр' },
@@ -58,6 +59,21 @@ export async function GET() {
         loc: `${baseUrl}${tour.image}`,
         caption: tour.description.substring(0, 200),
         title: tour.title,
+        geoLocation: 'Львів, Україна',
+      });
+    }
+  });
+
+  Object.entries(blogPosts).forEach(([slug, post]) => {
+    if (post.image) {
+      const blogUrl = `${baseUrl}/blog/${slug}`;
+      if (!imageGroups[blogUrl]) {
+        imageGroups[blogUrl] = [];
+      }
+      imageGroups[blogUrl].push({
+        loc: `${baseUrl}${post.image}`,
+        caption: post.description ||post.imageCaption,
+        title: post.title,
         geoLocation: 'Львів, Україна',
       });
     }

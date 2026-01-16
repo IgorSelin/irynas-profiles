@@ -33,6 +33,8 @@ const blogPosts = Object.entries(allBlogPosts).map(([slug, post]) => ({
   image: post.image,
 }));
 
+console.log({blogPosts})
+
 export default function BlogPage() {
   return (
     <main className="min-h-screen">
