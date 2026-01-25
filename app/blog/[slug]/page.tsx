@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${post.title} | Блог про Львів | Ірина Красіцька`,
     description: post.description,
+    keywords: post.keywords || 'Львів, екскурсії Львів, історія Львова, блог про Львів, Ірина Красіцька',
     alternates: {
       canonical: `${baseUrl}/blog/${params.slug}`,
     },
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
             url: `${baseUrl}${post.image}`,
             width: 1200,
             height: 630,
-            alt: post.title,
+            alt: post.imageAlt || post.title,
           },
         ],
       }),
@@ -68,11 +69,20 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     description: post.description,
     datePublished: post.date,
     dateModified: post.date,
-    image: post.image ? `${baseUrl}${post.image}` : undefined,
+    image: post.image
+      ? {
+          '@type': 'ImageObject',
+          url: `${baseUrl}${post.image}`,
+          width: 1200,
+          height: 630,
+          caption: post.imageCaption,
+        }
+      : undefined,
     author: {
       '@type': 'Person',
       name: 'Ірина Красіцька',
       jobTitle: 'Екскурсовод у Львові',
+      url: `${baseUrl}`,
     },
     publisher: {
       '@type': 'Organization',
@@ -86,6 +96,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       '@type': 'WebPage',
       '@id': `${baseUrl}/blog/${params.slug}`,
     },
+    keywords: post.keywords,
+    articleSection: 'Історія Львова',
+    inLanguage: 'uk-UA',
   };
 
   return (
@@ -130,7 +143,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                     <div className="relative h-96 w-full overflow-hidden rounded-lg">
                       <Image
                         src={post.image}
-                        alt={post.title}
+                        alt={post.imageAlt || post.title}
                         fill
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
