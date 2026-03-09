@@ -106,13 +106,6 @@ export default function TourPage({ params }: { params: { id: string } }) {
     })),
     keywords: tour.tags?.join(', '),
     inLanguage: tour.languages || ['uk', 'pl'],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '5',
-      reviewCount: '50',
-      bestRating: '5',
-      worstRating: '1',
-    },
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': tourUrl,

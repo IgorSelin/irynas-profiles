@@ -120,13 +120,6 @@ export default function RootLayout({
               priceRange: '200-500 UAH',
               telephone: '+380975383348',
               email: 'krasiraira@gmail.com',
-              aggregateRating: {
-                '@type': 'AggregateRating',
-                ratingValue: '5',
-                reviewCount: '50',
-                bestRating: '5',
-                worstRating: '1',
-              },
               areaServed: {
                 '@type': 'City',
                 name: 'Львів',
