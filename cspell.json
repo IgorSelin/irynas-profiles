@@ -29,6 +29,7 @@
     "Firestore",
     "Flasche",
     "fortetsya",
+    "HFSFCB",
     "historia",
     "historii",
     "Irena",
@@ -306,7 +307,9 @@
     "ЧЕКЛИСТ",
     "Чеклисти",
     "Шипіт",
-    "Шовкового"
+    "Шовкового",
+    "HFSFCB",
+    "NZXTJ"
   ],
   "ignorePaths": [
     "node_modules",
@@ -321,5 +324,7 @@
     ".next",
     ".cursor"
   ],
-  "import": ["@cspell/dict-uk-ua/cspell-ext.json"]
+  "import": [
+    "@cspell/dict-uk-ua/cspell-ext.json"
+  ]
 }
