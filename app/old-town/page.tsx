@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Link from 'next/link';
 import Image from 'next/image';
-import { tours } from '@/lib/tours';
+import { getTours } from '@/lib/content';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com';
 
@@ -24,15 +24,15 @@ export const metadata: Metadata = {
   },
 };
 
-const oldTownTours = tours.filter(
-  (tour) =>
-    tour.title.includes('Середньовічний') ||
-    tour.title.includes('Легенди') ||
-    tour.title.includes('Підземелля') ||
-    tour.tags?.includes('Історія'),
-);
+export default async function OldTownPage() {
+  const oldTownTours = (await getTours()).filter(
+    (tour) =>
+      tour.title.includes('Середньовічний') ||
+      tour.title.includes('Легенди') ||
+      tour.title.includes('Підземелля') ||
+      tour.tags?.includes('Історія'),
+  );
 
-export default function OldTownPage() {
   const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'TouristAttraction',

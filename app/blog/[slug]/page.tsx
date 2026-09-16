@@ -5,12 +5,17 @@ import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Link from 'next/link';
 import Image from 'next/image';
-import { blogPosts } from '@/lib/blogPosts';
+import { getBlogPost, getBlogPosts } from '@/lib/content';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com';
 
+export async function generateStaticParams() {
+  const posts = await getBlogPosts();
+  return posts.map((post) => ({ slug: post.slug }));
+}
+
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = blogPosts[params.slug];
+  const post = await getBlogPost(params.slug);
 
   if (!post) {
     return {
@@ -55,8 +60,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = blogPosts[params.slug];
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+  const post = await getBlogPost(params.slug);
 
   if (!post) {
     notFound();

@@ -14,3 +14,6 @@ pnpm-lock.yaml
 .vercel
 playwright-report
 *.tsbuildinfo
+
+# Keystatic writes these files itself; don't fail CI on their formatting
+content

@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Link from 'next/link';
 import Image from 'next/image';
-import { tours } from '@/lib/tours';
+import { getTours } from '@/lib/content';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com';
 
@@ -25,15 +25,15 @@ export const metadata: Metadata = {
   },
 };
 
-const centerTours = tours.filter(
-  (tour) =>
-    tour.tags?.includes('Центр міста') ||
-    tour.title.includes('Середньовічний') ||
-    tour.title.includes('Підземелля') ||
-    tour.title.includes('Австрійський'),
-);
+export default async function LvivCenterPage() {
+  const centerTours = (await getTours()).filter(
+    (tour) =>
+      tour.tags?.includes('Центр міста') ||
+      tour.title.includes('Середньовічний') ||
+      tour.title.includes('Підземелля') ||
+      tour.title.includes('Австрійський'),
+  );
 
-export default function LvivCenterPage() {
   const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'TouristAttraction',

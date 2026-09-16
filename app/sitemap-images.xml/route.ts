@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import { tours } from '@/lib/tours';
-import { blogPosts } from '@/lib/blogPosts';
+import { getBlogPosts, getTours } from '@/lib/content';
 
 const staticPhotos = [
   { id: 1, src: '/images/tour-opera.webp', alt: 'Оперний театр' },
@@ -49,6 +48,8 @@ export async function GET() {
     },
   ];
 
+  const [tours, blogPosts] = await Promise.all([getTours(), getBlogPosts()]);
+
   tours.forEach((tour) => {
     if (tour.image) {
       const tourUrl = `${baseUrl}/tours/${tour.slug}`;
@@ -64,9 +65,9 @@ export async function GET() {
     }
   });
 
-  Object.entries(blogPosts).forEach(([slug, post]) => {
+  blogPosts.forEach((post) => {
     if (post.image) {
-      const blogUrl = `${baseUrl}/blog/${slug}`;
+      const blogUrl = `${baseUrl}/blog/${post.slug}`;
       if (!imageGroups[blogUrl]) {
         imageGroups[blogUrl] = [];
       }

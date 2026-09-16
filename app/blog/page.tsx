@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { blogPosts as allBlogPosts } from '@/lib/blogPosts';
+import { getBlogPosts } from '@/lib/content';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com';
 
@@ -24,16 +24,9 @@ export const metadata: Metadata = {
   },
 };
 
-const blogPosts = Object.entries(allBlogPosts).map(([slug, post]) => ({
-  slug,
-  title: post.title,
-  description: post.description,
-  date: post.date,
-  readTime: post.readTime,
-  image: post.image,
-}));
+export default async function BlogPage() {
+  const blogPosts = await getBlogPosts();
 
-export default function BlogPage() {
   return (
     <main className="min-h-screen">
       <Navbar />

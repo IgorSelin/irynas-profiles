@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { tours } from '@/lib/tours';
+import { getTours } from '@/lib/content';
 
 export async function GET() {
   const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com').replace(/\/+$/, '');
@@ -9,6 +9,8 @@ export async function GET() {
 
   const lastBuildDate = new Date('2026-01-11').toUTCString();
   const pubDate = new Date('2026-01-11').toUTCString();
+
+  const tours = await getTours();
 
   const feedItems = [
     {

@@ -1,8 +1,7 @@
 import { MetadataRoute } from 'next';
-import { tours } from '@/lib/tours';
-import { blogPosts } from '@/lib/blogPosts';
+import { getBlogPosts, getTours } from '@/lib/content';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com').replace(/\/+$/, '');
 
   const lastMainPageUpdate = new Date('2026-01-16');
@@ -12,6 +11,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastBlogUpdate = new Date('2026-01-16');
   const lastReviewsUpdate = new Date();
 
+  const [tours, blogPosts] = await Promise.all([getTours(), getBlogPosts()]);
+
   const tourPages = tours.map((tour) => ({
     url: `${baseUrl}/tours/${tour.slug}`,
     lastModified: lastToursUpdate,
@@ -19,8 +20,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const blogPages = Object.entries(blogPosts).map(([slug, post]) => ({
-    url: `${baseUrl}/blog/${slug}`,
+  const blogPages = blogPosts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
