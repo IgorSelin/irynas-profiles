@@ -16,6 +16,9 @@
     "ci": "npm run type-check && npm run lint && npm run format:check && npm run lint:spell"
   },
   "dependencies": {
+    "@keystatic/core": "^0.6.9",
+    "@keystatic/next": "^5.0.5",
+    "@markdoc/markdoc": "^0.4.0",
     "firebase": "^10.12.2",
     "framer-motion": "^11.3.19",
     "next": "^14.2.5",

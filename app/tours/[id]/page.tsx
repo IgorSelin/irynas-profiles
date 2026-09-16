@@ -4,10 +4,20 @@ import Navbar from '@/components/Navbar';
 import TourDetail from '@/components/TourDetail';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { tours } from '@/lib/tours';
+import { getTours } from '@/lib/content';
+
+async function getTour(slugOrId: string) {
+  const tours = await getTours();
+  return tours.find((t) => t.slug === slugOrId || t.id === slugOrId);
+}
+
+export async function generateStaticParams() {
+  const tours = await getTours();
+  return tours.map((tour) => ({ id: tour.slug }));
+}
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const tour = tours.find((t) => t.slug === params.id || t.id === params.id);
+  const tour = await getTour(params.id);
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com';
 
   if (!tour) {
@@ -51,8 +61,8 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   };
 }
 
-export default function TourPage({ params }: { params: { id: string } }) {
-  const tour = tours.find((t) => t.slug === params.id || t.id === params.id);
+export default async function TourPage({ params }: { params: { id: string } }) {
+  const tour = await getTour(params.id);
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com';
 
   if (!tour) {

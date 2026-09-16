@@ -4,6 +4,7 @@ import Hero from '@/components/Hero';
 import Reviews from '@/components/Reviews';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import { getTours } from '@/lib/content';
 
 const About = dynamic(() => import('@/components/About'), {
   loading: () => <div className="h-96 w-full animate-pulse bg-gray-50" />,
@@ -24,14 +25,16 @@ const FAQ = dynamic(() => import('@/components/FAQ'), {
   loading: () => <div className="h-96 w-full animate-pulse bg-gray-50" />,
 });
 
-export default function Home() {
+export default async function Home() {
+  const tours = await getTours();
+
   return (
     <main className="min-h-screen overflow-x-hidden">
       <Navbar />
       <Hero />
       <About />
       <WhyChoose />
-      <Tours />
+      <Tours tours={tours} />
       <HowItWorks />
       <LvivHistory />
       <Reviews limit={10} />

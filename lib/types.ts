@@ -29,3 +29,16 @@ export interface GuideInfo {
   photo: string;
   specialties?: string[];
 }
+
+export interface BlogPost {
+  slug: string;
+  title: string;
+  description: string;
+  content: string;
+  date: string;
+  readTime: string;
+  image?: string;
+  imageAlt?: string;
+  imageCaption?: string;
+  keywords?: string;
+}

@@ -5,7 +5,6 @@ import Image from 'next/image';
 import ImageWithSkeleton from './ImageWithSkeleton';
 import Link from 'next/link';
 import { useState, useMemo, useRef } from 'react';
-import { tours } from '@/lib/tours';
 import { Tour } from '@/lib/types';
 
 function TourCard({
@@ -168,7 +167,7 @@ function TourCard({
   );
 }
 
-export default function Tours() {
+export default function Tours({ tours }: { tours: Tour[] }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
@@ -178,7 +177,7 @@ export default function Tours() {
       tour.tags?.forEach((tag) => tags.add(tag));
     });
     return Array.from(tags).sort();
-  }, []);
+  }, [tours]);
 
   const filteredTours = useMemo(() => {
     return tours.filter((tour) => {
@@ -192,7 +191,7 @@ export default function Tours() {
 
       return matchesSearch && matchesTag;
     });
-  }, [searchQuery, selectedTag]);
+  }, [tours, searchQuery, selectedTag]);
 
   return (
     <section id="tours" className="bg-gray-50 py-20">

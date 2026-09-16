@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Tours from '@/components/Tours';
 import Footer from '@/components/Footer';
+import { getTours } from '@/lib/content';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com';
 
@@ -31,12 +32,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ToursPage() {
+export default async function ToursPage() {
+  const tours = await getTours();
+
   return (
     <main className="min-h-screen">
       <Navbar />
       <div className="pt-16 md:pt-20">
-        <Tours />
+        <Tours tours={tours} />
       </div>
       <Footer />
     </main>
