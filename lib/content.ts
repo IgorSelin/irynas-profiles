@@ -69,3 +69,35 @@ export const getTours = cache(async (): Promise<Tour[]> => {
       tags: [...entry.tags],
     }));
 });
+
+export type MarketingSettings = {
+  metaPixelId?: string;
+  tiktokPixelId?: string;
+  googleTagId?: string;
+  gtmId?: string;
+};
+
+// IDs end up inside inline <script> tags, so only accept the exact formats the editor validates.
+const ID_FORMATS: Record<keyof MarketingSettings, RegExp> = {
+  metaPixelId: /^\d{8,20}$/,
+  tiktokPixelId: /^[A-Z0-9]{10,30}$/,
+  googleTagId: /^(G|AW)-[A-Z0-9]{4,20}$/,
+  gtmId: /^GTM-[A-Z0-9]{4,12}$/,
+};
+
+function validId(key: keyof MarketingSettings, value: string | null | undefined) {
+  const trimmed = value?.trim();
+  return trimmed && ID_FORMATS[key].test(trimmed) ? trimmed : undefined;
+}
+
+export const getMarketingSettings = cache(async (): Promise<MarketingSettings> => {
+  const settings = await reader.singletons.marketing.read();
+
+  return {
+    metaPixelId: validId('metaPixelId', settings?.metaPixelId),
+    tiktokPixelId: validId('tiktokPixelId', settings?.tiktokPixelId),
+    // Fall back to the env vars that were used before these settings existed
+    googleTagId: validId('googleTagId', settings?.googleTagId || process.env.NEXT_PUBLIC_GA_ID),
+    gtmId: validId('gtmId', settings?.gtmId || process.env.NEXT_PUBLIC_GTM_ID),
+  };
+});

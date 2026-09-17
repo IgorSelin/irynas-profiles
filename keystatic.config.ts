@@ -1,4 +1,4 @@
-import { collection, config, fields } from '@keystatic/core';
+import { collection, config, fields, singleton } from '@keystatic/core';
 
 // Locally (`npm run dev`) edits are written straight to the files on disk.
 // In production edits go through Keystatic Cloud, which commits them to GitHub and triggers a Vercel redeploy.
@@ -16,7 +16,39 @@ export default config({
     brand: { name: 'Ірина Красіцька' },
     navigation: {
       Контент: ['posts', 'tours'],
+      Налаштування: ['marketing'],
     },
+  },
+  singletons: {
+    marketing: singleton({
+      label: 'Реклама та аналітика',
+      path: 'content/settings/marketing',
+      format: { data: 'yaml' },
+      schema: {
+        metaPixelId: fields.text({
+          label: 'Meta Pixel ID (Facebook та Instagram)',
+          description: 'Тільки цифри з Meta Events Manager. Наприклад: 1234567890123456. Порожньо — піксель вимкнений.',
+          validation: { pattern: { regex: /^(\d{8,20})?$/, message: 'Тут мають бути тільки цифри' } },
+        }),
+        tiktokPixelId: fields.text({
+          label: 'TikTok Pixel ID',
+          description: 'З TikTok Ads Manager (Events). Наприклад: C4T8R2N0Q5J3K7L1M6P9.',
+          validation: {
+            pattern: { regex: /^([A-Z0-9]{10,30})?$/, message: 'Тільки великі латинські літери та цифри' },
+          },
+        }),
+        googleTagId: fields.text({
+          label: 'Google Tag ID (Analytics / Google Ads)',
+          description: 'Починається з G- або AW-. Наприклад: G-ABC123XYZ.',
+          validation: { pattern: { regex: /^((G|AW)-[A-Z0-9]{4,20})?$/, message: 'Має починатися з G- або AW-' } },
+        }),
+        gtmId: fields.text({
+          label: 'Google Tag Manager ID',
+          description: 'Починається з GTM-. Заповнюйте, лише якщо про це просить фахівець.',
+          validation: { pattern: { regex: /^(GTM-[A-Z0-9]{4,12})?$/, message: 'Має починатися з GTM-' } },
+        }),
+      },
+    }),
   },
   collections: {
     posts: collection({

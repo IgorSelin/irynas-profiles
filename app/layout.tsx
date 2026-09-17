@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import GoogleAnalytics from '@/components/GoogleAnalytics';
+import TrackingScripts from '@/components/TrackingScripts';
+import { getMarketingSettings } from '@/lib/content';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 
@@ -75,11 +76,13 @@ export const metadata: Metadata = {
   manifest: '/site.webmanifest',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const marketing = await getMarketingSettings();
+
   return (
     <html lang="uk">
       <head>
@@ -170,7 +173,7 @@ export default function RootLayout({
             }),
           }}
         />
-        <GoogleAnalytics />
+        <TrackingScripts {...marketing} />
       </head>
       <body className={inter.className}>{children}</body>
     </html>
