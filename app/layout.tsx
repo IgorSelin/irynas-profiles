@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Onest, Unbounded } from 'next/font/google';
 import './globals.css';
 import TrackingScripts from '@/components/TrackingScripts';
 import { getMarketingSettings } from '@/lib/content';
 
-const inter = Inter({ subsets: ['latin', 'cyrillic'] });
+const onest = Onest({ subsets: ['latin', 'cyrillic'], variable: '--font-sans', display: 'swap' });
+const unbounded = Unbounded({ subsets: ['latin', 'cyrillic'], variable: '--font-display', display: 'swap' });
 
 export const metadata: Metadata = {
   title: {
@@ -177,7 +178,7 @@ export default async function RootLayout({
         />
         <TrackingScripts {...marketing} />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={`${onest.variable} ${unbounded.variable} font-sans`}>{children}</body>
     </html>
   );
 }

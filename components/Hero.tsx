@@ -1,9 +1,12 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { gsap, useGSAP, MOTION_OK } from '@/lib/gsap';
+import { PhoneIcon, PHONE } from './icons';
 
 export default function Hero() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com';
+  const sectionRef = useRef<HTMLElement>(null);
 
   const videoSchema = {
     '@context': 'https://schema.org',
@@ -17,6 +20,27 @@ export default function Hero() {
     duration: 'PT30S',
   };
 
+  // The entrance plays in CSS so the headline is never hidden waiting for JS; GSAP only adds the scroll depth
+  useGSAP(
+    () => {
+      gsap.matchMedia().add(MOTION_OK, () => {
+        gsap.to('[data-hero-video]', {
+          yPercent: 14,
+          scale: 1.08,
+          ease: 'none',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top top', end: 'bottom top', scrub: true },
+        });
+        gsap.to('[data-hero-copy]', {
+          y: -60,
+          opacity: 0.2,
+          ease: 'none',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top top', end: 'bottom top', scrub: true },
+        });
+      });
+    },
+    { scope: sectionRef },
+  );
+
   return (
     <>
       <script
@@ -25,63 +49,63 @@ export default function Hero() {
           __html: JSON.stringify(videoSchema),
         }}
       />
-      <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 pt-16 md:pt-20">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 z-10 bg-black/40" />
-          <video autoPlay loop muted playsInline preload="none" className="h-full w-full object-cover">
+      <section
+        ref={sectionRef}
+        data-nav-dark
+        className="flex min-h-[100svh] flex-col bg-night px-2 pb-2 pt-16 md:px-4 md:pb-4 md:pt-20"
+      >
+        <div className="relative flex flex-1 animate-lens-open flex-col overflow-hidden rounded-[28px] bg-azure-900">
+          <video
+            data-hero-video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            className="absolute inset-0 h-full w-full origin-top object-cover"
+          >
             <source src="/videos/lviv_opernyy.webm" type="video/webm" />
           </video>
-        </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-night via-night/45 to-night/10" />
 
-        {/* Content */}
-        <div className="container relative z-20 mx-auto px-4 text-center text-white">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <span className="mb-4 inline-block rounded-full bg-white/10 px-6 py-2 text-sm font-bold uppercase tracking-widest backdrop-blur-sm">
-              Не стандартна екскурсія, а розуміння міста
-            </span>
-            <h1 className="mb-6 text-5xl font-extrabold leading-tight md:text-8xl">
-              Екскурсії з <br />
-              <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
-                Іриною Красіцькою
+          <div
+            data-hero-copy
+            className="relative z-10 mt-auto grid gap-10 p-6 pt-32 text-white sm:p-10 lg:grid-cols-12 lg:items-end lg:gap-12 lg:p-14"
+          >
+            <h1 className="font-semibold leading-[0.98] tracking-[-0.035em] [font-size:clamp(2.6rem,7.4vw,7rem)] lg:col-span-8">
+              <span className="block overflow-hidden pb-[0.06em]">
+                <span className="block animate-line-up [animation-delay:350ms]">Екскурсії з</span>
+              </span>
+              <span className="block overflow-hidden pb-[0.06em]">
+                <span className="block animate-line-up [animation-delay:470ms]">Іриною Красіцькою</span>
               </span>
             </h1>
-            <h2 className="mb-4 text-2xl font-semibold text-white/95 md:text-3xl">Професійний екскурсовод у Львові</h2>
-            <p className="mx-auto mb-10 max-w-3xl text-xl font-medium leading-relaxed text-white/90 md:text-2xl">
-              Я показую Львів через деталі, які більшість не помічає, і пояснюю їхній сенс простою мовою.{' '}
-              <br className="hidden md:block" />
-              Історія без сухих дат — через людей і сенси. Після моїх екскурсій місто запам’ятовується.
-            </p>
-            <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
-              <motion.a
-                href="#tours"
-                className="inline-block rounded-2xl bg-white px-10 py-5 text-lg font-bold text-purple-900 shadow-xl transition-all hover:bg-purple-50"
-                whileHover={{ scale: 1.05, y: -5 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Обрати екскурсію
-              </motion.a>
-            </div>
-          </motion.div>
-        </div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 transform"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <svg
-            className="h-6 w-6 text-white"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </motion.div>
+            <div className="animate-fade-in [animation-delay:800ms] lg:col-span-4 lg:pb-3">
+              <h2 className="mb-4 text-lg font-medium text-gold-300 md:text-xl">Професійний екскурсовод у Львові</h2>
+              <p className="mb-8 max-w-md text-[17px] leading-relaxed text-white/80">
+                <strong className="font-semibold text-white">Не стандартна екскурсія, а розуміння міста.</strong> Я
+                показую Львів через деталі, які більшість не помічає, і пояснюю їхній сенс простою мовою. Історія без
+                сухих дат — через людей і сенси.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href="#tours"
+                  className="inline-flex items-center rounded-full bg-gold-400 px-7 py-4 text-base font-semibold text-night transition-colors hover:bg-gold-300"
+                >
+                  Обрати екскурсію
+                </a>
+                <a
+                  href={`tel:${PHONE}`}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-4 text-base font-semibold text-white transition-colors hover:bg-white/10"
+                >
+                  <PhoneIcon className="h-4 w-4" />
+                  Подзвонити
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </>
   );

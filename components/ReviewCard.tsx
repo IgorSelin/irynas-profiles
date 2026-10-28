@@ -1,51 +1,51 @@
-'use client';
-
 import { Review } from '@/lib/types';
+import { Monogram, StarIcon } from './icons';
 
 interface ReviewCardProps {
   review: Review;
   index: number;
 }
 
-export default function ReviewCard({ review, index }: ReviewCardProps) {
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }).map((_, i) => (
-      <svg
-        key={i}
-        className={`h-5 w-5 ${i < rating ? 'fill-current text-yellow-400' : 'text-gray-300'}`}
-        viewBox="0 0 20 20"
-      >
-        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-      </svg>
-    ));
-  };
+const formatDate = (dateString: string) =>
+  new Date(dateString).toLocaleDateString('uk-UA', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('uk-UA', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
-  };
-
+export default function ReviewCard({ review }: ReviewCardProps) {
   return (
-    <div className="rounded-lg bg-white p-6 shadow-md transition-shadow hover:shadow-lg">
-      <div className="mb-4 flex items-center justify-between">
-        <h4 className="text-lg font-bold text-gray-900">{review.name}</h4>
-        <span className="text-sm text-gray-500">{formatDate(review.date)}</span>
+    <figure className="mb-6 break-inside-avoid rounded-[22px] bg-stone p-6 sm:p-7">
+      <div className="mb-4 flex gap-0.5" role="img" aria-label={`Оцінка ${review.rating} з 5`}>
+        {Array.from({ length: 5 }).map((_, i) => (
+          <StarIcon key={i} className={`h-4 w-4 ${i < review.rating ? 'text-gold-500' : 'text-ink/15'}`} />
+        ))}
       </div>
-      <div className="mb-3 flex items-center">{renderStars(review.rating)}</div>
-      <p className="leading-relaxed text-gray-700">{review.text}</p>
+      <blockquote className="whitespace-pre-line leading-relaxed text-ink/85">{review.text}</blockquote>
+      <figcaption className="mt-6 flex items-center gap-3">
+        <span
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-night font-display text-sm font-medium text-white"
+          aria-hidden="true"
+        >
+          {review.name.trim().charAt(0).toUpperCase()}
+        </span>
+        <span className="flex flex-col">
+          <span className="font-semibold text-night">{review.name}</span>
+          <span className="text-sm text-ink/50">{formatDate(review.date)}</span>
+        </span>
+      </figcaption>
       {review.reply && (
-        <div className="mt-4 rounded-r-lg border-l-4 border-purple-600 bg-purple-50 p-4">
-          <div className="mb-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
-            <p className="font-semibold text-purple-900">Відповідь Ірини Красіцької</p>
-            <span className="text-sm text-gray-500">{formatDate(review.reply.date)}</span>
+        <div className="mt-6 rounded-2xl bg-white p-5">
+          <div className="mb-3 flex items-center gap-3">
+            <Monogram className="h-8 w-8 text-[11px]" />
+            <span className="flex flex-col">
+              <span className="text-sm font-semibold text-night">Відповідь Ірини Красіцької</span>
+              <span className="text-xs text-ink/50">{formatDate(review.reply.date)}</span>
+            </span>
           </div>
-          <p className="whitespace-pre-line leading-relaxed text-gray-700">{review.reply.text}</p>
+          <p className="whitespace-pre-line leading-relaxed text-ink/75">{review.reply.text}</p>
         </div>
       )}
-    </div>
+    </figure>
   );
 }

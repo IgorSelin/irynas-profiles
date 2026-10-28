@@ -1,191 +1,125 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
 import ImageWithSkeleton from './ImageWithSkeleton';
 import Link from 'next/link';
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo } from 'react';
 import { Tour } from '@/lib/types';
+import { ClockIcon, PhoneIcon, PHONE } from './icons';
 
-function TourCard({
-  tour,
-  index,
-  setSelectedTag,
-  selectedTag,
-}: {
-  tour: Tour;
-  index: number;
-  setSelectedTag: (tag: string | null) => void;
-  selectedTag: string | null;
-}) {
-  const [imageLoaded, setImageLoaded] = useState(false);
+const typeLabels: Record<NonNullable<Tour['type']>, string> = {
+  both: 'Індивідуальні та корпоративні',
+  corporate: 'Для корпоративних груп',
+  individual: 'Індивідуальні',
+};
 
+const TOP_TAGS = 10;
+
+// Some tours store a bare number as the price; the rest are written out in full
+const formatPrice = (price: string) => (/^\d+$/.test(price.trim()) ? `${price.trim()} грн` : price);
+
+function TourCard({ tour, hidden }: { tour: Tour; hidden: boolean }) {
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: '0px 0px -50px 0px' }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.4 }}
-      className="flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-lg transition-shadow hover:shadow-xl"
-    >
-      <Link href={`/tours/${tour.slug}`} target="_blank" className="block flex-shrink-0">
-        <div className="relative h-64">
-          <ImageWithSkeleton
-            src={tour.image}
-            alt={tour.title}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            loading="lazy"
-            onLoad={() => setImageLoaded(true)}
-          />
-          {tour.tags && (
-            <div
-              className={`absolute left-4 top-4 flex flex-wrap gap-2 transition-opacity duration-300 ${
-                imageLoaded ? 'opacity-100' : 'opacity-0'
-              }`}
-            >
-              {tour.tags.slice(0, 2).map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full bg-white/90 px-3 py-1 text-xs font-bold uppercase tracking-wider text-purple-700 shadow-sm backdrop-blur-sm"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
-        </div>
-      </Link>
-      <div className="flex flex-grow flex-col p-6">
-        <Link href={`/tours/${tour.slug}`} target="_blank" className="block">
-          <h3 className="mb-3 text-2xl font-bold text-gray-900 transition-colors hover:text-purple-600">
-            {tour.title}
-          </h3>
-          <p className="mb-4 line-clamp-3 leading-relaxed text-gray-600">{tour.description}</p>
-        </Link>
-        <div className="mb-4 space-y-2">
-          <div className="flex items-center text-purple-600">
-            <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <span className="font-semibold">{tour.duration}</span>
-          </div>
-          {tour.price && (
-            <div className="flex items-center text-green-600">
-              <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              <span className="font-semibold">{tour.price}</span>
-            </div>
-          )}
-          {tour.type && (
-            <div className="flex items-center text-green-600">
-              <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                />
-              </svg>
-              <span className="text-sm font-semibold">
-                {tour.type === 'both'
-                  ? 'Індивідуальні та корпоративні'
-                  : tour.type === 'corporate'
-                    ? 'Для корпоративних груп'
-                    : 'Індивідуальні'}
-              </span>
-            </div>
-          )}
-          {tour.languages && tour.languages.length > 0 && (
-            <div className="flex items-center text-blue-600">
-              <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
-                />
-              </svg>
-              <span className="text-sm font-semibold">{tour.languages.join(' / ')}</span>
-            </div>
-          )}
-        </div>
-        {tour.tags && (
-          <div className="mb-4 flex flex-wrap gap-2">
-            {tour.tags.map((tag) => (
-              <button
+    <article className={`group flex flex-col ${hidden ? 'hidden' : ''}`}>
+      <Link
+        href={`/tours/${tour.slug}`}
+        target="_blank"
+        className="relative block aspect-[4/3] overflow-hidden rounded-[22px] bg-stone"
+        tabIndex={-1}
+        aria-hidden="true"
+      >
+        <ImageWithSkeleton
+          src={tour.image}
+          alt={tour.title}
+          fill
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          loading="lazy"
+        />
+        {tour.tags && tour.tags.length > 0 && (
+          <div className="absolute left-3 top-3 z-20 flex flex-wrap gap-1.5">
+            {tour.tags.slice(0, 2).map((tag) => (
+              <span
                 key={tag}
-                onClick={() => setSelectedTag(tag === selectedTag ? null : tag)}
-                className={`rounded-md px-2 py-1 text-xs font-medium transition-colors ${
-                  tag === selectedTag ? 'bg-purple-600 text-white' : 'bg-purple-50 text-purple-700 hover:bg-purple-100'
-                }`}
+                className="rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-night backdrop-blur-sm"
               >
-                #{tag}
-              </button>
+                {tag}
+              </span>
             ))}
           </div>
         )}
+      </Link>
+
+      <div className="flex flex-1 flex-col pt-5">
+        <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+          <span className="inline-flex items-center gap-1.5 text-ink/60">
+            <ClockIcon />
+            {tour.duration}
+          </span>
+          {tour.price && <span className="font-semibold text-azure-700">{formatPrice(tour.price)}</span>}
+        </div>
+
+        <h3 className="font-display text-xl font-medium leading-snug tracking-tight text-night">
+          <Link href={`/tours/${tour.slug}`} target="_blank" className="transition-colors hover:text-azure-700">
+            {tour.title}
+          </Link>
+        </h3>
+        <p className="mt-2 line-clamp-2 leading-relaxed text-ink/65">{tour.description}</p>
+
+        {(tour.type || (tour.languages && tour.languages.length > 0)) && (
+          <div className="mt-4 flex flex-wrap gap-2 text-xs text-ink/70">
+            {tour.type && <span className="rounded-full border border-ink/10 px-3 py-1">{typeLabels[tour.type]}</span>}
+            {tour.languages && tour.languages.length > 0 && (
+              <span className="rounded-full border border-ink/10 px-3 py-1">{tour.languages.join(' / ')}</span>
+            )}
+          </div>
+        )}
+
+        <div className="mt-auto flex gap-2 pt-6">
+          <Link
+            href={`/tours/${tour.slug}`}
+            target="_blank"
+            className="flex flex-1 items-center justify-center rounded-full bg-night py-3 font-semibold text-white transition-colors hover:bg-azure-800"
+          >
+            Детальніше
+          </Link>
+          <a
+            href={`tel:${PHONE}`}
+            className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-5 py-3 font-semibold text-night transition-colors hover:border-night"
+          >
+            <PhoneIcon className="h-4 w-4" />
+            Замовити
+          </a>
+        </div>
       </div>
-      <div className="mt-auto flex gap-3 px-6 pb-6">
-        <Link
-          href={`/tours/${tour.slug}`}
-          target="_blank"
-          className="flex flex-1 items-center justify-center rounded-lg bg-purple-600 py-3 font-semibold text-white transition-colors hover:bg-purple-700"
-        >
-          Детальніше
-        </Link>
-        <a
-          href="tel:+380975383348"
-          className="flex flex-1 items-center justify-center rounded-lg bg-green-600 py-3 font-semibold text-white transition-colors hover:bg-green-700"
-        >
-          <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-            />
-          </svg>
-          Замовити
-        </a>
-      </div>
-    </motion.div>
+    </article>
   );
 }
 
-export default function Tours({ tours }: { tours: Tour[] }) {
+export default function Tours({ tours, initialCount }: { tours: Tour[]; initialCount?: number }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [expanded, setExpanded] = useState(false);
 
+  const [showAllTags, setShowAllTags] = useState(false);
+
+  // Most-used topics first, so the short list shows the ones that filter something meaningful
   const allTags = useMemo(() => {
-    const tags = new Set<string>();
+    const counts = new Map<string, number>();
     tours.forEach((tour) => {
-      tour.tags?.forEach((tag) => tags.add(tag));
+      tour.tags?.forEach((tag) => counts.set(tag, (counts.get(tag) || 0) + 1));
     });
-    return Array.from(tags).sort();
+    return Array.from(counts.keys()).sort((a, b) => counts.get(b)! - counts.get(a)! || a.localeCompare(b, 'uk'));
   }, [tours]);
+  const visibleTags = showAllTags ? allTags : allTags.filter((tag, i) => i < TOP_TAGS || tag === selectedTag);
 
   const filteredTours = useMemo(() => {
+    const query = searchQuery.toLowerCase();
     return tours.filter((tour) => {
       const matchesSearch =
-        tour.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        tour.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        tour.highlights?.some((h) => h.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        tour.tags?.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase()));
+        tour.title.toLowerCase().includes(query) ||
+        tour.description.toLowerCase().includes(query) ||
+        tour.highlights?.some((h) => h.toLowerCase().includes(query)) ||
+        tour.tags?.some((t) => t.toLowerCase().includes(query));
 
       const matchesTag = !selectedTag || tour.tags?.includes(selectedTag);
 
@@ -193,36 +127,46 @@ export default function Tours({ tours }: { tours: Tour[] }) {
     });
   }, [tours, searchQuery, selectedTag]);
 
-  return (
-    <section id="tours" className="bg-gray-50 py-20">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
-        >
-          <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">Доступні екскурсії</h2>
-          <div className="mx-auto mb-8 h-1 w-24 bg-purple-600"></div>
-          <p className="mx-auto max-w-2xl text-xl text-gray-600">Оберіть екскурсію, яка вас найбільше цікавить</p>
-        </motion.div>
+  // Collapsed cards stay in the HTML (just hidden) so crawlers still see links to every tour
+  const filtering = searchQuery !== '' || selectedTag !== null;
+  const collapsed = !!initialCount && !expanded && !filtering && filteredTours.length > initialCount;
 
-        {/* Search and Filter */}
-        <div className="mx-auto mb-12 max-w-4xl">
-          <div className="relative mb-6">
+  const chipClass = (active: boolean) =>
+    `whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+      active ? 'bg-night text-white' : 'bg-stone text-ink/75 hover:bg-azure-100 hover:text-night'
+    }`;
+
+  return (
+    <section id="tours" className="bg-white py-24 md:py-32">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="mb-10 grid gap-8 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-7">
+            <h2 className="text-[clamp(2rem,4.2vw,3.5rem)] font-semibold leading-[1.05] text-night">
+              Доступні екскурсії
+            </h2>
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink/70">
+              Оберіть екскурсію, яка вас найбільше цікавить: від прогулянок історичним центром до виїздів у замки,
+              Карпати та Польщу.
+            </p>
+          </div>
+          <div className="relative lg:col-span-5">
+            <label htmlFor="tour-search" className="sr-only">
+              Пошук екскурсії
+            </label>
             <input
-              type="text"
-              placeholder="Пошук екскурсії за назвою, описом або тегом..."
+              id="tour-search"
+              type="search"
+              placeholder="Пошук за назвою, описом або темою"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-2xl border-2 border-purple-100 bg-white px-6 py-4 pl-14 text-lg text-gray-900 shadow-sm transition-all placeholder:text-gray-400 focus:border-purple-500 focus:outline-none focus:ring-4 focus:ring-purple-500/10"
+              className="w-full rounded-full border border-transparent bg-stone py-4 pl-12 pr-12 text-base text-ink transition-colors placeholder:text-ink/45 focus:border-azure-400 focus:bg-white focus:outline-none"
             />
             <svg
-              className="absolute left-5 top-1/2 h-6 w-6 -translate-y-1/2 text-purple-400"
+              className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-ink/40"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"
@@ -234,80 +178,78 @@ export default function Tours({ tours }: { tours: Tour[] }) {
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-purple-600"
+                className="absolute right-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-ink/50 hover:bg-white hover:text-night"
+                aria-label="Очистити пошук"
               >
-                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             )}
           </div>
+        </div>
 
-          <div className="scrollbar-hide flex items-center gap-2 overflow-x-auto pb-4 md:flex-wrap md:justify-center md:pb-0">
+        <div className="scrollbar-hide -mx-4 mb-12 flex gap-2 overflow-x-auto px-4 md:mx-0 md:flex-wrap md:px-0">
+          <button onClick={() => setSelectedTag(null)} className={chipClass(!selectedTag)}>
+            Всі екскурсії
+          </button>
+          {visibleTags.map((tag) => (
             <button
-              onClick={() => setSelectedTag(null)}
-              className={`whitespace-nowrap rounded-full px-5 py-2 text-sm font-bold transition-all ${
-                !selectedTag
-                  ? 'bg-purple-600 text-white shadow-lg shadow-purple-200'
-                  : 'bg-white text-gray-600 shadow-sm hover:bg-purple-50 hover:text-purple-600'
-              }`}
+              key={tag}
+              onClick={() => setSelectedTag(tag === selectedTag ? null : tag)}
+              className={chipClass(tag === selectedTag)}
+              aria-pressed={tag === selectedTag}
             >
-              Всі екскурсії
+              {tag}
             </button>
-            {allTags.map((tag) => (
-              <button
-                key={tag}
-                onClick={() => setSelectedTag(tag === selectedTag ? null : tag)}
-                className={`whitespace-nowrap rounded-full px-5 py-2 text-sm font-semibold transition-all ${
-                  tag === selectedTag
-                    ? 'bg-purple-600 text-white shadow-lg shadow-purple-200'
-                    : 'bg-white text-gray-600 shadow-sm hover:bg-purple-50 hover:text-purple-600'
-                }`}
-              >
-                {tag}
-              </button>
-            ))}
-          </div>
+          ))}
+          {allTags.length > TOP_TAGS && (
+            <button
+              onClick={() => setShowAllTags(!showAllTags)}
+              className="whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold text-azure-700 underline-offset-4 hover:underline"
+              aria-expanded={showAllTags}
+            >
+              {showAllTags ? 'Згорнути теми' : `Усі теми (${allTags.length})`}
+            </button>
+          )}
         </div>
 
-        <div className="mx-auto max-w-7xl">
-          <h3 className="mb-6 text-2xl font-semibold text-gray-800">Популярні екскурсії по Львову</h3>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <AnimatePresence mode="popLayout">
-              {filteredTours.map((tour, index) => (
-                <TourCard
-                  key={tour.id}
-                  tour={tour}
-                  index={index}
-                  setSelectedTag={setSelectedTag}
-                  selectedTag={selectedTag}
-                />
-              ))}
-            </AnimatePresence>
-          </div>
+        <div className="mb-6 flex items-baseline justify-between gap-4 border-b border-ink/10 pb-4">
+          <h3 className="font-medium text-night">Популярні екскурсії по Львову</h3>
+          <span className="text-sm text-ink/50">Знайдено: {filteredTours.length}</span>
         </div>
+
+        <div className="grid gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
+          {filteredTours.map((tour, index) => (
+            <TourCard key={tour.id} tour={tour} hidden={collapsed && index >= initialCount!} />
+          ))}
+        </div>
+
+        {collapsed && (
+          <div className="mt-14 flex justify-center">
+            <button
+              onClick={() => setExpanded(true)}
+              className="rounded-full border border-night px-8 py-4 font-semibold text-night transition-colors hover:bg-night hover:text-white"
+            >
+              Показати всі екскурсії ({filteredTours.length})
+            </button>
+          </div>
+        )}
 
         {filteredTours.length === 0 && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-20 text-center">
-            <svg className="mx-auto mb-4 h-16 w-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9.172 9.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <p className="text-xl text-gray-500">За вашим запитом нічого не знайдено</p>
+          <div className="rounded-[28px] bg-stone px-6 py-16 text-center">
+            <p className="text-xl font-medium text-night">За запитом «{searchQuery || selectedTag}» екскурсій немає</p>
+            <p className="mt-2 text-ink/60">Спробуйте інше слово або подивіться всі маршрути.</p>
             <button
               onClick={() => {
                 setSearchQuery('');
                 setSelectedTag(null);
               }}
-              className="mt-4 font-bold text-purple-600 hover:underline"
+              className="mt-6 rounded-full bg-night px-6 py-3 font-semibold text-white hover:bg-azure-800"
             >
-              Скинути всі фільтри
+              Показати всі екскурсії
             </button>
-          </motion.div>
+          </div>
         )}
       </div>
     </section>

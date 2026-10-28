@@ -67,12 +67,12 @@ export default function ReviewForm({ onSuccess, tourId }: { onSuccess?: () => vo
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="rounded-lg bg-white p-8 shadow-lg">
-      <h3 className="mb-6 text-2xl font-bold text-gray-900">Залишити відгук</h3>
+    <form onSubmit={handleSubmit(onSubmit)} className="rounded-[28px] bg-white p-6 sm:p-10">
+      <h3 className="mb-8 font-display text-2xl font-medium tracking-tight text-night">Залишити відгук</h3>
 
       <div className="space-y-4">
         <div>
-          <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-700">
+          <label htmlFor="name" className="mb-2 block text-sm font-medium text-ink/80">
             Ваше ім'я *
           </label>
           <input
@@ -85,13 +85,13 @@ export default function ReviewForm({ onSuccess, tourId }: { onSuccess?: () => vo
                 message: 'Мінімум 2 символи',
               },
             })}
-            className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500"
+            className="w-full rounded-2xl border border-ink/15 bg-white px-4 py-3 text-ink transition-colors focus:border-azure-500 focus:outline-none focus:ring-4 focus:ring-azure-500/15"
           />
           {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>}
         </div>
 
         <div>
-          <label htmlFor="rating" className="mb-2 block text-sm font-medium text-gray-700">
+          <label htmlFor="rating" className="mb-2 block text-sm font-medium text-ink/80">
             Оцінка *
           </label>
           <select
@@ -100,7 +100,7 @@ export default function ReviewForm({ onSuccess, tourId }: { onSuccess?: () => vo
               required: 'Оберіть оцінку',
               valueAsNumber: true,
             })}
-            className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500"
+            className="w-full rounded-2xl border border-ink/15 bg-white px-4 py-3 text-ink transition-colors focus:border-azure-500 focus:outline-none focus:ring-4 focus:ring-azure-500/15"
           >
             <option value="">Оберіть оцінку</option>
             <option value="5">5 - Відмінно</option>
@@ -113,7 +113,7 @@ export default function ReviewForm({ onSuccess, tourId }: { onSuccess?: () => vo
         </div>
 
         <div>
-          <label htmlFor="text" className="mb-2 block text-sm font-medium text-gray-700">
+          <label htmlFor="text" className="mb-2 block text-sm font-medium text-ink/80">
             Ваш відгук *
           </label>
           <textarea
@@ -130,14 +130,14 @@ export default function ReviewForm({ onSuccess, tourId }: { onSuccess?: () => vo
                 message: 'Максимум 1000 символів',
               },
             })}
-            className="w-full resize-y rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500"
+            className="w-full resize-y rounded-2xl border border-ink/15 bg-white px-4 py-3 text-ink transition-colors focus:border-azure-500 focus:outline-none focus:ring-4 focus:ring-azure-500/15"
           />
           {errors.text && <p className="mt-1 text-sm text-red-500">{errors.text.message}</p>}
         </div>
 
         {submitStatus.type && (
           <div
-            className={`rounded-lg p-4 ${
+            className={`rounded-2xl p-4 ${
               submitStatus.type === 'success' ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'
             }`}
           >
@@ -148,7 +148,7 @@ export default function ReviewForm({ onSuccess, tourId }: { onSuccess?: () => vo
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full rounded-lg bg-purple-600 py-3 font-semibold text-white transition-colors hover:bg-purple-700 disabled:cursor-not-allowed disabled:opacity-50"
+          className="w-full rounded-full bg-night py-4 font-semibold text-white transition-colors hover:bg-azure-800 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isSubmitting ? 'Відправка...' : 'Відправити відгук'}
         </button>

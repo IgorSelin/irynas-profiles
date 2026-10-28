@@ -1,70 +1,87 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
+import { useRef } from 'react';
 import ImageWithSkeleton from './ImageWithSkeleton';
+import { gsap, useGSAP, MOTION_OK } from '@/lib/gsap';
+
+const facts = [
+  { value: '10+', label: 'років проводжу екскурсії' },
+  { value: '1000+', label: 'гостей з різних країн' },
+  { value: '25+', label: 'авторських маршрутів' },
+];
 
 export default function About() {
-  return (
-    <section id="about" className="bg-white py-20">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
-        >
-          <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">Про Ірину Красіцьку</h2>
-          <div className="mx-auto h-1 w-24 bg-purple-600"></div>
-          <p className="mt-4 text-lg text-gray-600">Досвідчений гід з авторським підходом до екскурсій</p>
-        </motion.div>
+  const sectionRef = useRef<HTMLElement>(null);
 
-        <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative"
-          >
-            <div className="relative h-[30rem] w-full overflow-hidden rounded-lg shadow-xl">
+  useGSAP(
+    () => {
+      gsap.matchMedia().add(MOTION_OK, () => {
+        gsap.fromTo(
+          '[data-about-photo]',
+          { yPercent: -8 },
+          {
+            yPercent: 8,
+            ease: 'none',
+            scrollTrigger: { trigger: '[data-about-frame]', start: 'top bottom', end: 'bottom top', scrub: true },
+          },
+        );
+      });
+    },
+    { scope: sectionRef },
+  );
+
+  return (
+    <section ref={sectionRef} id="about" className="bg-white py-24 md:py-32">
+      <div className="container mx-auto grid gap-14 px-4 md:px-6 lg:grid-cols-12 lg:gap-16">
+        <div className="lg:col-span-5">
+          <div data-about-frame className="relative aspect-[4/5] overflow-hidden rounded-[28px] bg-stone">
+            <div data-about-photo className="absolute -inset-y-[10%] inset-x-0">
               <ImageWithSkeleton
                 src="/images/guide-photo.webp"
                 alt="Ірина Красіцька - професійний екскурсовод у Львові"
                 fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
                 priority
               />
             </div>
-          </motion.div>
+          </div>
+        </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
-            <h3 className="text-3xl font-bold text-gray-900">Історія через сенси та людей</h3>
-            <h4 className="text-xl font-semibold text-gray-800">Авторський підхід до екскурсій по Львову</h4>
-            <p className="text-lg leading-relaxed text-gray-700">
-              Я вірю, що екскурсія — це не набір дат і прізвищ, а глибоке розуміння міста. Я показую Львів через деталі,
-              які більшість не помічає, і пояснюю їхній сенс простою мовою.
-            </p>
-            <p className="text-lg leading-relaxed text-gray-700">
-              Моя мета — щоб після нашої зустрічі Львів залишився у вашій пам'яті не як декорація, а як жива історія,
-              наповнена змістом. Я створюю досвід, який дозволяє відчути душу міста.
-            </p>
-            <div className="flex flex-wrap gap-4 pt-4">
-              <span className="rounded-full bg-purple-100 px-4 py-2 font-semibold text-purple-800">
-                10+ років досвіду
-              </span>
-              <span className="rounded-full bg-purple-100 px-4 py-2 font-semibold text-purple-800">
-                1000+ задоволених туристів
-              </span>
+        <div className="flex flex-col lg:col-span-7 lg:pt-6">
+          <h2 className="text-[clamp(2rem,4.2vw,3.5rem)] font-semibold leading-[1.05] text-night">
+            Про Ірину Красіцьку
+          </h2>
+          <p className="mt-8 max-w-2xl text-[clamp(1.35rem,2.2vw,1.9rem)] font-medium leading-snug text-ink">
+            Екскурсія — це не набір дат і прізвищ, а глибоке розуміння міста. Після нашої зустрічі Львів залишиться у
+            вашій пам’яті не декорацією, а живою історією.
+          </p>
+
+          <div className="mt-10 grid max-w-2xl gap-6 text-[17px] leading-relaxed text-ink/75">
+            <div>
+              <h3 className="mb-1 font-semibold text-ink">Історія через сенси та людей</h3>
+              <h4 className="mb-3 text-ink/60">Авторський підхід до екскурсій по Львову</h4>
+              <p>
+                Я показую Львів через деталі, які більшість не помічає, і пояснюю їхній сенс простою мовою. Символи на
+                фасадах, історії мешканців кам’яниць, причини, чому місто стало саме таким.
+              </p>
             </div>
-          </motion.div>
+            <p>
+              Моя мета — створити досвід, який дозволяє відчути душу міста. Тому кожен маршрут я готую сама: з архівів,
+              досліджень істориків і власних спостережень.
+            </p>
+          </div>
+
+          <dl className="mt-auto grid grid-cols-3 gap-4 border-t border-ink/10 pt-8 lg:mt-14">
+            {facts.map((fact) => (
+              <div key={fact.value} className="flex flex-col">
+                <dt className="mt-1 text-sm leading-snug text-ink/60 md:text-base">{fact.label}</dt>
+                <dd className="order-first font-display text-[clamp(1.6rem,3vw,2.5rem)] font-semibold tracking-tight text-azure-700">
+                  {fact.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
     </section>

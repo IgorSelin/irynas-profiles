@@ -75,7 +75,7 @@ export default async function LvivCenterPage() {
             <div className="container mx-auto px-4">
               <div className="mb-12 text-center">
                 <h1 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">Екскурсії по центру Львова</h1>
-                <div className="mx-auto mb-8 h-1 w-24 bg-purple-600"></div>
+                <div className="mx-auto mb-8 h-1 w-24 bg-azure-600"></div>
                 <p className="mx-auto max-w-3xl text-xl text-gray-600">
                   Історичний центр Львова внесений до списку Всесвітньої спадщини ЮНЕСКО. Це унікальний архітектурний
                   ансамбль, який зберігся з середньовіччя. Площа Ринок, Оперний театр, Вірменський квартал - все це
@@ -83,7 +83,7 @@ export default async function LvivCenterPage() {
                 </p>
               </div>
 
-              <div className="mb-12 rounded-lg bg-gradient-to-r from-purple-50 to-indigo-50 p-8">
+              <div className="mb-12 rounded-lg bg-gradient-to-r from-azure-50 to-azure-50 p-8">
                 <h2 className="mb-4 text-2xl font-bold text-gray-900">Про історичний центр</h2>
                 <div className="space-y-4 text-lg text-gray-700">
                   <p>
@@ -120,12 +120,12 @@ export default async function LvivCenterPage() {
                         />
                       </div>
                       <div className="p-6">
-                        <h3 className="mb-2 text-xl font-bold text-gray-900 transition-colors group-hover:text-purple-600">
+                        <h3 className="mb-2 text-xl font-bold text-gray-900 transition-colors group-hover:text-azure-600">
                           {tour.title}
                         </h3>
                         <p className="mb-4 line-clamp-3 text-gray-600">{tour.description.substring(0, 150)}...</p>
                         <div className="flex items-center justify-between">
-                          <span className="font-semibold text-purple-600">{tour.price}</span>
+                          <span className="font-semibold text-azure-600">{tour.price}</span>
                           <span className="text-gray-500">{tour.duration}</span>
                         </div>
                       </div>
@@ -134,14 +134,14 @@ export default async function LvivCenterPage() {
                 </div>
               </div>
 
-              <div className="rounded-lg bg-purple-50 p-8 text-center">
+              <div className="rounded-lg bg-azure-50 p-8 text-center">
                 <h2 className="mb-4 text-2xl font-bold text-gray-900">Замовити екскурсію по центру Львова</h2>
                 <p className="mb-6 text-lg text-gray-700">
                   Хочете дізнатися більше про історичний центр Львова? Замовте екскурсію з професійним гідом!
                 </p>
                 <Link
                   href="/#contact"
-                  className="inline-block rounded-lg bg-purple-600 px-8 py-4 text-lg font-semibold text-white transition-colors hover:bg-purple-700"
+                  className="inline-block rounded-lg bg-azure-600 px-8 py-4 text-lg font-semibold text-white transition-colors hover:bg-azure-700"
                 >
                   Замовити екскурсію
                 </Link>

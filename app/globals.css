@@ -4,14 +4,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground: #131a2c;
 }
 
 html,
@@ -21,6 +14,43 @@ body {
   overflow-x: hidden;
   width: 100%;
   position: relative;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-ink antialiased;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    @apply bg-gold-300 text-night;
+  }
+
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-azure-500;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 @layer utilities {
@@ -33,6 +63,10 @@ body {
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+  .animate-shimmer {
+    background: linear-gradient(90deg, #eef0f4 0%, #f8f9fb 50%, #eef0f4 100%);
+    background-size: 200% 100%;
   }
 }
 
@@ -91,4 +125,39 @@ body {
   margin-top: 1rem !important;
   margin-bottom: 0.5rem !important;
   color: #6b7280 !important;
+}
+
+/* Lviv history: pinned horizontal walk through the eras (components/LvivHistory.tsx). Must match its HORIZONTAL query */
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .history-track {
+    flex-direction: row;
+    width: max-content;
+    height: 100svh;
+  }
+  .history-intro {
+    width: 44vw;
+    padding: 0 4rem;
+  }
+  .history-era {
+    width: 112vw;
+    grid-template-columns: minmax(0, 27vw) minmax(0, 1fr);
+    padding: 0 4rem;
+    border-top-width: 0;
+    border-left-width: 1px;
+  }
+  .history-era-text {
+    max-width: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2.5rem;
+    font-size: 15px;
+  }
+  .history-progress {
+    display: block;
+  }
+}
+
+@media (min-width: 1280px) and (prefers-reduced-motion: no-preference) {
+  .history-era-text {
+    font-size: 16px;
+  }
 }

@@ -19,7 +19,7 @@ export default function ImageWithSkeleton({
 
   return (
     <div className={`relative overflow-hidden ${props.fill ? 'h-full w-full' : ''}`}>
-      {isLoading && <div className={`animate-shimmer absolute inset-0 z-10 ${skeletonClassName || ''}`} />}
+      {isLoading && <div className={`absolute inset-0 z-10 animate-shimmer ${skeletonClassName || ''}`} />}
       <Image
         src={src}
         alt={alt}
