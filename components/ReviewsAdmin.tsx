@@ -13,9 +13,12 @@ import { Review, ReviewReply } from '@/lib/types';
 const MAX_REPLY_LENGTH = 2000;
 
 function errorMessage(error: unknown) {
-  // Firestore rules only let Iryna's Google account write replies
+  // Firestore rules only let the listed Google accounts (by email) write replies
   if (error instanceof FirebaseError && error.code === 'permission-denied') {
-    return 'Цей акаунт не має права відповідати на відгуки. Увійдіть акаунтом Ірини.';
+    const email = getAuth(app).currentUser?.email;
+    return email
+      ? `Акаунт ${email} не має права відповідати на відгуки.`
+      : 'Google не передав email цього акаунта. Натисніть «Вийти» і увійдіть знову.';
   }
   return 'Не вдалося зберегти. Перевірте інтернет і спробуйте ще раз.';
 }
@@ -49,7 +52,10 @@ export default function ReviewsAdmin({ tourTitles }: { tourTitles: Record<string
   const signIn = async () => {
     setSignInError('');
     try {
-      await signInWithPopup(getAuth(app), new GoogleAuthProvider());
+      const provider = new GoogleAuthProvider();
+      // By default Firebase asks Google only for `profile`; the Firestore rules need the email
+      provider.addScope('email');
+      await signInWithPopup(getAuth(app), provider);
     } catch (error) {
       if (error instanceof FirebaseError && error.code === 'auth/popup-closed-by-user') return;
       console.error('Sign-in error:', error);
@@ -86,7 +92,7 @@ export default function ReviewsAdmin({ tourTitles }: { tourTitles: Record<string
     <AdminLayout>
       <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
         <p className="text-gray-700">
-          Ви увійшли як <span className="font-semibold">{user.email}</span>
+          Ви увійшли як <span className="font-semibold">{user.email || 'акаунт без email'}</span>
         </p>
         <button onClick={() => signOut(getAuth(app))} className="font-semibold text-purple-600 hover:text-purple-700">
           Вийти
