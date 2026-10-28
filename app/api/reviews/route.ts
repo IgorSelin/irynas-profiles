@@ -1,43 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidateTag } from 'next/cache';
 import { db } from '@/lib/firebase';
-import { collection, getDocs, addDoc, query, limit } from 'firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
+import { fetchReviewData, selectReviews } from '@/lib/reviews';
+import { REVIEWS_CACHE_TAG } from '@/lib/serverReviews';
 
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const tourId = searchParams.get('tourId');
+    const tourId = searchParams.get('tourId') || undefined;
 
-    const reviewsRef = collection(db, 'reviews');
-    let reviews;
-
-    try {
-      const q = query(reviewsRef, limit(200));
-      const querySnapshot = await getDocs(q);
-
-      reviews = querySnapshot.docs
-        .map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }))
-        .filter((review: any) => {
-          if (review.approved !== undefined && review.approved !== true) return false;
-
-          if (tourId) {
-            return review.tourId === tourId;
-          } else {
-            return !review.tourId || review.tourId === undefined;
-          }
-        })
-        .sort((a: any, b: any) => {
-          const dateA = new Date(a.date || 0).getTime();
-          const dateB = new Date(b.date || 0).getTime();
-          return dateB - dateA;
-        })
-        .slice(0, 50);
-    } catch (error: any) {
-      console.error('Error fetching reviews:', error);
-      throw error;
-    }
+    const reviews = selectReviews(await fetchReviewData(), tourId);
 
     return NextResponse.json({ reviews });
   } catch (error: any) {
@@ -90,6 +63,7 @@ export async function POST(request: NextRequest) {
     };
 
     const docRef = await addDoc(reviewsRef, newReview);
+    revalidateTag(REVIEWS_CACHE_TAG);
 
     return NextResponse.json({
       success: true,

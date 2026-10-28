@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Reviews from '@/components/Reviews';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { getReviews } from '@/lib/serverReviews';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com';
 
@@ -30,12 +31,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ReviewsPage() {
+// Re-render hourly so new reviews and replies reach the HTML that crawlers read
+export const revalidate = 3600;
+
+export default async function ReviewsPage() {
+  const reviews = await getReviews();
+
   return (
     <main className="min-h-screen">
       <Navbar />
       <div className="pt-20">
-        <Reviews />
+        <Reviews initialReviews={reviews} />
       </div>
       <Footer />
     </main>

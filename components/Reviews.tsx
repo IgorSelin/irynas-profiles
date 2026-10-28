@@ -5,29 +5,26 @@ import Link from 'next/link';
 import ReviewCard from './ReviewCard';
 import ReviewForm from './ReviewForm';
 import { Review } from '@/lib/types';
-import { staticReviews } from '@/lib/staticReviews';
 
 interface ReviewsProps {
+  // Server-rendered list (may be up to an hour old); refreshed from the API after mount
+  initialReviews: Review[];
   limit?: number;
 }
 
-export default function Reviews({ limit }: ReviewsProps) {
-  const [reviews, setReviews] = useState<Review[]>(staticReviews);
-  const [isLoading, setIsLoading] = useState(true);
+export default function Reviews({ initialReviews, limit }: ReviewsProps) {
+  const [reviews, setReviews] = useState<Review[]>(initialReviews);
 
   const fetchReviews = async () => {
     try {
       const response = await fetch('/api/reviews', {
         cache: 'no-store',
       });
+      if (!response.ok) return;
       const data = await response.json();
-      const firebaseReviews = data.reviews || [];
-      // Combine Firebase reviews with static reviews
-      setReviews([...firebaseReviews, ...staticReviews]);
+      setReviews(data.reviews || []);
     } catch (error) {
       console.error('Error fetching reviews:', error);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -76,10 +73,6 @@ export default function Reviews({ limit }: ReviewsProps) {
                 displayedReviews.map((review, index) => (
                   <ReviewCard key={review.id || index} review={review} index={index} />
                 ))
-              ) : isLoading ? (
-                <div className="col-span-2 py-12 text-center">
-                  <p className="text-gray-600">Завантаження відгуків...</p>
-                </div>
               ) : (
                 <div className="col-span-2 py-12 text-center">
                   <p className="text-gray-600">Поки що немає відгуків. Будьте першим!</p>

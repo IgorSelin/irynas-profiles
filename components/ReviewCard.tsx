@@ -37,6 +37,15 @@ export default function ReviewCard({ review, index }: ReviewCardProps) {
       </div>
       <div className="mb-3 flex items-center">{renderStars(review.rating)}</div>
       <p className="leading-relaxed text-gray-700">{review.text}</p>
+      {review.reply && (
+        <div className="mt-4 rounded-r-lg border-l-4 border-purple-600 bg-purple-50 p-4">
+          <div className="mb-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
+            <p className="font-semibold text-purple-900">Відповідь Ірини Красіцької</p>
+            <span className="text-sm text-gray-500">{formatDate(review.reply.date)}</span>
+          </div>
+          <p className="whitespace-pre-line leading-relaxed text-gray-700">{review.reply.text}</p>
+        </div>
+      )}
     </div>
   );
 }

@@ -66,6 +66,29 @@ npm run dev
    - `date` (timestamp)
    - `approved` (boolean)
 
+### Відповіді Ірини на відгуки
+
+Ірина відповідає на відгуки на сторінці `/admin/reviews` (вхід через Google). Відповіді зберігаються в колекції
+`reviewReplies` (ID документа = ID відгуку; для відгуків з `lib/staticReviews.ts` це `static-N`) і показуються під
+відгуком на сайті. Сторінки з відгуками оновлюються на сервері раз на годину, відвідувачі бачать нову відповідь одразу.
+
+Одноразове налаштування у Firebase Console:
+
+1. **Authentication → Sign-in method** — увімкнути **Google**.
+2. **Authentication → Settings → Authorized domains** — додати `krasitskatours.com` (і `www.krasitskatours.com`, якщо використовується).
+3. **Firestore → Rules** — додати до наявних правил (правила для `reviews` не чіпати) і натиснути **Publish**:
+
+```
+match /reviewReplies/{reviewId} {
+  allow read: if true;
+  allow write: if request.auth != null
+    && request.auth.token.email_verified
+    && request.auth.token.email in ['krasiraira@gmail.com'];
+}
+```
+
+Блок має бути всередині `match /databases/{database}/documents { ... }`. Щоб дати доступ ще комусь, додайте email у список.
+
 ## Структура проєкту
 
 ```
