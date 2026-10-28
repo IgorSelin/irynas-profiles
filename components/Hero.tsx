@@ -1,12 +1,30 @@
 'use client';
 
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap, useGSAP, MOTION_OK } from '@/lib/gsap';
 import { PhoneIcon, PHONE } from './icons';
 
 export default function Hero() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://krasitskatours.com';
   const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // iOS Low Power Mode (and some data-saver modes) block muted autoplay; a tap anywhere lets the video start
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const start = () => {
+      video.play().catch(() => {});
+    };
+    video.play().catch(() => {
+      window.addEventListener('touchend', start, { once: true, passive: true });
+      window.addEventListener('click', start, { once: true });
+    });
+    return () => {
+      window.removeEventListener('touchend', start);
+      window.removeEventListener('click', start);
+    };
+  }, []);
 
   const videoSchema = {
     '@context': 'https://schema.org',
@@ -56,6 +74,7 @@ export default function Hero() {
       >
         <div className="relative flex flex-1 animate-lens-open flex-col overflow-hidden rounded-[28px] bg-azure-900">
           <video
+            ref={videoRef}
             data-hero-video
             autoPlay
             loop
