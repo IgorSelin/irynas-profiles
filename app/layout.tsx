@@ -63,7 +63,9 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    // Search Console (URL-prefix property https://krasitskatours.com). The token is public by design.
+    // cspell:disable-next-line
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'Nn_QysGucNvNxSEZmPmScVSjzOOTfCNNQPusYgiSrgI',
   },
   icons: {
     icon: [
