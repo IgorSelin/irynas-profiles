@@ -12,24 +12,23 @@ import { Review } from '@/lib/types';
 
 interface TourDetailProps {
   tour: Tour;
+  // Server-rendered list (may be up to an hour old); refreshed from the API after mount
+  initialReviews: Review[];
 }
 
-export default function TourDetail({ tour }: TourDetailProps) {
-  const [reviews, setReviews] = useState<Review[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+export default function TourDetail({ tour, initialReviews }: TourDetailProps) {
+  const [reviews, setReviews] = useState<Review[]>(initialReviews);
 
   const fetchReviews = useCallback(async () => {
-    setIsLoading(true);
     try {
       const response = await fetch(`/api/reviews?tourId=${tour.id}`, {
         cache: 'no-store',
       });
+      if (!response.ok) return;
       const data = await response.json();
       setReviews(data.reviews || []);
     } catch (error) {
       console.error('Error fetching reviews:', error);
-    } finally {
-      setIsLoading(false);
     }
   }, [tour.id]);
 
@@ -283,11 +282,7 @@ export default function TourDetail({ tour }: TourDetailProps) {
           </div>
 
           <div className="mb-12 grid gap-8 md:grid-cols-2">
-            {isLoading ? (
-              <div className="col-span-2 py-12 text-center">
-                <p className="text-gray-600">Завантаження відгуків...</p>
-              </div>
-            ) : reviews.length > 0 ? (
+            {reviews.length > 0 ? (
               reviews.map((review, index) => <ReviewCard key={review.id || index} review={review} index={index} />)
             ) : (
               <div className="col-span-2 py-12 text-center">

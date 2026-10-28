@@ -5,6 +5,7 @@ import Reviews from '@/components/Reviews';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import { getTours } from '@/lib/content';
+import { getReviews } from '@/lib/serverReviews';
 
 const About = dynamic(() => import('@/components/About'), {
   loading: () => <div className="h-96 w-full animate-pulse bg-gray-50" />,
@@ -25,8 +26,11 @@ const FAQ = dynamic(() => import('@/components/FAQ'), {
   loading: () => <div className="h-96 w-full animate-pulse bg-gray-50" />,
 });
 
+// Re-render hourly so new reviews and replies reach the HTML that crawlers read
+export const revalidate = 3600;
+
 export default async function Home() {
-  const tours = await getTours();
+  const [tours, reviews] = await Promise.all([getTours(), getReviews()]);
 
   return (
     <main className="min-h-screen overflow-x-hidden">
@@ -37,7 +41,7 @@ export default async function Home() {
       <Tours tours={tours} />
       <HowItWorks />
       <LvivHistory />
-      <Reviews limit={10} />
+      <Reviews initialReviews={reviews} limit={10} />
       <FAQ />
       <Contact />
       <Footer />

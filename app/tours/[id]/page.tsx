@@ -5,6 +5,10 @@ import TourDetail from '@/components/TourDetail';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { getTours } from '@/lib/content';
+import { getReviews } from '@/lib/serverReviews';
+
+// Re-render hourly so new reviews and replies reach the HTML that crawlers read
+export const revalidate = 3600;
 
 async function getTour(slugOrId: string) {
   const tours = await getTours();
@@ -68,6 +72,8 @@ export default async function TourPage({ params }: { params: { id: string } }) {
   if (!tour) {
     notFound();
   }
+
+  const reviews = await getReviews(tour.id);
 
   const priceMatch = tour.price?.match(/(\d+)/);
   const priceValue = priceMatch ? priceMatch[1] : '200';
@@ -142,7 +148,7 @@ export default async function TourPage({ params }: { params: { id: string } }) {
               ]}
             />
           </div>
-          <TourDetail tour={tour} />
+          <TourDetail tour={tour} initialReviews={reviews} />
         </div>
         <Footer />
       </main>

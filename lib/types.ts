@@ -1,3 +1,8 @@
+export interface ReviewReply {
+  text: string;
+  date: string;
+}
+
 export interface Review {
   id?: string;
   name: string;
@@ -6,6 +11,7 @@ export interface Review {
   date: string;
   approved?: boolean;
   tourId?: string;
+  reply?: ReviewReply;
 }
 
 export interface Tour {
