@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { PhoneIcon, PHONE, PHONE_LABEL } from './icons';
 
 interface FAQItem {
   question: string;
@@ -115,62 +115,71 @@ export default function FAQ() {
           __html: JSON.stringify(structuredData),
         }}
       />
-      <section id="faq" className="bg-gray-50 py-20">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-12 text-center"
-          >
-            <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">Часті питання про екскурсії</h2>
-            <div className="mx-auto h-1 w-24 bg-purple-600"></div>
-            <p className="mt-4 text-lg text-gray-600">Відповіді на найпоширеніші питання про екскурсії по Львову</p>
-          </motion.div>
-
-          <div className="mx-auto max-w-4xl space-y-4">
-            {faqData.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="overflow-hidden rounded-lg bg-white shadow-md transition-shadow hover:shadow-lg"
+      <section id="faq" className="bg-stone py-24 md:py-32">
+        <div className="container mx-auto grid gap-12 px-4 md:px-6 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-4">
+            <div className="lg:sticky lg:top-32">
+              <h2 className="text-[clamp(2rem,4.2vw,3.5rem)] font-semibold leading-[1.05] text-night">
+                Часті питання про екскурсії
+              </h2>
+              <p className="mt-5 max-w-sm text-lg leading-relaxed text-ink/70">
+                Відповіді на найпоширеніші питання про екскурсії по Львову. Не знайшли свого — просто подзвоніть.
+              </p>
+              <a
+                href={`tel:${PHONE}`}
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-night px-6 py-3.5 font-semibold text-white transition-colors hover:bg-azure-800"
               >
-                <button
-                  onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                  className="flex w-full items-center justify-between p-6 text-left focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  aria-expanded={openIndex === index}
-                >
-                  <span className="text-lg font-semibold text-gray-900">{item.question}</span>
-                  <svg
-                    className={`h-5 w-5 transform text-purple-600 transition-transform ${
-                      openIndex === index ? 'rotate-180' : ''
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                <AnimatePresence>
-                  {openIndex === index && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
+                <PhoneIcon className="h-4 w-4" />
+                {PHONE_LABEL}
+              </a>
+            </div>
+          </div>
+
+          <div className="border-t border-ink/15 lg:col-span-8">
+            {faqData.map((item, index) => {
+              const open = openIndex === index;
+              return (
+                <div key={item.question} className="border-b border-ink/15">
+                  <h3>
+                    <button
+                      onClick={() => setOpenIndex(open ? null : index)}
+                      className="group flex w-full items-center justify-between gap-6 py-6 text-left"
+                      aria-expanded={open}
+                      aria-controls={`faq-answer-${index}`}
                     >
-                      <div className="border-t border-gray-200 p-6 leading-relaxed text-gray-700">{item.answer}</div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            ))}
+                      <span className="text-lg font-medium text-night transition-colors group-hover:text-azure-700 md:text-xl">
+                        {item.question}
+                      </span>
+                      <span
+                        className={`relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors ${
+                          open ? 'bg-night text-white' : 'bg-white text-night'
+                        }`}
+                        aria-hidden="true"
+                      >
+                        <span className="absolute h-0.5 w-3.5 rounded bg-current" />
+                        <span
+                          className={`absolute h-3.5 w-0.5 rounded bg-current transition-transform duration-300 ${
+                            open ? 'rotate-90 scale-y-0' : ''
+                          }`}
+                        />
+                      </span>
+                    </button>
+                  </h3>
+                  {/* Answers stay in the HTML when closed; the grid-rows trick animates the height */}
+                  <div
+                    id={`faq-answer-${index}`}
+                    aria-hidden={!open}
+                    className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                      open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="max-w-[65ch] pb-7 pr-14 leading-relaxed text-ink/75">{item.answer}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -47,7 +47,7 @@ export default function TourDetail({ tour, initialReviews }: TourDetailProps) {
         >
           <Link
             href="/tours"
-            className="inline-flex items-center font-semibold text-purple-600 transition-colors hover:text-purple-700"
+            className="inline-flex items-center font-semibold text-azure-600 transition-colors hover:text-azure-700"
           >
             <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -69,7 +69,7 @@ export default function TourDetail({ tour, initialReviews }: TourDetailProps) {
             <p className="mb-8 text-xl leading-relaxed text-gray-700">{tour.description}</p>
 
             <div className="mb-8 grid gap-6 md:grid-cols-3">
-              <div className="flex items-center text-purple-600">
+              <div className="flex items-center text-azure-600">
                 <svg className="mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
@@ -116,7 +116,7 @@ export default function TourDetail({ tour, initialReviews }: TourDetailProps) {
                 </div>
               )}
               {tour.type && (
-                <div className="flex items-center text-indigo-600">
+                <div className="flex items-center text-azure-600">
                   <svg className="mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       strokeLinecap="round"
@@ -146,7 +146,7 @@ export default function TourDetail({ tour, initialReviews }: TourDetailProps) {
                   {tour.highlights.map((highlight, i) => (
                     <li key={i} className="flex items-center text-lg text-gray-700">
                       <svg
-                        className="mr-3 h-5 w-5 flex-shrink-0 text-purple-600"
+                        className="mr-3 h-5 w-5 flex-shrink-0 text-azure-600"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -163,11 +163,11 @@ export default function TourDetail({ tour, initialReviews }: TourDetailProps) {
               </div>
             )}
 
-            <div className="mb-8 rounded-lg bg-purple-50 p-6">
+            <div className="mb-8 rounded-lg bg-azure-50 p-6">
               <h3 className="mb-4 text-2xl font-bold text-gray-900">Що взяти з собою:</h3>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-center">
-                  <svg className="mr-2 h-5 w-5 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="mr-2 h-5 w-5 text-azure-600" fill="currentColor" viewBox="0 0 20 20">
                     <path
                       fillRule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -177,7 +177,7 @@ export default function TourDetail({ tour, initialReviews }: TourDetailProps) {
                   Зручне взуття для пішої прогулянки
                 </li>
                 <li className="flex items-center">
-                  <svg className="mr-2 h-5 w-5 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="mr-2 h-5 w-5 text-azure-600" fill="currentColor" viewBox="0 0 20 20">
                     <path
                       fillRule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -187,7 +187,7 @@ export default function TourDetail({ tour, initialReviews }: TourDetailProps) {
                   Вода (особливо влітку)
                 </li>
                 <li className="flex items-center">
-                  <svg className="mr-2 h-5 w-5 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="mr-2 h-5 w-5 text-azure-600" fill="currentColor" viewBox="0 0 20 20">
                     <path
                       fillRule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -197,7 +197,7 @@ export default function TourDetail({ tour, initialReviews }: TourDetailProps) {
                   Фотоапарат або телефон для фотографій
                 </li>
                 <li className="flex items-center">
-                  <svg className="mr-2 h-5 w-5 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="mr-2 h-5 w-5 text-azure-600" fill="currentColor" viewBox="0 0 20 20">
                     <path
                       fillRule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -250,7 +250,7 @@ export default function TourDetail({ tour, initialReviews }: TourDetailProps) {
 
             <a
               href="tel:+380975383348"
-              className="inline-flex w-full items-center justify-center rounded-lg bg-purple-600 px-8 py-4 text-lg font-semibold text-white transition-colors hover:bg-purple-700 md:w-auto"
+              className="inline-flex w-full items-center justify-center rounded-lg bg-azure-600 px-8 py-4 text-lg font-semibold text-white transition-colors hover:bg-azure-700 md:w-auto"
             >
               <svg className="mr-2 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
@@ -273,7 +273,7 @@ export default function TourDetail({ tour, initialReviews }: TourDetailProps) {
         >
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">Відгуки про цю екскурсію</h2>
-            <div className="mx-auto mb-8 h-1 w-24 bg-purple-600"></div>
+            <div className="mx-auto mb-8 h-1 w-24 bg-azure-600"></div>
             {reviews.length > 0 && (
               <p className="text-lg text-gray-600">
                 {reviews.length} {reviews.length === 1 ? 'відгук' : reviews.length < 5 ? 'відгуки' : 'відгуків'}

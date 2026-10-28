@@ -43,7 +43,7 @@ export default async function BlogPage() {
           <div className="container mx-auto px-4">
             <div className="mb-12 text-center">
               <h1 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">Блог про Львів</h1>
-              <div className="mx-auto mb-8 h-1 w-24 bg-purple-600"></div>
+              <div className="mx-auto mb-8 h-1 w-24 bg-azure-600"></div>
               <p className="mx-auto max-w-2xl text-xl text-gray-600">
                 Цікаві статті про історію, культуру та архітектуру Львова від професійного екскурсовода
               </p>
@@ -76,11 +76,11 @@ export default async function BlogPage() {
                           <span className="mx-2">•</span>
                           <span>{post.readTime} читання</span>
                         </div>
-                        <h2 className="mb-3 text-2xl font-bold text-gray-900 transition-colors group-hover:text-purple-600">
+                        <h2 className="mb-3 text-2xl font-bold text-gray-900 transition-colors group-hover:text-azure-600">
                           {post.title}
                         </h2>
                         <p className="mb-4 text-gray-600">{post.description}</p>
-                        <span className="inline-flex items-center font-semibold text-purple-600 group-hover:text-purple-700">
+                        <span className="inline-flex items-center font-semibold text-azure-600 group-hover:text-azure-700">
                           Читати далі
                           <svg
                             className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"

@@ -99,7 +99,7 @@ export default function Gallery() {
                 key={cat}
                 onClick={() => setFilter(cat)}
                 className={`rounded-full px-6 py-2 transition-all duration-300 ${
-                  filter === cat ? 'bg-purple-600 text-white shadow-lg' : 'bg-white text-gray-600 hover:bg-purple-50'
+                  filter === cat ? 'bg-azure-600 text-white shadow-lg' : 'bg-white text-gray-600 hover:bg-azure-50'
                 }`}
               >
                 {cat}
@@ -109,7 +109,7 @@ export default function Gallery() {
               href="https://maps.app.goo.gl/Z7JtYM7AdYAdSPKJ9"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center space-x-2 rounded-full border border-purple-600 bg-white px-6 py-2 text-purple-600 transition-all duration-300 hover:bg-purple-50"
+              className="flex items-center space-x-2 rounded-full border border-azure-600 bg-white px-6 py-2 text-azure-600 transition-all duration-300 hover:bg-azure-50"
             >
               <span>Всі фото на Google Maps</span>
               <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">

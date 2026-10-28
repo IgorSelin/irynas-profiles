@@ -76,7 +76,7 @@ export default function ReviewsAdmin({ tourTitles }: { tourTitles: Record<string
         <p className="mb-6 text-gray-700">Увійдіть, щоб відповідати на відгуки на сайті.</p>
         <button
           onClick={signIn}
-          className="rounded-full bg-purple-600 px-8 py-3 font-semibold text-white transition-colors hover:bg-purple-700"
+          className="rounded-full bg-azure-600 px-8 py-3 font-semibold text-white transition-colors hover:bg-azure-700"
         >
           Увійти через Google
         </button>
@@ -94,7 +94,7 @@ export default function ReviewsAdmin({ tourTitles }: { tourTitles: Record<string
         <p className="text-gray-700">
           Ви увійшли як <span className="font-semibold">{user.email || 'акаунт без email'}</span>
         </p>
-        <button onClick={() => signOut(getAuth(app))} className="font-semibold text-purple-600 hover:text-purple-700">
+        <button onClick={() => signOut(getAuth(app))} className="font-semibold text-azure-600 hover:text-azure-700">
           Вийти
         </button>
       </div>
@@ -109,7 +109,7 @@ export default function ReviewsAdmin({ tourTitles }: { tourTitles: Record<string
               type="checkbox"
               checked={onlyUnanswered}
               onChange={(event) => setOnlyUnanswered(event.target.checked)}
-              className="h-4 w-4 accent-purple-600"
+              className="h-4 w-4 accent-azure-600"
             />
             Лише без відповіді ({unansweredCount} з {reviews.length})
           </label>
@@ -117,7 +117,7 @@ export default function ReviewsAdmin({ tourTitles }: { tourTitles: Record<string
           <div className="space-y-8">
             {shownReviews?.map((review, index) => (
               <div key={review.id}>
-                <p className="mb-2 text-sm font-medium text-purple-700">
+                <p className="mb-2 text-sm font-medium text-azure-700">
                   {review.tourId ? tourTitles[review.tourId] || 'Екскурсія' : 'Загальний відгук'}
                 </p>
                 <ReviewCard review={review} index={index} />
@@ -187,7 +187,7 @@ function ReplyEditor({ review, onChange }: { review: Review; onChange: (reply: R
             setDraft(review.reply?.text ?? '');
             setIsEditing(true);
           }}
-          className="font-semibold text-purple-600 hover:text-purple-700"
+          className="font-semibold text-azure-600 hover:text-azure-700"
         >
           {review.reply ? 'Редагувати відповідь' : 'Відповісти'}
         </button>
@@ -209,14 +209,14 @@ function ReplyEditor({ review, onChange }: { review: Review; onChange: (reply: R
         rows={4}
         maxLength={MAX_REPLY_LENGTH}
         placeholder={`Відповідь для ${review.name}...`}
-        className="w-full resize-y rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500"
+        className="w-full resize-y rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-azure-500"
       />
       {error && <p className="mt-2 text-red-600">{error}</p>}
       <div className="mt-3 flex gap-4">
         <button
           onClick={save}
           disabled={isSaving || !draft.trim()}
-          className="rounded-lg bg-purple-600 px-6 py-2 font-semibold text-white transition-colors hover:bg-purple-700 disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-lg bg-azure-600 px-6 py-2 font-semibold text-white transition-colors hover:bg-azure-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isSaving ? 'Збереження...' : 'Опублікувати'}
         </button>
