@@ -68,12 +68,12 @@ export default function Navbar() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex h-16 items-center justify-between md:h-20">
           <Link href="/" className="relative z-[70] flex items-center gap-3" onClick={() => setIsOpen(false)}>
-            <Monogram className="h-10 w-10 text-[13px] md:h-11 md:w-11 md:text-sm" />
+            <Monogram className="h-10 w-10 md:h-11 md:w-11" />
             <span className="flex flex-col leading-tight">
               <span className="font-display text-[15px] font-semibold tracking-tight md:text-base">
                 Ірина Красіцька
               </span>
-              <span className={`text-[13px] ${light ? 'text-ink/60' : 'text-white/70'}`}>екскурсії Львовом</span>
+              <span className={`text-[13px] ${light ? 'text-ink/65' : 'text-white/70'}`}>екскурсії Львовом</span>
             </span>
           </Link>
 

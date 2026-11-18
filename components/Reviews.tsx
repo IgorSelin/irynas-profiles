@@ -75,12 +75,12 @@ export default function Reviews({ initialReviews, limit }: ReviewsProps) {
                   {averageRating.toFixed(1)}
                 </span>
                 <span className="flex flex-col gap-1">
-                  <span className="flex gap-0.5 text-gold-500" aria-hidden="true">
+                  <span className="flex gap-0.5 text-gold-600" aria-hidden="true">
                     {Array.from({ length: 5 }).map((_, i) => (
                       <StarIcon key={i} className="h-5 w-5" />
                     ))}
                   </span>
-                  <span className="text-ink/60">середня оцінка, відгуків: {totalReviews}</span>
+                  <span className="text-ink/65">середня оцінка, відгуків: {totalReviews}</span>
                 </span>
               </div>
             )}

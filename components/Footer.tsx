@@ -19,7 +19,7 @@ export default function Footer() {
         <div className="grid gap-12 border-b border-white/10 pb-14 md:grid-cols-2 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <Link href="/" className="inline-flex items-center gap-3">
-              <Monogram className="h-12 w-12 text-sm" />
+              <Monogram className="h-12 w-12" />
               <span className="flex flex-col leading-tight">
                 <span className="font-display text-lg font-semibold tracking-tight">Ірина Красіцька</span>
                 <span className="text-sm text-white/60">екскурсії Львовом</span>
@@ -68,7 +68,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="pt-8 text-sm text-white/40">&copy; {currentYear} Ірина Красіцька. Всі права захищені.</p>
+        <p className="pt-8 text-sm text-white/60">&copy; {currentYear} Ірина Красіцька. Всі права захищені.</p>
       </div>
     </footer>
   );

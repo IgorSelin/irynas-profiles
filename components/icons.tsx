@@ -64,14 +64,14 @@ export function SocialIcon({ path, className = 'h-5 w-5' }: IconProps & { path: 
   );
 }
 
-// Monogram used as the site mark: the initials set in the display face on lion gold
-export function Monogram({ className = 'h-10 w-10 text-sm' }: IconProps) {
+// Site mark: the calligraphic ІК from the favicon, painted in night blue on lion gold (mask in globals.css)
+export function Monogram({ className = 'h-10 w-10' }: IconProps) {
   return (
     <span
-      className={`inline-flex shrink-0 items-center justify-center rounded-full bg-gold-400 font-display font-semibold tracking-tight text-night ${className}`}
+      className={`inline-flex shrink-0 items-center justify-center rounded-full bg-gold-400 text-night ${className}`}
       aria-hidden="true"
     >
-      ІК
+      <span className="brand-mark h-[72%] w-[72%]" />
     </span>
   );
 }

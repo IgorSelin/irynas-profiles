@@ -11,7 +11,7 @@ html,
 body {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
-  overflow-x: hidden;
+  overflow-x: clip;
   width: 100%;
   position: relative;
 }
@@ -35,6 +35,35 @@ body {
 
   :focus-visible {
     @apply outline outline-2 outline-offset-2 outline-azure-500;
+  }
+}
+
+/* Site mark (components/icons.tsx Monogram): the favicon's ІК used as a mask, so it takes the text colour */
+.brand-mark {
+  background-color: currentColor;
+  -webkit-mask: url('/images/brand-mark.png') center / contain no-repeat;
+  mask: url('/images/brand-mark.png') center / contain no-repeat;
+}
+
+/* Hero copy (components/Hero.tsx): soft dark pools under the headline and the side text keep them readable on any
+   video frame without dimming the whole picture. Painted by the copy container, which is its own stacking context,
+   so the pools stay under the text however the children animate. Spots follow the layout: stacked below lg, side by side from lg */
+.hero-scrim::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(65% 22% at 45% 24%, rgb(0 0 0 / 0.4), transparent 100%),
+    radial-gradient(75% 40% at 50% 66%, rgb(0 0 0 / 0.62), transparent 100%);
+}
+
+@media (min-width: 1024px) {
+  .hero-scrim::before {
+    background:
+      radial-gradient(40% 60% at 34% 55%, rgb(0 0 0 / 0.4), transparent 100%),
+      radial-gradient(24% 75% at 82% 38%, rgb(0 0 0 / 0.7), transparent 100%);
   }
 }
 

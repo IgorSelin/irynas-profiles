@@ -36,6 +36,8 @@ const config: Config = {
           400: '#E2B33C',
           500: '#C99A26',
           600: '#A47B1C',
+          // Darkest gold: the only one that passes WCAG AA as small text on white/stone
+          700: '#85621A',
         },
       },
       fontFamily: {

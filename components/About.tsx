@@ -60,7 +60,7 @@ export default function About() {
           <div className="mt-10 grid max-w-2xl gap-6 text-[17px] leading-relaxed text-ink/75">
             <div>
               <h3 className="mb-1 font-semibold text-ink">Історія через сенси та людей</h3>
-              <h4 className="mb-3 text-ink/60">Авторський підхід до екскурсій по Львову</h4>
+              <h4 className="mb-3 text-ink/65">Авторський підхід до екскурсій по Львову</h4>
               <p>
                 Я показую Львів через деталі, які більшість не помічає, і пояснюю їхній сенс простою мовою. Символи на
                 фасадах, історії мешканців кам’яниць, причини, чому місто стало саме таким.
@@ -75,7 +75,7 @@ export default function About() {
           <dl className="mt-auto grid grid-cols-3 gap-4 border-t border-ink/10 pt-8 lg:mt-14">
             {facts.map((fact) => (
               <div key={fact.value} className="flex flex-col">
-                <dt className="mt-1 text-sm leading-snug text-ink/60 md:text-base">{fact.label}</dt>
+                <dt className="mt-1 text-sm leading-snug text-ink/65 md:text-base">{fact.label}</dt>
                 <dd className="order-first font-display text-[clamp(1.6rem,3vw,2.5rem)] font-semibold tracking-tight text-azure-700">
                   {fact.value}
                 </dd>

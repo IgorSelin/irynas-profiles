@@ -1,3 +1,6 @@
+import ReasonsIndex from './ReasonsIndex';
+import { PhoneIcon, PHONE, PHONE_LABEL } from './icons';
+
 const reasons = [
   {
     title: 'Авторський підхід до екскурсій',
@@ -29,37 +32,68 @@ const reasons = [
   },
 ];
 
+const items = reasons.map((reason, i) => ({ id: `reason-${i + 1}`, title: reason.title }));
+
+function HelpCard({ className = '' }: { className?: string }) {
+  return (
+    <div className={`rounded-[24px] bg-night p-7 text-white ${className}`}>
+      <p className="font-display text-lg font-medium leading-snug">Не знаєте, яку екскурсію обрати?</p>
+      <p className="mt-2 text-[15px] leading-relaxed text-white/70">
+        Розкажіть про вашу групу, і я підберу маршрут під ваші інтереси.
+      </p>
+      <a
+        href={`tel:${PHONE}`}
+        className="mt-5 inline-flex items-center gap-2 rounded-full bg-gold-400 px-5 py-3 text-[15px] font-semibold text-night transition-colors hover:bg-gold-300"
+      >
+        <PhoneIcon className="h-4 w-4" />
+        {PHONE_LABEL}
+      </a>
+    </div>
+  );
+}
+
 export default function WhyChoose() {
   return (
     <section id="why-choose" className="bg-stone py-24 md:py-32">
       <div className="container mx-auto grid gap-12 px-4 md:px-6 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-4">
-          <div className="lg:sticky lg:top-32">
+          <div className="flex h-full flex-col">
             <h2 className="text-[clamp(2rem,4.2vw,3.5rem)] font-semibold leading-[1.05] text-night">
               Чому обирають мене
             </h2>
             <p className="mt-5 max-w-sm text-lg leading-relaxed text-ink/70">
               Професійний підхід та авторська методика екскурсій по Львову
             </p>
+            <div className="mt-10 hidden max-w-sm lg:sticky lg:top-28 lg:block">
+              <ReasonsIndex items={items} />
+              <HelpCard className="mt-8" />
+            </div>
           </div>
         </div>
 
-        <div className="divide-y divide-ink/10 lg:col-span-8">
-          {reasons.map((reason) => (
-            <article
-              key={reason.title}
-              className="grid gap-4 py-10 first:pt-0 last:pb-0 md:grid-cols-[minmax(0,15rem)_1fr] md:gap-10"
-            >
-              <h3 className="font-display text-xl font-medium leading-snug tracking-tight text-night">
-                {reason.title}
-              </h3>
-              <div className="max-w-[62ch] space-y-4 text-[17px] leading-relaxed text-ink/75">
-                {reason.paragraphs.map((paragraph) => (
-                  <p key={paragraph.slice(0, 24)}>{paragraph}</p>
-                ))}
-              </div>
-            </article>
-          ))}
+        <div className="lg:col-span-8">
+          <div className="divide-y divide-ink/10">
+            {reasons.map((reason, i) => (
+              <article
+                key={reason.title}
+                id={items[i].id}
+                className="grid gap-4 py-10 first:pt-0 last:pb-0 md:grid-cols-[minmax(0,15rem)_1fr] md:gap-10"
+              >
+                <h3 className="font-display text-xl font-medium leading-snug tracking-tight text-night">
+                  <span className="mb-2 block text-xs font-semibold tabular-nums text-gold-700">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  {reason.title}
+                </h3>
+                <div className="max-w-[62ch] space-y-4 text-[17px] leading-relaxed text-ink/75">
+                  {reason.paragraphs.map((paragraph) => (
+                    <p key={paragraph.slice(0, 24)}>{paragraph}</p>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+          <HelpCard className="mt-12 lg:hidden" />
         </div>
       </div>
     </section>

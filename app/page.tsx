@@ -33,7 +33,7 @@ export default async function Home() {
   const [tours, reviews] = await Promise.all([getTours(), getReviews()]);
 
   return (
-    <main className="min-h-screen overflow-x-hidden">
+    <main className="min-h-screen overflow-x-clip">
       <Navbar />
       <Hero />
       <About />

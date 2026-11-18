@@ -14,7 +14,7 @@ export default function Hero() {
     const video = videoRef.current;
     if (!video) return;
     const start = () => {
-      video.play().catch(() => { });
+      video.play().catch(() => {});
     };
     video.play().catch(() => {
       window.addEventListener('touchend', start, { once: true, passive: true });
@@ -81,15 +81,15 @@ export default function Hero() {
             muted
             playsInline
             preload="none"
-            className="absolute inset-0 h-full w-full origin-top object-cover [filter:saturate(1.15)_contrast(1.05)]"
+            className="absolute inset-0 h-full w-full origin-top object-cover [filter:contrast(1.15)_saturate(1.35)_brightness(1.05)]"
           >
             <source src="/videos/lviv_opernyy.webm" type="video/webm" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 via-45% to-black/20 lg:from-black/85 lg:via-black/55 lg:via-40% lg:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 via-45% to-black/10 lg:from-black/75 lg:via-black/35 lg:via-35% lg:to-transparent lg:to-70%" />
 
           <div
             data-hero-copy
-            className="relative z-10 mt-auto grid gap-10 p-6 pt-32 text-white sm:p-10 lg:grid-cols-12 lg:items-end lg:gap-12 lg:p-14"
+            className="hero-scrim relative z-10 mt-auto grid gap-10 p-6 pt-32 text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.45)] sm:p-10 lg:grid-cols-12 lg:items-end lg:gap-12 lg:p-14"
           >
             <h1 className="font-semibold leading-[0.98] tracking-[-0.035em] [font-size:clamp(2.6rem,7.4vw,7rem)] lg:col-span-8">
               <span className="block overflow-hidden pb-[0.06em]">
@@ -101,13 +101,13 @@ export default function Hero() {
             </h1>
 
             <div className="animate-fade-in [animation-delay:800ms] lg:col-span-4 lg:pb-3">
-              <h2 className="mb-4 text-lg font-medium text-gold-300 md:text-xl">Професійний екскурсовод у Львові</h2>
-              <p className="mb-8 max-w-md text-[17px] leading-relaxed text-white/80">
+              <h2 className="mb-4 text-lg font-medium text-gold-200 md:text-xl">Професійний екскурсовод у Львові</h2>
+              <p className="mb-8 max-w-md text-[17px] leading-relaxed text-white/95">
                 <strong className="font-semibold text-white">Не стандартна екскурсія, а розуміння міста.</strong> Я
                 показую Львів через деталі, які більшість не помічає, і пояснюю їхній сенс простою мовою. Історія без
                 сухих дат — через людей і сенси.
               </p>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3 [text-shadow:none]">
                 <a
                   href="#tours"
                   className="inline-flex items-center rounded-full bg-gold-400 px-7 py-4 text-base font-semibold text-night transition-colors hover:bg-gold-300"

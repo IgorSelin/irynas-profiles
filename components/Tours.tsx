@@ -51,7 +51,7 @@ function TourCard({ tour, hidden }: { tour: Tour; hidden: boolean }) {
 
       <div className="flex flex-1 flex-col pt-5">
         <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
-          <span className="inline-flex items-center gap-1.5 text-ink/60">
+          <span className="inline-flex items-center gap-1.5 text-ink/65">
             <ClockIcon />
             {tour.duration}
           </span>
@@ -159,10 +159,10 @@ export default function Tours({ tours, initialCount }: { tours: Tour[]; initialC
               placeholder="Пошук за назвою, описом або темою"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-full border border-transparent bg-stone py-4 pl-12 pr-12 text-base text-ink transition-colors placeholder:text-ink/45 focus:border-azure-400 focus:bg-white focus:outline-none"
+              className="w-full rounded-full border border-transparent bg-stone py-4 pl-12 pr-12 text-base text-ink transition-colors placeholder:text-ink/65 focus:border-azure-400 focus:bg-white focus:outline-none"
             />
             <svg
-              className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-ink/40"
+              className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-ink/65"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -178,7 +178,7 @@ export default function Tours({ tours, initialCount }: { tours: Tour[]; initialC
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-ink/50 hover:bg-white hover:text-night"
+                className="absolute right-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-ink/65 hover:bg-white hover:text-night"
                 aria-label="Очистити пошук"
               >
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -216,7 +216,7 @@ export default function Tours({ tours, initialCount }: { tours: Tour[]; initialC
 
         <div className="mb-6 flex items-baseline justify-between gap-4 border-b border-ink/10 pb-4">
           <h3 className="font-medium text-night">Популярні екскурсії по Львову</h3>
-          <span className="text-sm text-ink/50">Знайдено: {filteredTours.length}</span>
+          <span className="text-sm text-ink/65">Знайдено: {filteredTours.length}</span>
         </div>
 
         <div className="grid gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
@@ -239,7 +239,7 @@ export default function Tours({ tours, initialCount }: { tours: Tour[]; initialC
         {filteredTours.length === 0 && (
           <div className="rounded-[28px] bg-stone px-6 py-16 text-center">
             <p className="text-xl font-medium text-night">За запитом «{searchQuery || selectedTag}» екскурсій немає</p>
-            <p className="mt-2 text-ink/60">Спробуйте інше слово або подивіться всі маршрути.</p>
+            <p className="mt-2 text-ink/65">Спробуйте інше слово або подивіться всі маршрути.</p>
             <button
               onClick={() => {
                 setSearchQuery('');

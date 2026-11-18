@@ -87,7 +87,7 @@ export default function ReviewForm({ onSuccess, tourId }: { onSuccess?: () => vo
             })}
             className="w-full rounded-2xl border border-ink/15 bg-white px-4 py-3 text-ink transition-colors focus:border-azure-500 focus:outline-none focus:ring-4 focus:ring-azure-500/15"
           />
-          {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>}
+          {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>}
         </div>
 
         <div>
@@ -109,7 +109,7 @@ export default function ReviewForm({ onSuccess, tourId }: { onSuccess?: () => vo
             <option value="2">2 - Погано</option>
             <option value="1">1 - Дуже погано</option>
           </select>
-          {errors.rating && <p className="mt-1 text-sm text-red-500">{errors.rating.message}</p>}
+          {errors.rating && <p className="mt-1 text-sm text-red-600">{errors.rating.message}</p>}
         </div>
 
         <div>
@@ -132,7 +132,7 @@ export default function ReviewForm({ onSuccess, tourId }: { onSuccess?: () => vo
             })}
             className="w-full resize-y rounded-2xl border border-ink/15 bg-white px-4 py-3 text-ink transition-colors focus:border-azure-500 focus:outline-none focus:ring-4 focus:ring-azure-500/15"
           />
-          {errors.text && <p className="mt-1 text-sm text-red-500">{errors.text.message}</p>}
+          {errors.text && <p className="mt-1 text-sm text-red-600">{errors.text.message}</p>}
         </div>
 
         {submitStatus.type && (

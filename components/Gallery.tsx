@@ -138,7 +138,7 @@ export default function Gallery() {
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <span className="px-4 text-center font-medium text-white">{photo.alt}</span>
                   </div>
                 </motion.div>

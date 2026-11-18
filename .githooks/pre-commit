@@ -1,0 +1,35 @@
+#!/bin/sh
+# Runs the same checks as CI (.github/workflows/ci.yml) before every commit, so a red CI never starts locally green.
+# Enabled by `npm install` (the "prepare" script sets core.hooksPath). Skip once with: git commit --no-verify
+
+# VS Code started from the desktop may not have nvm's node on PATH
+if ! command -v npm >/dev/null 2>&1; then
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+fi
+
+failed=""
+
+run() {
+  label="$1"
+  shift
+  echo "▶ $label"
+  if ! "$@"; then
+    failed="$failed\n  - $label"
+  fi
+}
+
+run "TypeScript" npm run -s type-check
+run "ESLint" npm run -s lint
+run "Prettier" npm run -s format:check
+run "cspell" npm run -s lint:spell -- --no-progress
+
+if [ -n "$failed" ]; then
+  printf "\n✖ Commit blocked. Failed checks:%b\n\n" "$failed"
+  echo "  Fix formatting:  npm run format"
+  echo "  Fix lint:        npm run lint:fix"
+  echo "  Unknown word that is spelled right: add it to \"words\" in cspell.json"
+  exit 1
+fi
+
+echo "✔ All checks passed"
