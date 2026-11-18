@@ -14,7 +14,7 @@ export default function Hero() {
     const video = videoRef.current;
     if (!video) return;
     const start = () => {
-      video.play().catch(() => {});
+      video.play().catch(() => { });
     };
     video.play().catch(() => {
       window.addEventListener('touchend', start, { once: true, passive: true });
@@ -81,11 +81,11 @@ export default function Hero() {
             muted
             playsInline
             preload="none"
-            className="absolute inset-0 h-full w-full origin-top object-cover"
+            className="absolute inset-0 h-full w-full origin-top object-cover [filter:saturate(1.15)_contrast(1.05)]"
           >
             <source src="/videos/lviv_opernyy.webm" type="video/webm" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-t from-night via-night/45 to-night/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 via-45% to-black/20 lg:from-black/85 lg:via-black/55 lg:via-40% lg:to-transparent" />
 
           <div
             data-hero-copy
